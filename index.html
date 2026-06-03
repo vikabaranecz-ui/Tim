@@ -317,6 +317,9 @@ section{padding:96px 5%}
 /* ─ CONTACT ─ */
 #contact{background:linear-gradient(140deg,var(--navy-dk) 0%,var(--navy) 100%);position:relative;overflow:hidden}
 #contact::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23E8A500' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E")}
+/* steigerlijnen in contact */
+#contact .scaffold-bg{z-index:0}
+.ct-layout{z-index:2}
 .ct-layout{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .ct-info .section-title{color:var(--white)}
 .ct-info .section-sub{color:rgba(255,255,255,0.62);margin-bottom:38px}
@@ -351,6 +354,53 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 .ft-links a:hover{color:var(--gold)}
 .ft-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 .ft-copy,.ft-legal{font-size:0.74rem;color:rgba(255,255,255,0.26)}
+
+/* ─ BRAND SWOOSH DECORATIES ─ */
+.brand-swoosh{
+  position:absolute;pointer-events:none;overflow:visible;
+}
+/* Hero — grote swoosh rechtsonder */
+.hero-swoosh{
+  bottom:-40px;right:-60px;width:55%;max-width:700px;
+  opacity:0.08;transform:rotate(-8deg);
+  animation:swooshFloat 8s ease-in-out infinite;
+}
+@keyframes swooshFloat{
+  0%,100%{transform:rotate(-8deg) translateY(0)}
+  50%{transform:rotate(-8deg) translateY(-12px)}
+}
+/* Kleine accent-swoosh links naast sectietitels */
+.swoosh-accent{
+  display:block;width:80px;height:28px;margin-bottom:6px;
+  overflow:visible;
+}
+.swoosh-accent path{fill:var(--gold)}
+/* Werkwijze — grote achtergrond swoosh */
+.process-swoosh{
+  top:50%;left:-80px;width:55%;max-width:600px;
+  opacity:0.04;transform:translateY(-50%) rotate(15deg);
+}
+/* Voorna — swoosh rechtsboven */
+.voorna-swoosh{
+  top:-20px;right:-40px;width:40%;max-width:500px;
+  opacity:0.05;transform:rotate(-20deg);
+}
+
+/* ─ STEIGERLIJNEN (SCAFFOLDING) ─ */
+.scaffold-bg{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.scaffold-bg svg{width:100%;height:100%}
+
+/* Sectie-divider swoosh (goud, breed) */
+.swoosh-divider{
+  position:relative;overflow:hidden;height:70px;
+  line-height:0;
+}
+.swoosh-divider svg{
+  position:absolute;bottom:0;width:100%;height:100%;
+  display:block;
+}
 
 /* ─ REVEAL ─ */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.62s ease,transform 0.62s ease}
@@ -444,6 +494,43 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 <!-- HERO -->
 <section id="home" class="hero">
   <div class="hero-bg" role="presentation"></div>
+
+  <!-- Steigerlijnen achtergrond -->
+  <div class="scaffold-bg" aria-hidden="true">
+    <svg viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" fill="none">
+      <!-- Verticale palen -->
+      <line x1="120" y1="0" x2="120" y2="700" stroke="white" stroke-width="1.2" opacity="0.07"/>
+      <line x1="280" y1="0" x2="280" y2="700" stroke="white" stroke-width="1.2" opacity="0.05"/>
+      <line x1="700" y1="0" x2="700" y2="700" stroke="white" stroke-width="1" opacity="0.04"/>
+      <line x1="920" y1="0" x2="920" y2="700" stroke="white" stroke-width="1.2" opacity="0.05"/>
+      <line x1="1100" y1="0" x2="1100" y2="700" stroke="white" stroke-width="1" opacity="0.04"/>
+      <!-- Horizontale dwarsbalken -->
+      <line x1="0" y1="160" x2="1200" y2="160" stroke="white" stroke-width="1" opacity="0.06"/>
+      <line x1="0" y1="340" x2="1200" y2="340" stroke="white" stroke-width="0.8" opacity="0.04"/>
+      <line x1="0" y1="520" x2="1200" y2="520" stroke="white" stroke-width="0.8" opacity="0.04"/>
+      <!-- Diagonale schoren -->
+      <line x1="120" y1="160" x2="280" y2="340" stroke="white" stroke-width="0.8" opacity="0.05"/>
+      <line x1="280" y1="160" x2="120" y2="340" stroke="white" stroke-width="0.8" opacity="0.04"/>
+      <line x1="920" y1="160" x2="1100" y2="340" stroke="white" stroke-width="0.8" opacity="0.05"/>
+      <line x1="1100" y1="160" x2="920" y2="340" stroke="white" stroke-width="0.8" opacity="0.04"/>
+      <!-- Verbindingspunten (knoopplaten) -->
+      <circle cx="120" cy="160" r="4" fill="white" opacity="0.1"/>
+      <circle cx="280" cy="160" r="4" fill="white" opacity="0.08"/>
+      <circle cx="920" cy="160" r="4" fill="white" opacity="0.08"/>
+      <circle cx="1100" cy="160" r="4" fill="white" opacity="0.08"/>
+      <circle cx="120" cy="340" r="4" fill="white" opacity="0.08"/>
+      <circle cx="280" cy="340" r="4" fill="white" opacity="0.07"/>
+      <circle cx="920" cy="340" r="4" fill="white" opacity="0.07"/>
+      <circle cx="1100" cy="340" r="4" fill="white" opacity="0.07"/>
+      <circle cx="120" cy="520" r="3" fill="white" opacity="0.06"/>
+      <circle cx="280" cy="520" r="3" fill="white" opacity="0.05"/>
+    </svg>
+  </div>
+
+  <!-- Grote brand swoosh decoratie -->
+  <svg class="brand-swoosh hero-swoosh" viewBox="0 0 600 280" aria-hidden="true">
+    <path d="M 0 220 C 60 260, 350 100, 600 10 C 570 30, 320 130, 20 250 Z" fill="#E8A500"/>
+  </svg>
   <div class="hero-content">
     <div class="hero-text">
       <div class="hero-badge">
@@ -510,6 +597,7 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 <section id="diensten">
   <div class="si">
     <div class="sec-hd reveal">
+      <svg class="swoosh-accent" viewBox="0 0 80 28" aria-hidden="true"><path d="M 0 22 C 10 28, 55 8, 80 1 C 72 5, 40 16, 2 24 Z"/></svg>
       <span class="section-label">Onze expertise</span>
       <h2 class="section-title">Vier disciplines.<br>Één vakman.</h2>
       <div class="gold-line"></div>
@@ -561,9 +649,39 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 </section>
 
 <!-- HOE WIJ WERKEN -->
-<section id="werkwijze">
+<section id="werkwijze" style="position:relative;overflow:hidden">
+  <!-- Steigerlijnen werkwijze achtergrond -->
+  <div class="scaffold-bg" aria-hidden="true">
+    <svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" fill="none">
+      <line x1="0" y1="120" x2="1200" y2="120" stroke="white" stroke-width="1" opacity="0.06"/>
+      <line x1="0" y1="280" x2="1200" y2="280" stroke="white" stroke-width="0.8" opacity="0.05"/>
+      <line x1="0" y1="400" x2="1200" y2="400" stroke="white" stroke-width="0.7" opacity="0.04"/>
+      <line x1="200" y1="0" x2="200" y2="500" stroke="white" stroke-width="1" opacity="0.05"/>
+      <line x1="500" y1="0" x2="500" y2="500" stroke="white" stroke-width="0.8" opacity="0.04"/>
+      <line x1="700" y1="0" x2="700" y2="500" stroke="white" stroke-width="0.8" opacity="0.04"/>
+      <line x1="1000" y1="0" x2="1000" y2="500" stroke="white" stroke-width="1" opacity="0.05"/>
+      <line x1="200" y1="120" x2="500" y2="280" stroke="white" stroke-width="0.7" opacity="0.05"/>
+      <line x1="700" y1="120" x2="1000" y2="280" stroke="white" stroke-width="0.7" opacity="0.05"/>
+      <circle cx="200" cy="120" r="5" fill="none" stroke="white" stroke-width="1.2" opacity="0.1"/>
+      <circle cx="500" cy="120" r="5" fill="none" stroke="white" stroke-width="1.2" opacity="0.08"/>
+      <circle cx="700" cy="120" r="5" fill="none" stroke="white" stroke-width="1.2" opacity="0.08"/>
+      <circle cx="1000" cy="120" r="5" fill="none" stroke="white" stroke-width="1.2" opacity="0.1"/>
+      <circle cx="200" cy="280" r="4" fill="none" stroke="white" stroke-width="1" opacity="0.07"/>
+      <circle cx="500" cy="280" r="4" fill="none" stroke="white" stroke-width="1" opacity="0.06"/>
+      <circle cx="700" cy="280" r="4" fill="none" stroke="white" stroke-width="1" opacity="0.06"/>
+      <circle cx="1000" cy="280" r="4" fill="none" stroke="white" stroke-width="1" opacity="0.07"/>
+    </svg>
+  </div>
+  <!-- Grote swoosh achtergrond decoratie -->
+  <svg class="brand-swoosh process-swoosh" viewBox="0 0 600 280" aria-hidden="true">
+    <path d="M 0 220 C 60 260, 350 100, 600 10 C 570 30, 320 130, 20 250 Z" fill="#E8A500"/>
+  </svg>
+
   <div class="si">
     <div class="sec-hd reveal" style="text-align:center">
+      <svg style="display:block;margin:0 auto 6px;width:100px;height:34px;overflow:visible" viewBox="0 0 100 34" aria-hidden="true">
+        <path d="M 0 27 C 12 34, 68 10, 100 1 C 90 6, 50 20, 3 30 Z" fill="#E8A500" opacity="0.6"/>
+      </svg>
       <span class="section-label" style="display:block;text-align:center">Stap voor stap</span>
       <h2 class="section-title light" style="text-align:center">Van aanvraag tot oplevering</h2>
       <div class="gold-line" style="margin:14px auto 0"></div>
@@ -607,7 +725,12 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 </div>
 
 <!-- VOOR & NA -->
-<section id="voorna">
+<section id="voorna" style="position:relative;overflow:hidden">
+  <!-- Swoosh achtergrond decoratie Voor & Na -->
+  <svg class="brand-swoosh voorna-swoosh" viewBox="0 0 600 280" aria-hidden="true">
+    <path d="M 0 220 C 60 260, 350 100, 600 10 C 570 30, 320 130, 20 250 Z" fill="#E8A500"/>
+  </svg>
+
   <div class="si">
     <div class="sec-hd reveal">
       <span class="section-label" style="color:var(--gold)">Gerealiseerde projecten</span>
@@ -674,6 +797,7 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
         </div>
       </div>
       <div class="reveal-r">
+        <svg class="swoosh-accent" viewBox="0 0 80 28" aria-hidden="true"><path d="M 0 22 C 10 28, 55 8, 80 1 C 72 5, 40 16, 2 24 Z" fill="var(--gold)"/></svg>
         <span class="section-label">Waarom T.F.M.?</span>
         <h2 class="section-title">Wij zijn anders.<br>Hier is waarom.</h2>
         <div class="gold-line" style="margin-bottom:30px"></div>
@@ -709,6 +833,7 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
   <div class="si">
     <div class="oo-layout">
       <div class="reveal-l">
+        <svg class="swoosh-accent" viewBox="0 0 80 28" aria-hidden="true"><path d="M 0 22 C 10 28, 55 8, 80 1 C 72 5, 40 16, 2 24 Z" fill="var(--gold)"/></svg>
         <span class="section-label">Wie zijn wij</span>
         <h2 class="section-title">Over T.F.M.<br>Construct BV</h2>
         <div class="gold-line"></div>
@@ -733,6 +858,25 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 
 <!-- CONTACT -->
 <section id="contact">
+  <div class="scaffold-bg" aria-hidden="true">
+    <svg viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" fill="none">
+      <line x1="80" y1="0" x2="80" y2="600" stroke="white" stroke-width="1" opacity="0.05"/>
+      <line x1="400" y1="0" x2="400" y2="600" stroke="white" stroke-width="0.8" opacity="0.04"/>
+      <line x1="800" y1="0" x2="800" y2="600" stroke="white" stroke-width="0.8" opacity="0.04"/>
+      <line x1="1120" y1="0" x2="1120" y2="600" stroke="white" stroke-width="1" opacity="0.05"/>
+      <line x1="0" y1="150" x2="1200" y2="150" stroke="white" stroke-width="0.8" opacity="0.05"/>
+      <line x1="0" y1="380" x2="1200" y2="380" stroke="white" stroke-width="0.7" opacity="0.04"/>
+      <line x1="0" y1="520" x2="1200" y2="520" stroke="white" stroke-width="0.6" opacity="0.03"/>
+      <line x1="80" y1="150" x2="400" y2="380" stroke="white" stroke-width="0.6" opacity="0.04"/>
+      <line x1="800" y1="150" x2="1120" y2="380" stroke="white" stroke-width="0.6" opacity="0.04"/>
+      <circle cx="80" cy="150" r="5" fill="none" stroke="white" stroke-width="1" opacity="0.08"/>
+      <circle cx="400" cy="150" r="5" fill="none" stroke="white" stroke-width="1" opacity="0.06"/>
+      <circle cx="800" cy="150" r="5" fill="none" stroke="white" stroke-width="1" opacity="0.06"/>
+      <circle cx="1120" cy="150" r="5" fill="none" stroke="white" stroke-width="1" opacity="0.08"/>
+      <!-- Grote achtergrond swoosh rechtsonder in contact -->
+      <path d="M 600 550 C 750 580, 1050 420, 1200 350 C 1170 380, 900 470, 620 570 Z" fill="#E8A500" opacity="0.04"/>
+    </svg>
+  </div>
   <div class="si">
     <div class="ct-layout">
       <div class="ct-info reveal-l">
