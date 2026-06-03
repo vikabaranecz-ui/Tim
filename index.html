@@ -112,7 +112,7 @@ nav{
   padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:70px;
 }
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo img{height:36px;width:auto;object-fit:contain}
+.nav-logo svg{flex-shrink:0}
 .nav-logo-text{display:flex;flex-direction:column;line-height:1}
 .nav-logo-name{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;color:var(--white);letter-spacing:0.06em}
 .nav-logo-sub{font-family:'Barlow Condensed',sans-serif;font-size:0.62rem;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-top:1px}
@@ -462,7 +462,10 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 <!-- NAV -->
 <nav>
   <a href="#home" class="nav-logo">
-    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/GEVELWERKEN-3.jpg" alt="TFM logo swoosh">
+    <!-- Inline SVG swoosh — geen achtergrond -->
+    <svg width="48" height="22" viewBox="0 0 120 50" aria-hidden="true" style="flex-shrink:0">
+      <path d="M 0 42 C 18 52, 78 16, 120 2 C 108 10, 56 30, 4 46 Z" fill="#E8A500"/>
+    </svg>
     <div class="nav-logo-text">
       <span class="nav-logo-name">T.F.M. Construct BV</span>
       <span class="nav-logo-sub">Gevelwerken</span>
@@ -475,7 +478,7 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
     <li><a href="#waarom">Voordelen</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Gratis offerte</a>
+  <a href="#contact" class="nav-cta" style="white-space:nowrap">Gratis offerte</a>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
@@ -828,34 +831,6 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
   </div>
 </section>
 
-<!-- OVER ONS -->
-<section id="overons">
-  <div class="si">
-    <div class="oo-layout">
-      <div class="reveal-l">
-        <svg class="swoosh-accent" viewBox="0 0 80 28" aria-hidden="true"><path d="M 0 22 C 10 28, 55 8, 80 1 C 72 5, 40 16, 2 24 Z" fill="var(--gold)"/></svg>
-        <span class="section-label">Wie zijn wij</span>
-        <h2 class="section-title">Over T.F.M.<br>Construct BV</h2>
-        <div class="gold-line"></div>
-        <p class="oo-text">T.F.M. Construct BV is een Belgisch familiebedrijf met passie voor geveltechniek. Opgericht met één helder doel: gevels opleveren die er decennia later nog steeds onberispelijk uitzien én maximale bescherming bieden.<br><br>Ons team van gediplomeerde vakmensen behandelt elke opdracht alsof het hun eigen woning betreft. Wij werken uitsluitend met gecertificeerde Europese materialen en houden ons strikt aan de geldende bouwnormen.</p>
-        <div class="oo-facts">
-          <div class="fact-box"><strong>10j</strong><span>Garantie op elk werk</span></div>
-          <div class="fact-box"><strong>48u</strong><span>Offerte na aanvraag</span></div>
-          <div class="fact-box"><strong>4</strong><span>Gespecialiseerde diensten</span></div>
-          <div class="fact-box"><strong>BE</strong><span>Heel België bediend</span></div>
-        </div>
-        <a href="#contact" class="btn-primary" style="background:var(--navy);color:var(--white)">
-          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.62 3.41 2 2 0 013.61 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.6a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-          Neem contact op
-        </a>
-      </div>
-      <div class="oo-photo reveal-r">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_37_25%20AM.png" alt="TFM vakman gevelafwerking" loading="lazy">
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- CONTACT -->
 <section id="contact">
   <div class="scaffold-bg" aria-hidden="true">
@@ -936,7 +911,9 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
   <div class="ft-inner">
     <div class="ft-top">
       <a href="#home" class="ft-logo">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/GEVELWERKEN-3.jpg" alt="TFM swoosh">
+        <svg width="44" height="20" viewBox="0 0 120 50" aria-hidden="true" style="flex-shrink:0">
+          <path d="M 0 42 C 18 52, 78 16, 120 2 C 108 10, 56 30, 4 46 Z" fill="#E8A500"/>
+        </svg>
         <div class="ft-logo-text">
           <div class="ft-name">T.F.M. Construct BV</div>
           <div class="ft-sub">Gevelwerken</div>
