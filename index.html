@@ -6,7 +6,7 @@
 <title>T.F.M. Construct BV – Gevelbekleding & Isolatie</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -24,23 +24,45 @@
 html{scroll-behavior:smooth;font-size:16px}
 body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
 
+/* ─── STICKY CTA ─── */
+.sticky-cta{
+  position:fixed;bottom:28px;right:28px;z-index:200;
+  background:var(--gold);color:var(--navy-dk);
+  padding:14px 24px;border-radius:40px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.9rem;
+  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
+  box-shadow:0 8px 28px rgba(232,165,0,0.45);
+  display:flex;align-items:center;gap:8px;
+  transition:transform var(--trans),box-shadow var(--trans);
+  animation:pulse-cta 2.5s ease-in-out infinite;
+}
+.sticky-cta:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 36px rgba(232,165,0,0.6);animation:none}
+@keyframes pulse-cta{
+  0%,100%{box-shadow:0 8px 28px rgba(232,165,0,0.45)}
+  50%{box-shadow:0 8px 36px rgba(232,165,0,0.7),0 0 0 6px rgba(232,165,0,0.12)}
+}
+.sticky-cta svg{width:16px;height:16px;flex-shrink:0}
+
 /* ─── NAV ─── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   background:rgba(2,24,48,0.96);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid rgba(232,165,0,0.15);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(232,165,0,0.12);
   padding:0 5%;
   display:flex;align-items:center;justify-content:space-between;
   height:70px;
 }
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.nav-logo img{height:44px;width:auto;object-fit:contain}
+.nav-logo{display:flex;align-items:center;text-decoration:none}
+.nav-logo img{
+  height:48px;width:auto;object-fit:contain;
+  /* White logo on dark nav — no filter needed */
+}
 .nav-links{display:flex;gap:36px;list-style:none}
 .nav-links a{
-  color:rgba(255,255,255,0.85);text-decoration:none;
-  font-family:'Oswald',sans-serif;font-weight:400;font-size:0.85rem;
-  letter-spacing:0.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.8);text-decoration:none;
+  font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:0.95rem;
+  letter-spacing:0.1em;text-transform:uppercase;
   transition:color var(--trans);position:relative;
 }
 .nav-links a::after{
@@ -53,7 +75,7 @@ nav{
 .nav-cta{
   background:var(--gold);color:var(--navy-dk);
   padding:10px 22px;border-radius:var(--radius);
-  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.8rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.85rem;
   letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
   transition:background var(--trans),transform var(--trans);
   white-space:nowrap;
@@ -72,340 +94,320 @@ nav{
 .mobile-menu.open{display:flex}
 .mobile-menu a{
   color:var(--white);text-decoration:none;
-  font-family:'Oswald',sans-serif;font-weight:500;font-size:1.6rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1.8rem;
   letter-spacing:0.1em;text-transform:uppercase;
   transition:color var(--trans);
 }
 .mobile-menu a:hover{color:var(--gold)}
 .mobile-menu .m-cta{
   background:var(--gold);color:var(--navy-dk);
-  padding:14px 36px;border-radius:var(--radius);font-size:1rem;
+  padding:14px 40px;border-radius:var(--radius);
 }
 
 /* ─── HERO ─── */
 .hero{
   position:relative;min-height:100vh;
   display:flex;align-items:center;
-  background:linear-gradient(135deg,var(--navy-dk) 0%,var(--navy) 60%,#073560 100%);
+  background:linear-gradient(140deg,var(--navy-dk) 0%,var(--navy) 55%,#073560 100%);
   overflow:hidden;padding-top:70px;
 }
-.hero-bg-img{
+.hero-bg{
   position:absolute;inset:0;
-  background:url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_11_51%20AM.png') center/cover no-repeat;
-  opacity:0.18;
+  background:url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_41_10%20AM.png') center right/cover no-repeat;
+  opacity:0.22;
 }
 .hero-content{
   position:relative;z-index:2;
   max-width:1200px;margin:0 auto;padding:80px 5%;
   display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
 }
-.hero-text{flex:1}
 .hero-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:rgba(232,165,0,0.12);border:1px solid rgba(232,165,0,0.35);
-  padding:6px 16px;border-radius:40px;margin-bottom:28px;
+  padding:6px 18px;border-radius:40px;margin-bottom:28px;
 }
 .hero-badge span{
-  font-family:'Oswald',sans-serif;font-weight:400;font-size:0.75rem;
-  letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);
+  font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:0.8rem;
+  letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);
 }
-.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 .hero h1{
-  font-family:'Oswald',sans-serif;font-weight:700;
-  font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;
-  color:var(--white);margin-bottom:24px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,6vw,5rem);line-height:1;
+  color:var(--white);margin-bottom:24px;letter-spacing:0.03em;
 }
 .hero h1 em{color:var(--gold);font-style:normal}
-.hero p{
-  font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.75);
+.hero-sub{
+  font-size:1rem;line-height:1.75;color:rgba(255,255,255,0.72);
   max-width:480px;margin-bottom:40px;font-weight:300;
 }
 .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
 .btn-primary{
   background:var(--gold);color:var(--navy-dk);
   padding:14px 32px;border-radius:var(--radius);
-  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.9rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.95rem;
   letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
   transition:background var(--trans),transform var(--trans);
   display:inline-flex;align-items:center;gap:8px;
 }
 .btn-primary:hover{background:var(--gold-lt);transform:translateY(-2px)}
 .btn-outline{
-  border:1.5px solid rgba(255,255,255,0.4);color:var(--white);
+  border:1.5px solid rgba(255,255,255,0.38);color:var(--white);
   padding:14px 32px;border-radius:var(--radius);
-  font-family:'Oswald',sans-serif;font-weight:500;font-size:0.9rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:0.95rem;
   letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
   transition:border-color var(--trans),background var(--trans);
 }
 .btn-outline:hover{border-color:var(--gold);background:rgba(232,165,0,0.08)}
 .hero-stats{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px;
 }
 .stat-card{
   background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
-  border-radius:8px;padding:20px 16px;text-align:center;
+  border-radius:8px;padding:20px 14px;text-align:center;
+  border-top:2px solid rgba(232,165,0,0.4);
 }
 .stat-num{
-  font-family:'Oswald',sans-serif;font-weight:700;font-size:1.9rem;
-  color:var(--gold);display:block;line-height:1;
+  font-family:'Bebas Neue',sans-serif;font-size:2.2rem;
+  color:var(--gold);display:block;line-height:1;letter-spacing:0.04em;
 }
 .stat-lbl{
-  font-size:0.72rem;color:rgba(255,255,255,0.6);
-  letter-spacing:0.08em;text-transform:uppercase;margin-top:6px;display:block;
+  font-size:0.7rem;color:rgba(255,255,255,0.55);
+  letter-spacing:0.1em;text-transform:uppercase;margin-top:6px;display:block;
 }
-.hero-visual{
-  position:relative;display:flex;justify-content:center;align-items:center;
-}
-.hero-photo-frame{
+/* Hero visual */
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-photo-wrap{
   position:relative;border-radius:12px;overflow:hidden;
-  width:100%;max-width:460px;aspect-ratio:3/4;
-  border:2px solid rgba(232,165,0,0.25);
+  width:100%;max-width:440px;aspect-ratio:3/4;
+  border:2px solid rgba(232,165,0,0.2);
+  box-shadow:0 24px 64px rgba(0,0,0,0.4);
 }
-.hero-photo-frame img{width:100%;height:100%;object-fit:cover}
+.hero-photo-wrap img{width:100%;height:100%;object-fit:cover}
 .hero-photo-tag{
-  position:absolute;bottom:20px;left:20px;right:20px;
+  position:absolute;bottom:20px;left:16px;right:16px;
   background:rgba(2,24,48,0.88);backdrop-filter:blur(8px);
   border-left:3px solid var(--gold);padding:12px 16px;border-radius:4px;
 }
-.hero-photo-tag p{font-size:0.8rem;color:rgba(255,255,255,0.7);margin-bottom:2px}
-.hero-photo-tag strong{font-family:'Oswald',sans-serif;font-weight:500;color:var(--white);font-size:0.95rem}
-
-/* ─── GOLD ARC DIVIDER ─── */
-.arc-divider{
-  position:relative;height:80px;overflow:hidden;
-  background:var(--navy);
-}
-.arc-divider svg{
-  position:absolute;bottom:0;width:100%;height:100%;
-}
-.arc-divider.light-to-navy{background:var(--off)}
-.arc-divider.navy-to-light{background:var(--navy)}
+.hero-photo-tag p{font-size:0.75rem;color:rgba(255,255,255,0.55);margin-bottom:2px}
+.hero-photo-tag strong{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;color:var(--white);letter-spacing:0.04em}
 
 /* ─── SECTION BASE ─── */
-section{padding:100px 5%}
+section{padding:96px 5%}
 .section-inner{max-width:1200px;margin:0 auto}
 .section-label{
-  font-family:'Oswald',sans-serif;font-weight:400;font-size:0.75rem;
-  letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
-  margin-bottom:12px;display:block;
+  font-family:'Barlow Condensed',sans-serif;font-weight:500;font-size:0.78rem;
+  letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:10px;display:block;
 }
 .section-title{
-  font-family:'Oswald',sans-serif;font-weight:700;
-  font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.1;
-  color:var(--navy);margin-bottom:16px;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,4vw,3.2rem);line-height:1.02;letter-spacing:0.04em;
+  color:var(--navy);margin-bottom:14px;
 }
 .section-title.light{color:var(--white)}
 .section-subtitle{
-  font-size:1rem;line-height:1.7;color:var(--muted);
+  font-size:0.97rem;line-height:1.72;color:var(--muted);
   max-width:560px;font-weight:300;
 }
-.section-subtitle.light{color:rgba(255,255,255,0.65)}
+.section-subtitle.light{color:rgba(255,255,255,0.62)}
 .section-header{margin-bottom:60px}
-.gold-line{
-  width:52px;height:3px;background:var(--gold);
-  border-radius:2px;margin:16px 0 0;
-}
+.gold-line{width:52px;height:3px;background:var(--gold);border-radius:2px;margin:14px 0 0}
 
 /* ─── DIENSTEN ─── */
 #diensten{background:var(--off)}
-.services-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
-}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
 .service-card{
   position:relative;border-radius:10px;overflow:hidden;
-  aspect-ratio:3/4;cursor:default;
-  box-shadow:0 8px 32px rgba(5,40,76,0.18);
+  aspect-ratio:3/4;
+  box-shadow:0 8px 32px rgba(5,40,76,0.15);
   transition:transform var(--trans),box-shadow var(--trans);
 }
-.service-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(5,40,76,0.28)}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 20px 52px rgba(5,40,76,0.28)}
 .service-card img{
   width:100%;height:100%;object-fit:cover;
-  transition:transform 0.5s ease;
+  transition:transform 0.5s ease;display:block;
 }
-.service-card:hover img{transform:scale(1.06)}
+.service-card:hover img{transform:scale(1.07)}
 .service-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(2,24,48,0.92) 0%,rgba(2,24,48,0.35) 55%,transparent 100%);
+  background:linear-gradient(to top,rgba(2,24,48,0.94) 0%,rgba(2,24,48,0.3) 55%,transparent 100%);
 }
-.service-info{
-  position:absolute;bottom:0;left:0;right:0;padding:28px 22px;
-}
+.service-info{position:absolute;bottom:0;left:0;right:0;padding:26px 20px}
 .service-icon{
-  width:44px;height:44px;border-radius:8px;
-  background:rgba(232,165,0,0.15);border:1px solid rgba(232,165,0,0.4);
-  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  width:42px;height:42px;border-radius:8px;
+  background:rgba(232,165,0,0.14);border:1px solid rgba(232,165,0,0.4);
+  display:flex;align-items:center;justify-content:center;margin-bottom:12px;
 }
-.service-icon svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.service-icon svg{width:20px;height:20px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .service-card h3{
-  font-family:'Oswald',sans-serif;font-weight:600;font-size:1.25rem;
-  color:var(--white);margin-bottom:8px;letter-spacing:0.02em;
+  font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.05em;
+  color:var(--white);margin-bottom:7px;
 }
-.service-card p{font-size:0.82rem;line-height:1.55;color:rgba(255,255,255,0.72);font-weight:300}
+.service-card p{font-size:0.8rem;line-height:1.55;color:rgba(255,255,255,0.7);font-weight:300}
 .service-tag{
-  display:inline-block;margin-top:12px;
+  display:inline-block;margin-top:10px;
   background:var(--gold);color:var(--navy-dk);
-  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.68rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.67rem;
   letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;
 }
 
 /* ─── VOOR & NA ─── */
 #voorna{background:var(--navy-dk)}
-.voorna-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:60px}
-.voorna-item{border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.35)}
-.voorna-pair{display:grid;grid-template-columns:1fr 1fr}
-.voorna-half{position:relative;aspect-ratio:4/5;overflow:hidden}
-.voorna-half img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+.voorna-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:60px}
+.voorna-item{
+  border-radius:10px;overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,0.4);
+}
+.voorna-pair{display:flex}
+.voorna-half{position:relative;flex:1;overflow:hidden}
+.voorna-half img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;aspect-ratio:3/4;
+  transition:transform 0.5s ease;
+}
 .voorna-item:hover .voorna-half img{transform:scale(1.04)}
+.voorna-sep{width:4px;background:var(--gold);flex-shrink:0}
 .voorna-label{
-  position:absolute;top:12px;left:12px;
-  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.72rem;
-  letter-spacing:0.15em;text-transform:uppercase;
-  padding:5px 10px;border-radius:3px;
+  position:absolute;top:10px;left:10px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:0.7rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  padding:4px 10px;border-radius:3px;
 }
-.label-voor{background:rgba(30,30,30,0.85);color:#ccc}
+.label-voor{background:rgba(0,0,0,0.72);color:rgba(255,255,255,0.8)}
 .label-na{background:var(--gold);color:var(--navy-dk)}
-.voorna-divider{
-  position:relative;width:3px;background:var(--gold);
-  display:flex;align-items:center;justify-content:center;z-index:2;
+.voorna-caption{
+  background:rgba(255,255,255,0.05);border-top:1px solid rgba(255,255,255,0.06);
+  padding:14px 18px;
 }
-.voorna-divider::before{
-  content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
-  width:28px;height:28px;border-radius:50%;
-  background:var(--gold);
-}
+.voorna-caption p{font-size:0.78rem;color:rgba(255,255,255,0.5);font-weight:300}
 
 /* ─── WAAROM WIJ ─── */
 #waarom{background:var(--white)}
-.waarom-layout{
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-}
+.waarom-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
 .waarom-photo{
   position:relative;border-radius:12px;overflow:hidden;
-  aspect-ratio:4/5;
-  border:2px solid rgba(232,165,0,0.2);
+  aspect-ratio:4/5;border:2px solid rgba(232,165,0,0.18);
+  box-shadow:0 16px 48px rgba(5,40,76,0.15);
 }
 .waarom-photo img{width:100%;height:100%;object-fit:cover}
-.waarom-photo-badge{
-  position:absolute;bottom:24px;right:-20px;
-  background:var(--gold);padding:18px 24px;border-radius:8px;
-  box-shadow:0 8px 24px rgba(232,165,0,0.35);text-align:center;
+.waarom-badge{
+  position:absolute;bottom:24px;right:-16px;
+  background:var(--gold);padding:18px 22px;border-radius:8px;
+  box-shadow:0 8px 24px rgba(232,165,0,0.4);text-align:center;
 }
-.waarom-photo-badge strong{
-  display:block;font-family:'Oswald',sans-serif;font-weight:700;
-  font-size:1.8rem;color:var(--navy-dk);line-height:1;
+.waarom-badge strong{
+  display:block;font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;color:var(--navy-dk);line-height:1;letter-spacing:0.04em;
 }
-.waarom-photo-badge span{
-  font-size:0.72rem;font-weight:600;color:var(--navy);
-  letter-spacing:0.08em;text-transform:uppercase;
+.waarom-badge span{
+  font-size:0.7rem;font-weight:600;color:var(--navy);
+  letter-spacing:0.1em;text-transform:uppercase;
 }
-.waarom-features{display:flex;flex-direction:column;gap:28px}
+.waarom-features{display:flex;flex-direction:column;gap:22px}
 .feature-row{
-  display:flex;gap:20px;align-items:flex-start;
-  padding:24px;border-radius:8px;border:1px solid #E8ECF0;
-  transition:border-color var(--trans),box-shadow var(--trans);
+  display:flex;gap:18px;align-items:flex-start;
+  padding:20px;border-radius:8px;border:1px solid #E8ECF0;
+  transition:border-color var(--trans),box-shadow var(--trans),transform var(--trans);
 }
-.feature-row:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(232,165,0,0.1)}
+.feature-row:hover{border-color:rgba(232,165,0,0.5);box-shadow:0 4px 16px rgba(232,165,0,0.1);transform:translateX(4px)}
 .feature-icon{
-  width:48px;height:48px;min-width:48px;border-radius:8px;
+  width:46px;height:46px;min-width:46px;border-radius:8px;
   background:linear-gradient(135deg,var(--navy),var(--navy-dk));
   display:flex;align-items:center;justify-content:center;
 }
-.feature-icon svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.feature-icon svg{width:20px;height:20px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .feature-text h4{
-  font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;
-  color:var(--navy);margin-bottom:6px;letter-spacing:0.02em;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.05rem;
+  color:var(--navy);margin-bottom:5px;letter-spacing:0.03em;
 }
-.feature-text p{font-size:0.85rem;line-height:1.6;color:var(--muted);font-weight:400}
+.feature-text p{font-size:0.83rem;line-height:1.6;color:var(--muted)}
 
 /* ─── OVER ONS ─── */
 #overons{background:var(--off)}
-.overons-layout{
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-}
-.overons-content .section-title{color:var(--navy)}
+.overons-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .overons-text{
-  font-size:0.95rem;line-height:1.8;color:var(--muted);
+  font-size:0.95rem;line-height:1.82;color:var(--muted);
   margin:20px 0 32px;font-weight:300;
 }
 .overons-facts{
-  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:36px;
+  display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:36px;
 }
 .fact-box{
   background:var(--white);border-radius:8px;padding:18px;
   border-left:3px solid var(--gold);
 }
 .fact-box strong{
-  display:block;font-family:'Oswald',sans-serif;font-weight:700;
-  font-size:1.6rem;color:var(--navy);line-height:1;
+  display:block;font-family:'Bebas Neue',sans-serif;
+  font-size:1.9rem;color:var(--navy);line-height:1;letter-spacing:0.04em;
 }
-.fact-box span{font-size:0.78rem;color:var(--muted);font-weight:400;margin-top:4px;display:block}
+.fact-box span{font-size:0.75rem;color:var(--muted);margin-top:4px;display:block}
 .overons-photo{
   position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;
-  box-shadow:0 16px 48px rgba(5,40,76,0.2);
+  box-shadow:0 16px 48px rgba(5,40,76,0.18);
 }
-.overons-photo img{width:100%;height:100%;object-fit:cover}
-.overons-photo::before{
+.overons-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.overons-photo::after{
   content:'';position:absolute;inset:0;
-  background:linear-gradient(to bottom,transparent 60%,rgba(2,24,48,0.7));
-  z-index:1;
+  background:linear-gradient(to bottom,transparent 60%,rgba(2,24,48,0.6));
 }
 
 /* ─── CONTACT ─── */
 #contact{
-  background:linear-gradient(135deg,var(--navy-dk) 0%,var(--navy) 100%);
+  background:linear-gradient(140deg,var(--navy-dk) 0%,var(--navy) 100%);
   position:relative;overflow:hidden;
 }
 #contact::before{
   content:'';position:absolute;inset:0;
-  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23E8A500' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23E8A500' fill-opacity='0.035'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
 }
 .contact-layout{
   position:relative;z-index:1;
   display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
 }
-.contact-info{color:var(--white)}
 .contact-info .section-title{color:var(--white)}
-.contact-info .section-subtitle{color:rgba(255,255,255,0.65);margin-bottom:40px}
+.contact-info .section-subtitle{color:rgba(255,255,255,0.62);margin-bottom:40px}
 .contact-detail{
-  display:flex;gap:16px;align-items:flex-start;margin-bottom:24px;
+  display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;
 }
-.contact-detail-icon{
+.contact-icon{
   width:44px;height:44px;min-width:44px;border-radius:8px;
-  background:rgba(232,165,0,0.12);border:1px solid rgba(232,165,0,0.3);
+  background:rgba(232,165,0,0.1);border:1px solid rgba(232,165,0,0.28);
   display:flex;align-items:center;justify-content:center;
 }
-.contact-detail-icon svg{width:20px;height:20px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.contact-detail-text p{font-size:0.78rem;color:rgba(255,255,255,0.5);font-weight:300;margin-bottom:2px}
-.contact-detail-text strong{font-size:0.95rem;color:var(--white);font-weight:500}
+.contact-icon svg{width:20px;height:20px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.contact-detail-text p{font-size:0.75rem;color:rgba(255,255,255,0.45);margin-bottom:2px}
+.contact-detail-text strong{font-size:0.92rem;color:var(--white);font-weight:500}
 .contact-form{
   background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
   backdrop-filter:blur(8px);border-radius:12px;padding:40px;
 }
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group{margin-bottom:20px}
+.form-group{margin-bottom:18px}
 .form-group label{
-  display:block;font-size:0.78rem;font-weight:500;
-  color:rgba(255,255,255,0.7);letter-spacing:0.05em;margin-bottom:8px;
+  display:block;font-size:0.75rem;font-weight:500;
+  color:rgba(255,255,255,0.65);letter-spacing:0.05em;margin-bottom:7px;
 }
 .form-group input,
 .form-group textarea,
 .form-group select{
-  width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
-  border-radius:var(--radius);padding:12px 16px;
-  color:var(--white);font-family:'Inter',sans-serif;font-size:0.9rem;
+  width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);
+  border-radius:var(--radius);padding:11px 14px;
+  color:var(--white);font-family:'Inter',sans-serif;font-size:0.88rem;
   transition:border-color var(--trans);outline:none;
 }
 .form-group input::placeholder,
-.form-group textarea::placeholder{color:rgba(255,255,255,0.3)}
+.form-group textarea::placeholder{color:rgba(255,255,255,0.28)}
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus{border-color:var(--gold)}
 .form-group select option{background:var(--navy-dk);color:var(--white)}
-.form-group textarea{resize:vertical;min-height:120px}
+.form-group textarea{resize:vertical;min-height:110px}
 .form-submit{
   width:100%;background:var(--gold);color:var(--navy-dk);
   border:none;padding:14px;border-radius:var(--radius);
-  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.9rem;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1rem;
   letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;
   transition:background var(--trans),transform var(--trans);
 }
@@ -414,47 +416,41 @@ section{padding:100px 5%}
 /* ─── FOOTER ─── */
 footer{
   background:var(--navy-dk);
-  border-top:1px solid rgba(232,165,0,0.1);
+  border-top:1px solid rgba(232,165,0,0.08);
   padding:48px 5% 32px;
 }
 .footer-inner{max-width:1200px;margin:0 auto}
 .footer-top{
   display:flex;justify-content:space-between;align-items:center;
-  padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,0.08);
-  margin-bottom:28px;
+  padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,0.07);
+  margin-bottom:26px;
 }
 .footer-logo img{height:40px;width:auto}
-.footer-links{display:flex;gap:32px;list-style:none}
+.footer-links{display:flex;gap:28px;list-style:none}
 .footer-links a{
-  color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.82rem;
+  color:rgba(255,255,255,0.45);text-decoration:none;font-size:0.82rem;
   transition:color var(--trans);
 }
 .footer-links a:hover{color:var(--gold)}
-.footer-bottom{
-  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
-}
-.footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.3)}
-.footer-legal{font-size:0.78rem;color:rgba(255,255,255,0.3)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-copy,.footer-legal{font-size:0.76rem;color:rgba(255,255,255,0.28)}
 
-/* ─── SCROLL ANIMATIONS ─── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease}
+/* ─── ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.65s ease,transform 0.65s ease}
 .reveal.in{opacity:1;transform:none}
 .reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.7s ease,transform 0.7s ease}
 .reveal-left.in{opacity:1;transform:none}
 .reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s ease}
 .reveal-right.in{opacity:1;transform:none}
-.delay-1{transition-delay:0.1s}
-.delay-2{transition-delay:0.2s}
-.delay-3{transition-delay:0.3s}
-.delay-4{transition-delay:0.4s}
+.d1{transition-delay:0.08s}.d2{transition-delay:0.18s}.d3{transition-delay:0.28s}.d4{transition-delay:0.38s}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:1024px){
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .voorna-grid{grid-template-columns:1fr 1fr}
   .waarom-layout,.overons-layout,.contact-layout{grid-template-columns:1fr;gap:48px}
-  .waarom-photo-badge{right:0}
-  .hero-content{grid-template-columns:1fr;gap:48px}
+  .waarom-badge{right:0}
+  .hero-content{grid-template-columns:1fr;gap:44px}
   .hero-visual{display:none}
 }
 @media(max-width:768px){
@@ -466,27 +462,35 @@ footer{
   .voorna-grid{grid-template-columns:1fr}
   .contact-layout{grid-template-columns:1fr}
   .form-row{grid-template-columns:1fr}
-  .hero-stats{grid-template-columns:1fr 1fr 1fr;gap:12px}
-  .footer-top{flex-direction:column;gap:24px;text-align:center}
+  .hero-stats{grid-template-columns:repeat(3,1fr);gap:10px}
+  .footer-top{flex-direction:column;gap:20px;text-align:center}
   .footer-bottom{flex-direction:column;text-align:center}
-  .overons-facts{grid-template-columns:1fr 1fr}
+  .sticky-cta{bottom:18px;right:18px;padding:12px 20px;font-size:0.82rem}
 }
 @media(max-width:480px){
   .services-grid{grid-template-columns:1fr}
+  .voorna-grid{grid-template-columns:1fr}
   .hero-stats{grid-template-columns:1fr}
   .hero-badge{display:none}
-  .contact-form{padding:28px 20px}
+  .contact-form{padding:24px 18px}
   .hero-actions{flex-direction:column}
   .btn-primary,.btn-outline{text-align:center;justify-content:center}
+  .overons-facts{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
+<!-- STICKY CTA -->
+<a href="#contact" class="sticky-cta" id="stickyCta">
+  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.62 3.41 2 2 0 013.61 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.6a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+  Gratis offerte
+</a>
+
 <!-- NAV -->
 <nav>
   <a href="#home" class="nav-logo">
-    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png" alt="T.F.M. Construct BV">
+    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/GEVELWERKEN-2.jpg" alt="T.F.M. Construct BV – Gevelwerken">
   </a>
   <ul class="nav-links">
     <li><a href="#diensten">Diensten</a></li>
@@ -513,21 +517,21 @@ footer{
 
 <!-- HERO -->
 <section id="home" class="hero">
-  <div class="hero-bg-img"></div>
+  <div class="hero-bg"></div>
   <div class="hero-content">
     <div class="hero-text">
       <div class="hero-badge">
         <div class="hero-badge-dot"></div>
         <span>Actief in heel België</span>
       </div>
-      <h1>Uw gevel in <em>vakkundige</em> handen</h1>
-      <p>T.F.M. Construct BV levert topkwaliteit in spuitkurk, crepi, gevelisolatie en kaleien. Duurzame afwerking, heldere communicatie, nul compromissen op kwaliteit.</p>
+      <h1>Uw gevel in<br><em>vakkundige</em> handen</h1>
+      <p class="hero-sub">T.F.M. Construct BV levert topkwaliteit in spuitkurk, crepi, gevelisolatie en kaleien. Duurzame afwerking, heldere communicatie en nul compromissen op kwaliteit.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn-primary">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.62 3.41 2 2 0 013.61 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.6a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           Vraag offerte aan
         </a>
-        <a href="#voorna" class="btn-outline">Bekijk projecten</a>
+        <a href="#voorna" class="btn-outline">Bekijk onze projecten</a>
       </div>
       <div class="hero-stats">
         <div class="stat-card">
@@ -536,20 +540,20 @@ footer{
         </div>
         <div class="stat-card">
           <span class="stat-num">500+</span>
-          <span class="stat-lbl">Projecten</span>
+          <span class="stat-lbl">Projecten klaar</span>
         </div>
         <div class="stat-card">
           <span class="stat-num">100%</span>
-          <span class="stat-lbl">Tevreden klanten</span>
+          <span class="stat-lbl">Tevredenheid</span>
         </div>
       </div>
     </div>
     <div class="hero-visual">
-      <div class="hero-photo-frame">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_11_51%20AM.png" alt="TFM vakman aan het werk">
+      <div class="hero-photo-wrap">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_37_25%20AM.png" alt="TFM vakman aan het werk">
         <div class="hero-photo-tag">
-          <p>Specialist gevelafwerking</p>
-          <strong>T.F.M. Construct BV</strong>
+          <p>Gecertificeerd specialist geveltechniek</p>
+          <strong>T.F.M. Construct BV — Gevelwerken</strong>
         </div>
       </div>
     </div>
@@ -561,60 +565,64 @@ footer{
   <div class="section-inner">
     <div class="section-header reveal">
       <span class="section-label">Onze expertise</span>
-      <h2 class="section-title">Wat wij voor u doen</h2>
+      <h2 class="section-title">Vier disciplines.<br>Één vakman.</h2>
       <div class="gold-line"></div>
-      <p class="section-subtitle" style="margin-top:16px">Vakmanschap dat generaties meegaat. Wij specialiseren ons in vier disciplines van geveltechniek.</p>
+      <p class="section-subtitle" style="margin-top:16px">Gespecialiseerd in de meest gevraagde gevelafwerkingen. Elk project wordt vakkundig en met respect voor uw woning uitgevoerd.</p>
     </div>
     <div class="services-grid">
 
-      <div class="service-card reveal delay-1">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk6.jpg" alt="Spuitkurk gevel">
+      <div class="service-card reveal d1">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk6.jpg" alt="Spuitkurk gevel" loading="lazy">
         <div class="service-overlay"></div>
         <div class="service-info">
           <div class="service-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            <!-- Spray / spuitkurk icon -->
+            <svg viewBox="0 0 24 24"><path d="M3 3h2v2H3zM7 3h2v2H7zM11 3h2v2h-2z"/><path d="M5 7v10a2 2 0 002 2h8a2 2 0 002-2V7"/><path d="M9 11h6M9 15h4"/><path d="M17 3l2 4"/></svg>
           </div>
           <h3>Spuitkurk</h3>
-          <p>Geluids- en warmte-isolerende gevelbekleding op kurk basis. Dampopen, duurzaam en volledig onderhoudsvrij.</p>
+          <p>Warmte- en geluidsisolerende gevelbekleding op basis van kurk. Dampopen, duurzaam en volledig onderhoudsvrij.</p>
           <span class="service-tag">Isolerend &amp; duurzaam</span>
         </div>
       </div>
 
-      <div class="service-card reveal delay-2">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/Crepi.Diensten.jpg" alt="Crepi gevel">
+      <div class="service-card reveal d2">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/Crepi.Diensten.jpg" alt="Crepi gevel" loading="lazy">
         <div class="service-overlay"></div>
         <div class="service-info">
           <div class="service-icon">
-            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+            <!-- Plaster/wall texture icon -->
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M2 8h20M2 13h20M7 3v18M12 3v18M17 3v18"/></svg>
           </div>
           <h3>Crepi</h3>
-          <p>Klassieke en moderne gevelbepleistring met een perfecte afwerking. Weerbestendig en esthetisch verfijnd.</p>
+          <p>Klassieke en moderne gevelbepleistring met een vlekkeloze afwerking. Weerbestendig en esthetisch verfijnd.</p>
           <span class="service-tag">Klassiek &amp; tijdloos</span>
         </div>
       </div>
 
-      <div class="service-card reveal delay-3">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202025-11-09%20at%2013.47.41.jpeg" alt="Gevelisolatie plaatsen">
+      <div class="service-card reveal d3">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202025-11-09%20at%2013.47.41.jpeg" alt="Gevelisolatie" loading="lazy">
         <div class="service-overlay"></div>
         <div class="service-info">
           <div class="service-icon">
-            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <!-- House insulation icon -->
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><path d="M8 22V14h8v8"/><path d="M12 14v8"/></svg>
           </div>
           <h3>Gevelisolatie</h3>
-          <p>Buitenisolatie met EPS- of minerale wolplaten. Lagere energiefactuur en verhoogd wooncomfort het hele jaar door.</p>
+          <p>Buitenisolatie met EPS- of minerale wolplaten. Lagere energiefactuur en verhoogd wooncomfort het hele jaar.</p>
           <span class="service-tag">Energiebesparend</span>
         </div>
       </div>
 
-      <div class="service-card reveal delay-4">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/4cda2b359e94c863015f9eca1671f4f2.jpg" alt="Kaleien geveltechniek">
+      <div class="service-card reveal d4">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/4cda2b359e94c863015f9eca1671f4f2.jpg" alt="Kaleien afwerking" loading="lazy">
         <div class="service-overlay"></div>
         <div class="service-info">
           <div class="service-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            <!-- Paint brush / kaleien icon -->
+            <svg viewBox="0 0 24 24"><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 00-2.82 0L8 7l9 9 1.59-1.59a2 2 0 000-2.82L17 10l4.37-4.37a2.12 2.12 0 00-3-3z"/><path d="M9 8c-2 3-4 3.5-7 4l8 8c.5-3 1-5 4-7"/><path d="M14.5 17.5L4.5 15"/></svg>
           </div>
           <h3>Kaleien</h3>
-          <p>Traditionele kaleiafwerking voor een authentieke, adembrekende uitstraling. Milieuvriendelijk en dampopen van nature.</p>
+          <p>Traditionele kaleiafwerking voor een authentieke uitstraling. Milieuvriendelijk, dampopen en tijdloos mooi.</p>
           <span class="service-tag">Traditioneel vakwerk</span>
         </div>
       </div>
@@ -630,50 +638,53 @@ footer{
       <span class="section-label" style="color:var(--gold)">Gerealiseerde projecten</span>
       <h2 class="section-title light">Voor &amp; Na</h2>
       <div class="gold-line"></div>
-      <p class="section-subtitle light" style="margin-top:16px">Zien is geloven. Ontdek hoe wij gevels transformeren van verouderd naar uitmuntend.</p>
+      <p class="section-subtitle light" style="margin-top:16px">Zien is geloven. Ontdek hoe wij verouderde gevels omtoveren tot moderne paradepaardjes.</p>
     </div>
     <div class="voorna-grid">
 
-      <div class="voorna-item reveal delay-1">
+      <div class="voorna-item reveal d1">
         <div class="voorna-pair">
           <div class="voorna-half">
-            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.30.23.jpeg" alt="Voor renovatie">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.30.23.jpeg" alt="Voor renovatie" loading="lazy">
             <span class="voorna-label label-voor">Voor</span>
           </div>
-          <div style="width:3px;background:var(--gold);flex-shrink:0"></div>
+          <div class="voorna-sep"></div>
           <div class="voorna-half">
-            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.30.23%20(1).jpeg" alt="Na renovatie">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.30.23%20%281%29.jpeg" alt="Na renovatie" loading="lazy">
             <span class="voorna-label label-na">Na</span>
           </div>
         </div>
+        <div class="voorna-caption"><p>Volledige gevelrenovatie met crepi — Antwerpen</p></div>
       </div>
 
-      <div class="voorna-item reveal delay-2">
+      <div class="voorna-item reveal d2">
         <div class="voorna-pair">
           <div class="voorna-half">
-            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.35.19.jpeg" alt="Voor renovatie">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.35.19.jpeg" alt="Voor renovatie" loading="lazy">
             <span class="voorna-label label-voor">Voor</span>
           </div>
-          <div style="width:3px;background:var(--gold);flex-shrink:0"></div>
+          <div class="voorna-sep"></div>
           <div class="voorna-half">
-            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.35.19%20(1).jpeg" alt="Na renovatie">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.35.19%20%281%29.jpeg" alt="Na renovatie" loading="lazy">
             <span class="voorna-label label-na">Na</span>
           </div>
         </div>
+        <div class="voorna-caption"><p>Gevelisolatie + spuitkurk afwerking — Gent</p></div>
       </div>
 
-      <div class="voorna-item reveal delay-3">
+      <div class="voorna-item reveal d3">
         <div class="voorna-pair">
           <div class="voorna-half">
-            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/bb2384c285b1788261c01c12cf75f4a3.jpg" alt="Voor renovatie">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/bb2384c285b1788261c01c12cf75f4a3.jpg" alt="Voor renovatie" loading="lazy">
             <span class="voorna-label label-voor">Voor</span>
           </div>
-          <div style="width:3px;background:var(--gold);flex-shrink:0"></div>
+          <div class="voorna-sep"></div>
           <div class="voorna-half">
-            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jan%2029%2C%202026%20at%2010_46_54%20AM.png" alt="Na renovatie">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jan%2029%2C%202026%20at%2010_46_54%20AM.png" alt="Na renovatie" loading="lazy">
             <span class="voorna-label label-na">Na</span>
           </div>
         </div>
+        <div class="voorna-caption"><p>Totaalrenovatie gevel + isolatie — Hasselt</p></div>
       </div>
 
     </div>
@@ -685,62 +696,73 @@ footer{
   <div class="section-inner">
     <div class="waarom-layout">
       <div class="waarom-photo reveal-left">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk6.jpg" alt="Kwalitatief vakmanschap TFM">
-        <div class="waarom-photo-badge">
-          <strong>A+</strong>
-          <span>Kwaliteitsgarantie</span>
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_41_10%20AM.png" alt="TFM vakman aan het werk" loading="lazy">
+        <div class="waarom-badge">
+          <strong>10+</strong>
+          <span>Jaar vakervaring</span>
         </div>
       </div>
       <div class="reveal-right">
         <span class="section-label">Waarom T.F.M.?</span>
-        <h2 class="section-title">Wij zijn anders. Hier is waarom.</h2>
+        <h2 class="section-title">Wij zijn anders.<br>Hier is waarom.</h2>
         <div class="gold-line" style="margin-bottom:32px"></div>
         <div class="waarom-features">
+
           <div class="feature-row">
             <div class="feature-icon">
-              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <!-- Shield / guarantee -->
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
             </div>
             <div class="feature-text">
-              <h4>10 jaar gegarandeerde vakgarantie</h4>
-              <p>Elk project verlaten wij met een schriftelijke garantie. Uw investering is beschermd — zonder asterisken.</p>
+              <h4>10 jaar schriftelijke vakgarantie</h4>
+              <p>Elk project wordt afgesloten met een garantiecertificaat. Uw investering is beschermd — zonder kleine lettertjes.</p>
             </div>
           </div>
+
           <div class="feature-row">
             <div class="feature-icon">
-              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <!-- Calendar / planning -->
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><polyline points="9 16 11 18 15 14"/></svg>
             </div>
             <div class="feature-text">
               <h4>Correcte planning, stipte oplevering</h4>
-              <p>Wij respecteren uw agenda. Vastgelegde startdatum = vastgelegde opleverdatum. Geen verrassingen.</p>
+              <p>Vastgelegde startdatum = vastgelegde opleverdatum. Wij respecteren uw agenda. Geen verrassingen.</p>
             </div>
           </div>
+
           <div class="feature-row">
             <div class="feature-icon">
-              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              <!-- Award / certification -->
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
             </div>
             <div class="feature-text">
               <h4>Gecertificeerd en volledig verzekerd</h4>
-              <p>Onze ploeg is BA-verzekerd en werkt uitsluitend met gecertificeerde materialen van Europese topleveranciers.</p>
+              <p>Onze ploeg werkt BA-verzekerd met gecertificeerde Europese materialen. Veilig voor u én voor ons.</p>
             </div>
           </div>
+
           <div class="feature-row">
             <div class="feature-icon">
+              <!-- Euro / transparent pricing -->
               <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
             </div>
             <div class="feature-text">
-              <h4>Transparante prijzen zonder verborgen kosten</h4>
-              <p>Gedetailleerde offerte vóór de start. Geen meerwerk zonder uw akkoord. Wat we bespreken, factureren we.</p>
+              <h4>Transparante prijs, geen meerwerk</h4>
+              <p>Gedetailleerde offerte vóór de start. Geen meerwerk zonder uw akkoord. Wat we afspreken, factureren we.</p>
             </div>
           </div>
+
           <div class="feature-row">
             <div class="feature-icon">
+              <!-- Map pin / Belgium -->
               <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div class="feature-text">
               <h4>Actief in heel België</h4>
-              <p>Van Antwerpen tot Luik, van Gent tot Hasselt. Wij komen naar u toe — zonder aanrijtoeslag binnen onze regio's.</p>
+              <p>Van Antwerpen tot Luik, van Gent tot Hasselt. Wij verplaatsen ons — zonder aanrijtoeslag in onze regio.</p>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -751,13 +773,13 @@ footer{
 <section id="overons">
   <div class="section-inner">
     <div class="overons-layout">
-      <div class="overons-content reveal-left">
+      <div class="reveal-left">
         <span class="section-label">Wie zijn wij</span>
-        <h2 class="section-title">Over T.F.M. Construct BV</h2>
+        <h2 class="section-title">Over T.F.M.<br>Construct BV</h2>
         <div class="gold-line"></div>
         <p class="overons-text">
-          T.F.M. Construct BV is een Belgisch familiebedrijf gespecialiseerd in de complete geveltechniek. Opgericht met één doel: gevels afleveren die decennia lang impeccabel ogen en maximaal beschermen.<br><br>
-          Ons team bestaat uit gediplomeerde vakmensen die elke opdracht behandelen als hun eigen woning. Wij werken enkel met gecertificeerde materialen en volgen de strengste bouwnormen — niet omdat het moet, maar omdat het onze standaard is.
+          T.F.M. Construct BV is een Belgisch familiebedrijf met passie voor geveltechniek. Wij zijn opgericht met één helder doel: gevels opleveren die er decennia later nog steeds onberispelijk uitzien én maximale bescherming bieden.<br><br>
+          Ons team van gediplomeerde vakmensen behandelt elke opdracht alsof het hun eigen woning betreft. Wij werken uitsluitend met gecertificeerde materialen van Europese topleveranciers en houden ons strikt aan de geldende bouwnormen — niet omdat het verplicht is, maar omdat het onze standaard is.
         </p>
         <div class="overons-facts">
           <div class="fact-box">
@@ -766,21 +788,24 @@ footer{
           </div>
           <div class="fact-box">
             <strong>500+</strong>
-            <span>Afgewerkte projecten</span>
+            <span>Projecten afgewerkt</span>
           </div>
           <div class="fact-box">
             <strong>4</strong>
-            <span>Gespecialiseerde diensten</span>
+            <span>Specialisaties</span>
           </div>
           <div class="fact-box">
             <strong>BE</strong>
             <span>Heel België bediend</span>
           </div>
         </div>
-        <a href="#contact" class="btn-primary" style="background:var(--navy);color:var(--white)">Maak kennis met ons team</a>
+        <a href="#contact" class="btn-primary" style="background:var(--navy);color:var(--white)">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.62 3.41 2 2 0 013.61 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.6a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Neem contact op
+        </a>
       </div>
       <div class="overons-photo reveal-right">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_11_51%20AM.png" alt="TFM vakman">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_37_25%20AM.png" alt="TFM vakman gevelafwerking" loading="lazy">
       </div>
     </div>
   </div>
@@ -793,12 +818,11 @@ footer{
       <div class="contact-info reveal-left">
         <span class="section-label">Direct contact</span>
         <h2 class="section-title light">Klaar om uw gevel te transformeren?</h2>
-        <div class="gold-line" style="margin-bottom:32px"></div>
-        <p class="section-subtitle light">Vraag vandaag nog een vrijblijvende offerte aan. Wij reageren binnen 24 uur.</p>
-
-        <div style="margin-top:40px">
+        <div class="gold-line" style="margin-bottom:30px"></div>
+        <p class="section-subtitle light">Vraag vandaag nog uw vrijblijvende offerte aan. Wij reageren binnen 24 uur en komen persoonlijk langs voor een gratis plaatsbezoek.</p>
+        <div style="margin-top:36px">
           <div class="contact-detail">
-            <div class="contact-detail-icon">
+            <div class="contact-icon">
               <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.62 3.41 2 2 0 013.61 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.6a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             </div>
             <div class="contact-detail-text">
@@ -807,7 +831,7 @@ footer{
             </div>
           </div>
           <div class="contact-detail">
-            <div class="contact-detail-icon">
+            <div class="contact-icon">
               <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
             </div>
             <div class="contact-detail-text">
@@ -816,7 +840,7 @@ footer{
             </div>
           </div>
           <div class="contact-detail">
-            <div class="contact-detail-icon">
+            <div class="contact-icon">
               <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
             <div class="contact-detail-text">
@@ -825,7 +849,7 @@ footer{
             </div>
           </div>
           <div class="contact-detail">
-            <div class="contact-detail-icon">
+            <div class="contact-icon">
               <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <div class="contact-detail-text">
@@ -837,7 +861,7 @@ footer{
       </div>
 
       <div class="contact-form reveal-right">
-        <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:1.3rem;color:var(--white);margin-bottom:28px">Vrijblijvende offerte aanvragen</h3>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:1.4rem;letter-spacing:0.04em;color:var(--white);margin-bottom:26px">Vrijblijvende offerte aanvragen</h3>
         <form>
           <div class="form-row">
             <div class="form-group">
@@ -860,17 +884,17 @@ footer{
           <div class="form-group">
             <label>Gewenste dienst</label>
             <select>
-              <option value="">Selecteer een dienst</option>
+              <option value="">Selecteer een dienst…</option>
               <option>Spuitkurk</option>
               <option>Crepi</option>
               <option>Gevelisolatie</option>
               <option>Kaleien</option>
-              <option>Meerdere diensten</option>
+              <option>Combinatie van diensten</option>
             </select>
           </div>
           <div class="form-group">
             <label>Uw bericht</label>
-            <textarea placeholder="Beschrijf kort uw project..."></textarea>
+            <textarea placeholder="Beschrijf kort uw project of stel een vraag…"></textarea>
           </div>
           <button type="submit" class="form-submit">Offerte aanvragen →</button>
         </form>
@@ -884,7 +908,7 @@ footer{
   <div class="footer-inner">
     <div class="footer-top">
       <a href="#home" class="footer-logo">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png" alt="T.F.M. Construct BV">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/GEVELWERKEN-2.jpg" alt="T.F.M. Construct BV">
       </a>
       <ul class="footer-links">
         <li><a href="#diensten">Diensten</a></li>
@@ -902,7 +926,7 @@ footer{
 </footer>
 
 <script>
-// Hamburger menu
+// Hamburger
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => {
@@ -910,30 +934,26 @@ hamburger.addEventListener('click', () => {
   mobileMenu.classList.toggle('open');
   document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
 });
-document.querySelectorAll('.m-link, .m-cta').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-});
+document.querySelectorAll('.m-link, .m-cta').forEach(l => l.addEventListener('click', () => {
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
 
-// Scroll animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => obs.observe(el));
 
-document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
-
-// Voorna grid flex fix
-document.querySelectorAll('.voorna-pair').forEach(pair => {
-  pair.style.display = 'flex';
-});
+// Hide sticky CTA when in contact section
+const contactSection = document.getElementById('contact');
+const stickyCta = document.getElementById('stickyCta');
+const ctaObs = new IntersectionObserver(entries => {
+  stickyCta.style.opacity = entries[0].isIntersecting ? '0' : '1';
+  stickyCta.style.pointerEvents = entries[0].isIntersecting ? 'none' : 'auto';
+}, {threshold: 0.3});
+ctaObs.observe(contactSection);
 </script>
 </body>
 </html>
