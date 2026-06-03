@@ -6,712 +6,622 @@
 <title>T.F.M. Construct BV — Gevelwerken & Façade Works | Antwerpen</title>
 <meta name="description" content="Professionele gevelwerken in de regio Antwerpen. Isolatie, renovatie, gevelbekleding en reiniging. Gratis offerte binnen 48u.">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
 
-/* ═══════════════════════════════════════════
-   BASE
-═══════════════════════════════════════════ */
-*{margin:0;padding:0;box-sizing:border-box}
+<style>
+/* ─── ASSETS ─── */
 :root{
-  --navy:#05284C;
-  --navy-dk:#021830;
-  --navy-md:#0A3660;
-  --gold:#E8A500;
-  --gold2:#F5C030;
-  --white:#FFFFFF;
-  --off:#F7F6F3;
-  --light:#EEF2F6;
-  --text:#1E2D3D;
-  --muted:#6B7A8D;
-  --border:#DDE4ED;
+  --logo:     url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png');
+  --swoosh:   url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png');
+  --scaffold: url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png');
+
+  --navy:#05284C; --navy-dk:#021830; --navy-md:#0A3660;
+  --gold:#E8A500; --gold2:#F5C030;
+  --white:#FFF;   --off:#F7F6F3;    --light:#EEF2F6;
+  --text:#1E2D3D; --muted:#6B7A8D;
 }
+
+/* ─── RESET ─── */
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
 img{display:block;max-width:100%}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;border:none;outline:none;font-family:inherit}
 
-/* ═══════════════════════════════════════════
+
+/* ══════════════════════════════════════════
    ANIMATION SYSTEM
-═══════════════════════════════════════════ */
-/* Reveal on scroll */
-[data-reveal]{
+══════════════════════════════════════════ */
+
+/* 1. Hero text stagger */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.ha1{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .4s both}
+.ha2{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .6s both}
+.ha3{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .8s both}
+.ha4{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) 1.0s both}
+.ha5{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) 1.2s both}
+.ha6{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) 1.4s both}
+
+/* 2. Swoosh sweep – left to right reveal */
+@keyframes swooshSweep{
+  0%  {clip-path:inset(0 100% 0 0);opacity:.5}
+  20% {opacity:1}
+  100%{clip-path:inset(0 0%   0 0);opacity:1}
+}
+.swoosh-el{
+  display:block;
+  clip-path:inset(0 100% 0 0);
   opacity:0;
-  transform:translateY(32px);
-  transition:opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1);
+  transition:none;
 }
-[data-reveal="left"]{transform:translateX(-40px)}
-[data-reveal="right"]{transform:translateX(40px)}
-[data-reveal="scale"]{transform:scale(.94) translateY(16px)}
-[data-reveal].visible{opacity:1;transform:none}
+.swoosh-el.sweep{
+  animation:swooshSweep .9s cubic-bezier(.16,1,.3,1) forwards;
+}
 
-/* Stagger children */
-[data-stagger]>*{
+/* 3. Scaffold build – bottom to top */
+@keyframes scaffBuild{
+  0%  {clip-path:polygon(0% 100%,100% 100%,100% 100%,0% 100%);opacity:0}
+  10% {opacity:1}
+  100%{clip-path:polygon(0% 0%,  100% 0%,  100% 100%,0% 100%);opacity:1}
+}
+.scaff-el{
+  clip-path:polygon(0% 100%,100% 100%,100% 100%,0% 100%);
   opacity:0;
-  transform:translateY(24px);
-  transition:opacity .6s cubic-bezier(.16,1,.3,1), transform .6s cubic-bezier(.16,1,.3,1);
 }
-[data-stagger].visible>*{opacity:1;transform:none}
-[data-stagger].visible>*:nth-child(1){transition-delay:.05s}
-[data-stagger].visible>*:nth-child(2){transition-delay:.15s}
-[data-stagger].visible>*:nth-child(3){transition-delay:.25s}
-[data-stagger].visible>*:nth-child(4){transition-delay:.35s}
-[data-stagger].visible>*:nth-child(5){transition-delay:.45s}
-[data-stagger].visible>*:nth-child(6){transition-delay:.55s}
-
-/* Line draw */
-.draw-line{
-  stroke-dasharray:400;
-  stroke-dashoffset:400;
-  transition:stroke-dashoffset 1.4s cubic-bezier(.16,1,.3,1);
-}
-.draw-line.drawn{stroke-dashoffset:0}
-
-/* Gold bar grow */
-.bar-grow{
-  width:0!important;
-  transition:width 1s cubic-bezier(.16,1,.3,1) .3s;
-}
-.bar-grow.grown{width:48px!important}
-
-/* Counter */
-.counter{display:inline-block}
-
-/* Swoosh sweep */
-@keyframes swooshIn{
-  0%{clip-path:inset(0 100% 0 0);opacity:0}
-  100%{clip-path:inset(0 0% 0 0);opacity:1}
-}
-.swoosh-anim{animation:swooshIn 1.1s cubic-bezier(.16,1,.3,1) forwards}
-
-/* Hero text reveal */
-@keyframes heroReveal{
-  0%{opacity:0;transform:translateY(28px)}
-  100%{opacity:1;transform:translateY(0)}
-}
-.hr-1{animation:heroReveal .9s cubic-bezier(.16,1,.3,1) .5s both}
-.hr-2{animation:heroReveal .9s cubic-bezier(.16,1,.3,1) .7s both}
-.hr-3{animation:heroReveal .9s cubic-bezier(.16,1,.3,1) .9s both}
-.hr-4{animation:heroReveal .9s cubic-bezier(.16,1,.3,1) 1.1s both}
-.hr-5{animation:heroReveal .9s cubic-bezier(.16,1,.3,1) 1.3s both}
-
-/* Scaffold draw */
-@keyframes scaffDraw{
-  0%{stroke-dashoffset:300;opacity:0}
-  30%{opacity:1}
-  100%{stroke-dashoffset:0;opacity:1}
-}
-.scaff-line{stroke-dasharray:300;stroke-dashoffset:300}
-.scaff-line.s1{animation:scaffDraw 1.5s cubic-bezier(.16,1,.3,1) .3s forwards}
-.scaff-line.s2{animation:scaffDraw 1.5s cubic-bezier(.16,1,.3,1) .5s forwards}
-.scaff-line.s3{animation:scaffDraw 1.5s cubic-bezier(.16,1,.3,1) .7s forwards}
-.scaff-line.s4{animation:scaffDraw 1.5s cubic-bezier(.16,1,.3,1) .9s forwards}
-.scaff-line.s5{animation:scaffDraw 1.5s cubic-bezier(.16,1,.3,1) 1.1s forwards}
-
-/* Scroll line indicator */
-@keyframes scrollPulse{
-  0%,100%{transform:scaleY(1);opacity:.3}
-  50%{transform:scaleY(1.3);opacity:.8}
+.scaff-el.build{
+  animation:scaffBuild 1.2s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-/* Underline slide for nav */
-.nav-link-wrap{position:relative;overflow:hidden}
-.nav-link-wrap::after{
-  content:'';position:absolute;bottom:-2px;left:0;
-  width:0;height:1.5px;background:var(--gold);
-  transition:width .3s ease;
-}
-.nav-link-wrap:hover::after{width:100%}
+/* 4. Scroll reveal */
+[data-r]{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+[data-r=l]{transform:translateX(-36px)}
+[data-r=r]{transform:translateX(36px)}
+[data-r].in{opacity:1;transform:none}
 
-/* Button shimmer */
-@keyframes shimmer{
-  0%{transform:translateX(-120%) skewX(-15deg)}
-  100%{transform:translateX(220%) skewX(-15deg)}
-}
-.btn-shim{
-  position:relative;overflow:hidden;
-}
-.btn-shim::after{
-  content:'';
-  position:absolute;top:0;left:0;
-  width:50%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
-  transform:translateX(-120%) skewX(-15deg);
-}
-.btn-shim:hover::after{animation:shimmer .6s ease}
+/* 5. Stagger children */
+[data-s]>*{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+[data-s].in>*{opacity:1;transform:none}
+[data-s].in>*:nth-child(1){transition-delay:.05s}
+[data-s].in>*:nth-child(2){transition-delay:.15s}
+[data-s].in>*:nth-child(3){transition-delay:.25s}
+[data-s].in>*:nth-child(4){transition-delay:.35s}
+[data-s].in>*:nth-child(5){transition-delay:.45s}
+[data-s].in>*:nth-child(6){transition-delay:.55s}
 
-/* Card tilt */
-.card-tilt{transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
-.card-tilt:hover{transform:translateY(-6px);box-shadow:0 32px 64px rgba(5,40,76,.12)}
+/* 6. Gold bar grow */
+.bar{display:block;height:3px;background:var(--gold);width:0;transition:width 1s cubic-bezier(.16,1,.3,1) .2s}
+.bar.grown{width:48px}
 
-/* Parallax */
-.parallax-img{will-change:transform;transition:transform .1s linear}
+/* 7. Process connector */
+.proc-line-fill{height:1px;background:rgba(232,165,0,.3);width:0;transition:width 1.8s cubic-bezier(.16,1,.3,1) .3s}
+.proc-line-fill.grown{width:100%}
 
-/* Gold accent pulse */
-@keyframes goldPulse{
-  0%,100%{box-shadow:0 0 0 0 rgba(232,165,0,.4)}
-  50%{box-shadow:0 0 0 10px rgba(232,165,0,0)}
-}
+/* 8. Hero bg parallax zoom */
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.07)}}
 
-/* ═══════════════════════════════════════════
-   TYPOGRAPHY HELPERS
-═══════════════════════════════════════════ */
-.eyebrow{
-  font-family:'Oswald',sans-serif;font-weight:400;
-  font-size:11px;letter-spacing:5px;text-transform:uppercase;
-  color:var(--gold);display:inline-flex;align-items:center;gap:10px
-}
-.eyebrow::before{content:'';display:block;width:28px;height:1.5px;background:var(--gold);flex-shrink:0}
-h2.ttl{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(30px,3.5vw,52px);line-height:1.0;text-transform:uppercase;letter-spacing:-.5px;color:var(--navy)}
-h2.ttl.white{color:var(--white)}
+/* 9. Scroll indicator */
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.8;transform:scaleY(1.3)}}
+
+/* 10. Shimmer on buttons */
+@keyframes shimmer{0%{transform:translateX(-140%) skewX(-15deg)}100%{transform:translateX(240%) skewX(-15deg)}}
+.shim{position:relative;overflow:hidden}
+.shim::after{content:'';position:absolute;top:0;left:0;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:translateX(-140%) skewX(-15deg)}
+.shim:hover::after{animation:shimmer .55s ease}
+
+/* 11. Contact card slide */
+.cc{transition:transform .25s ease,background .25s,border-color .25s}
+.cc:hover{transform:translateX(5px)}
+
+/* 12. Counter */
+.cnt{display:inline-block}
+
+/* ══════════════════════════════════════════
+   TYPOGRAPHY
+══════════════════════════════════════════ */
+.ey{font-family:'Oswald',sans-serif;font-weight:400;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:10px}
+.ey::before{content:'';width:26px;height:1.5px;background:var(--gold);flex-shrink:0}
+.ey.center{justify-content:center}
+.ey.center::before,.ey.center::after{content:'';display:block;width:26px;height:1.5px;background:var(--gold);flex-shrink:0}
+
+h2.ttl{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.5vw,52px);line-height:1.0;text-transform:uppercase;letter-spacing:-.5px;color:var(--navy)}
+h2.ttl.w{color:var(--white)}
 p.bd{font-family:'Inter',sans-serif;font-weight:300;font-size:15px;line-height:1.85;color:var(--muted)}
-p.bd.white{color:rgba(255,255,255,.6)}
-.divider{width:48px;height:3px;background:var(--gold);margin:20px 0;transition:width 1s}
+p.bd.w{color:rgba(255,255,255,.58)}
 
-/* ═══════════════════════════════════════════
+/* Section header with swoosh underline */
+.sec-ttl-wrap{position:relative;display:inline-block}
+.sec-ttl-swoosh{position:absolute;bottom:-18px;left:0;width:120%;height:32px;object-fit:contain;object-position:left center}
+
+/* ══════════════════════════════════════════
    BUTTONS
-═══════════════════════════════════════════ */
-.btn{
-  display:inline-flex;align-items:center;gap:9px;
-  font-family:'Oswald',sans-serif;font-weight:600;
-  font-size:12px;letter-spacing:3px;text-transform:uppercase;
-  padding:16px 36px;cursor:pointer;border:none;
-  position:relative;overflow:hidden;
-  transition:background .25s,color .25s,transform .2s;
-}
+══════════════════════════════════════════ */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:3px;text-transform:uppercase;padding:15px 32px;cursor:pointer;border:none;transition:background .25s,color .25s,transform .15s}
 .btn:active{transform:scale(.97)}
-.btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;flex-shrink:0;transition:transform .25s}
+.btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;flex-shrink:0;transition:transform .22s}
 .btn:hover svg{transform:translateX(4px)}
 .btn-gold{background:var(--gold);color:var(--navy-dk)}
 .btn-gold:hover{background:var(--gold2)}
-.btn-white-out{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.35)}
-.btn-white-out:hover{background:var(--gold);color:var(--navy-dk);border-color:var(--gold)}
-.btn-navy-out{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
-.btn-navy-out:hover{background:var(--navy);color:var(--white)}
+.btn-wo{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.35)}
+.btn-wo:hover{background:var(--gold);color:var(--navy-dk);border-color:var(--gold)}
+.btn-no{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
+.btn-no:hover{background:var(--navy);color:var(--white)}
 
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════
    NAV
-═══════════════════════════════════════════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  padding:0 60px;height:80px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:transparent;
-  transition:background .4s,backdrop-filter .4s,box-shadow .4s;
-}
-nav.solid{
-  background:rgba(2,24,48,.96);
-  backdrop-filter:blur(12px);
-  box-shadow:0 2px 30px rgba(0,0,0,.3);
-}
-.nav-logo img{height:52px;width:auto;object-fit:contain;display:block}
-.nav-links{display:flex;align-items:center;gap:36px}
-.nav-links a{
-  font-family:'Oswald',sans-serif;font-weight:400;
-  font-size:12px;letter-spacing:2.5px;text-transform:uppercase;
-  color:rgba(255,255,255,.7);transition:color .2s;
-}
-.nav-links a:hover{color:var(--white)}
-.nav-cta{margin-left:16px}
+══════════════════════════════════════════ */
+nav{position:fixed;top:0;left:0;right:0;z-index:300;height:76px;padding:0 60px;display:flex;align-items:center;justify-content:space-between;background:transparent;transition:background .35s,box-shadow .35s}
+nav.solid{background:rgba(2,24,48,.97);backdrop-filter:blur(14px);box-shadow:0 2px 30px rgba(0,0,0,.3)}
+.nav-logo img{height:50px;width:auto;object-fit:contain}
+.nav-links{display:flex;align-items:center;gap:34px}
+.nav-link{font-family:'Oswald',sans-serif;font-weight:400;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.7);transition:color .2s;position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .3s}
+.nav-link:hover{color:var(--white)}
+.nav-link:hover::after{width:100%}
 
-/* ═══════════════════════════════════════════
+/* Hamburger */
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:310}
+.burger span{display:block;width:24px;height:2px;background:var(--white);transition:transform .3s,opacity .3s}
+.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+/* Mobile menu */
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:290;
+  background:rgba(2,24,48,.98);backdrop-filter:blur(20px);
+  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Oswald',sans-serif;font-weight:500;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.8);transition:color .2s}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-menu .btn{margin-top:16px}
+
+/* ══════════════════════════════════════════
    HERO
-═══════════════════════════════════════════ */
-.hero{
-  position:relative;min-height:100vh;
-  display:flex;align-items:center;overflow:hidden;
-}
+══════════════════════════════════════════ */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{
-  width:100%;height:100%;object-fit:cover;
-  transform-origin:center center;
-  animation:zoomSlow 20s ease-in-out alternate infinite;
-}
-@keyframes zoomSlow{
-  0%{transform:scale(1)}
-  100%{transform:scale(1.06)}
-}
-.hero-bg::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(108deg,rgba(2,24,48,.94) 0%,rgba(2,24,48,.78) 45%,rgba(2,24,48,.4) 100%);
+.hero-bg img{width:100%;height:100%;object-fit:cover;animation:heroZoom 18s ease-in-out alternate infinite}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,rgba(2,24,48,.94) 0%,rgba(2,24,48,.76) 45%,rgba(2,24,48,.38) 100%)}
+
+/* Scaffold brand decoration */
+.hero-scaff{
+  position:absolute;right:5%;top:50%;transform:translateY(-50%);
+  z-index:1;pointer-events:none;width:160px;opacity:.14;
 }
 
-/* Scaffold BG decoration */
-.hero-scaffold{
-  position:absolute;right:6%;top:50%;transform:translateY(-50%);
-  z-index:1;pointer-events:none;opacity:.12;
-  width:220px;
-}
-
-/* Swoosh BG deco */
+/* Swoosh bottom decoration */
 .hero-swoosh-deco{
-  position:absolute;bottom:80px;left:0;right:0;
-  z-index:1;pointer-events:none;
-  height:120px;overflow:hidden;
+  position:absolute;bottom:20px;left:2%;z-index:1;
+  pointer-events:none;width:55%;max-width:740px;
 }
 
 .hero-inner{
   position:relative;z-index:2;
-  display:grid;grid-template-columns:1fr 420px;
-  gap:0;width:100%;align-items:center;
-  padding:0 60px;
-  max-width:1360px;margin:0 auto;
+  width:100%;max-width:1340px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 380px;
+  gap:40px;align-items:center;padding:0 60px;
 }
-.hero-left{padding:120px 0}
-.hero-ey{margin-bottom:28px}
-h1.hero-h{
-  font-family:'Oswald',sans-serif;font-weight:700;
-  font-size:clamp(50px,5.8vw,84px);
-  line-height:.93;color:var(--white);
-  text-transform:uppercase;letter-spacing:-1.5px;
-  margin-bottom:30px;
-}
+.hero-left{padding:130px 0}
+.hero-ey{margin-bottom:26px}
+h1.hero-h{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(44px,5.5vw,82px);line-height:.93;color:var(--white);text-transform:uppercase;letter-spacing:-1.5px;margin-bottom:28px}
 h1.hero-h em{color:var(--gold);font-style:normal;display:block}
-.hero-p{
-  font-size:15px;line-height:1.85;
-  color:rgba(255,255,255,.62);font-weight:300;
-  max-width:460px;margin-bottom:48px;
-}
+.hero-p{font-size:15px;line-height:1.85;color:rgba(255,255,255,.62);font-weight:300;max-width:450px;margin-bottom:44px}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap}
 
-/* Stats card */
-.hero-card{
-  background:rgba(255,255,255,.07);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,.1);
-  padding:0;
-  overflow:hidden;
-  align-self:center;
-  animation:heroReveal .9s cubic-bezier(.16,1,.3,1) 1.5s both;
-}
-.hc-label{
-  background:var(--gold);
-  padding:14px 20px;
-  font-family:'Oswald',sans-serif;font-size:9px;
-  letter-spacing:4px;text-transform:uppercase;
-  color:var(--navy-dk);
-}
+/* Glass card */
+.hero-card{background:rgba(255,255,255,.07);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);overflow:hidden;align-self:center}
+.hc-top{background:var(--gold);padding:13px 20px;font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--navy-dk)}
 .hc-grid{display:grid;grid-template-columns:1fr 1fr}
-.hc-item{
-  padding:24px 22px;
-  border-bottom:1px solid rgba(255,255,255,.07);
-  border-right:1px solid rgba(255,255,255,.07);
-}
-.hc-item:nth-child(even){border-right:none}
-.hc-item:nth-last-child(-n+2){border-bottom:none}
-.hc-n{
-  font-family:'Oswald',sans-serif;font-weight:700;
-  font-size:30px;color:var(--white);line-height:1;margin-bottom:4px;
-}
-.hc-n span{color:var(--gold)}
-.hc-d{font-size:10px;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase}
+.hci{padding:22px 18px;border-bottom:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07)}
+.hci:nth-child(even){border-right:none}
+.hci:nth-last-child(-n+2){border-bottom:none}
+.hci-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:28px;color:var(--white);line-height:1;margin-bottom:4px}
+.hci-n span{color:var(--gold)}
+.hci-d{font-size:10px;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase}
 
-.scroll-hint{
-  position:absolute;bottom:36px;left:50%;
-  transform:translateX(-50%);z-index:3;
-  display:flex;flex-direction:column;align-items:center;gap:9px;
-  animation:heroReveal 1s cubic-bezier(.16,1,.3,1) 2s both;
-}
-.scroll-hint span{
-  font-family:'Oswald',sans-serif;font-size:9px;
-  letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3)
-}
-.scroll-line{
-  width:1px;height:52px;
-  background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent);
-  animation:scrollPulse 2s ease-in-out 2.5s infinite;
-}
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s .9s both}
+.scroll-hint span{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3)}
+.sh-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent);animation:scrollPulse 2s ease-in-out 2s infinite}
 
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════
    GOLD STRIP
-═══════════════════════════════════════════ */
+══════════════════════════════════════════ */
 .gstrip{background:var(--gold)}
-.gstrip-inner{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  max-width:1260px;margin:0 auto;
-}
-.gs{
-  padding:26px 36px;text-align:center;
-  border-right:1px solid rgba(2,24,48,.1);
-}
+.gstrip-inner{display:grid;grid-template-columns:repeat(4,1fr);max-width:1260px;margin:0 auto}
+.gs{padding:24px 32px;text-align:center;border-right:1px solid rgba(2,24,48,.1)}
 .gs:last-child{border-right:none}
-.gs-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:30px;color:var(--navy-dk);line-height:1}
+.gs-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:28px;color:var(--navy-dk);line-height:1}
 .gs-l{font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(2,24,48,.5);margin-top:5px}
 
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════
    ABOUT
-═══════════════════════════════════════════ */
-.about{
-  padding:130px 60px;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:100px;align-items:center;
-  max-width:1360px;margin:0 auto;
-}
+══════════════════════════════════════════ */
+.about{padding:120px 60px;display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center;max-width:1340px;margin:0 auto}
 .about-img{position:relative}
 .about-img-main{width:100%;aspect-ratio:3/4;object-fit:cover}
-.about-badge{
-  position:absolute;bottom:-24px;right:-24px;
-  background:var(--navy);padding:26px 28px;
-  display:flex;flex-direction:column;align-items:center;
-  z-index:2;
-}
-.about-badge-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:32px;color:var(--gold);line-height:1}
+/* Scaffold decoration in about */
+.about-scaff{position:absolute;top:-16px;left:-16px;width:90px;opacity:.08;pointer-events:none}
+.about-badge{position:absolute;bottom:-22px;right:-22px;background:var(--navy);padding:24px 26px;display:flex;flex-direction:column;align-items:center;z-index:2}
+.about-badge-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:30px;color:var(--gold);line-height:1}
 .about-badge-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:3px;text-align:center}
-.about-scaffold{
-  position:absolute;top:-20px;left:-20px;
-  opacity:.08;pointer-events:none;width:100px;
-}
-.about-content .eyebrow{margin-bottom:20px}
-.cklist{list-style:none;display:flex;flex-direction:column;gap:14px;margin:32px 0 40px}
-.cklist li{
-  display:flex;align-items:flex-start;gap:13px;
-  font-size:14px;color:var(--text);line-height:1.6;font-weight:400;
-}
-.ck{
-  width:20px;height:20px;min-width:20px;background:var(--gold);
-  display:flex;align-items:center;justify-content:center;
-  margin-top:2px;flex-shrink:0;
-}
+.about-content .ey{margin-bottom:18px}
+.ck-list{list-style:none;display:flex;flex-direction:column;gap:13px;margin:28px 0 36px}
+.ck-list li{display:flex;align-items:flex-start;gap:13px;font-size:14px;color:var(--text);line-height:1.6}
+.ck{width:20px;height:20px;min-width:20px;background:var(--gold);display:flex;align-items:center;justify-content:center;margin-top:2px;flex-shrink:0}
 .ck svg{width:10px;height:10px;stroke:var(--navy-dk);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
 
-/* ═══════════════════════════════════════════
+/* Swoosh under About heading */
+.about-swoosh-wrap{position:relative;display:inline-block;margin-bottom:28px}
+.about-swoosh-img{position:absolute;bottom:-14px;left:0;width:100%;height:24px;object-fit:contain;object-position:left}
+
+/* ══════════════════════════════════════════
    SERVICES
-═══════════════════════════════════════════ */
-.services{background:var(--off);padding:130px 60px}
-.sec-hd{text-align:center;margin-bottom:80px;max-width:620px;margin-left:auto;margin-right:auto}
-.sec-hd .eyebrow{justify-content:center;margin-bottom:20px}
-.sec-hd .eyebrow::before{display:none}
-.sec-hd .eyebrow::after{content:'';display:block;width:28px;height:1.5px;background:var(--gold);flex-shrink:0}
-.svc-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:2px;max-width:1360px;margin:0 auto;
-}
-.svc{
-  background:var(--white);padding:44px 32px;
-  position:relative;overflow:hidden;cursor:pointer;
-  border-bottom:3px solid transparent;
-  transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .3s;
-}
-.svc:hover{transform:translateY(-6px);box-shadow:0 28px 60px rgba(5,40,76,.11);border-bottom-color:var(--gold)}
-.svc-n{
-  font-family:'Oswald',sans-serif;font-weight:700;font-size:88px;
-  color:var(--light);position:absolute;top:0;right:14px;
-  line-height:1;z-index:0;
-  transition:color .4s;
-}
-.svc:hover .svc-n{color:rgba(232,165,0,.06)}
-.svc-icon{
-  width:56px;height:56px;background:var(--navy);
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:24px;position:relative;z-index:1;
-  transition:background .3s;
-}
-.svc:hover .svc-icon{background:var(--gold)}
-.svc-icon svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
-.svc:hover .svc-icon svg{stroke:var(--navy-dk)}
-.svc h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:17px;color:var(--navy);letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;position:relative;z-index:1}
-.svc p{font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:24px;position:relative;z-index:1;font-weight:300}
-.svc-more{
-  display:inline-flex;align-items:center;gap:6px;
-  font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2.5px;
-  text-transform:uppercase;color:var(--navy);
-  border-bottom:1.5px solid var(--gold);padding-bottom:3px;
-  position:relative;z-index:1;transition:color .2s;
-}
+══════════════════════════════════════════ */
+.services{background:var(--off);padding:120px 60px}
+.sec-hd{text-align:center;margin-bottom:72px;max-width:600px;margin-left:auto;margin-right:auto}
+.sec-hd .ey{justify-content:center;margin-bottom:18px}
+.sec-hd .ey::before{display:none}
+.sec-hd .ey::after{content:'';display:block;width:26px;height:1.5px;background:var(--gold);flex-shrink:0}
+
+/* Swoosh under services title */
+.svc-swoosh-wrap{position:relative;display:inline-block;margin-bottom:32px}
+.svc-swoosh-img{position:absolute;bottom:-16px;left:0;width:110%;height:28px;object-fit:contain;object-position:left}
+
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1340px;margin:0 auto}
+.svc{background:var(--white);padding:42px 30px;position:relative;overflow:hidden;cursor:pointer;border-bottom:3px solid transparent;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .3s}
+.svc:hover{transform:translateY(-6px);box-shadow:0 28px 60px rgba(5,40,76,.1);border-bottom-color:var(--gold)}
+.svc-num{font-family:'Oswald',sans-serif;font-weight:700;font-size:88px;color:var(--light);position:absolute;top:0;right:12px;line-height:1;z-index:0;transition:color .4s}
+.svc:hover .svc-num{color:rgba(232,165,0,.06)}
+.svc-ico{width:54px;height:54px;background:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:22px;position:relative;z-index:1;transition:background .3s}
+.svc:hover .svc-ico{background:var(--gold)}
+.svc-ico svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.svc:hover .svc-ico svg{stroke:var(--navy-dk)}
+.svc h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;color:var(--navy);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;position:relative;z-index:1}
+.svc p{font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:20px;position:relative;z-index:1;font-weight:300}
+.svc-more{display:inline-flex;align-items:center;gap:5px;font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);border-bottom:1.5px solid var(--gold);padding-bottom:2px;position:relative;z-index:1;transition:color .2s}
 .svc:hover .svc-more{color:var(--gold)}
 
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════
    PHOTO BREAK
-═══════════════════════════════════════════ */
-.pbreak{position:relative;height:500px;overflow:hidden}
-.pbreak img{width:100%;height:100%;object-fit:cover}
-.pbreak-ov{
-  position:absolute;inset:0;
-  background:linear-gradient(100deg,rgba(2,24,48,.9) 0%,rgba(2,24,48,.6) 55%,rgba(2,24,48,.15) 100%);
-  display:flex;align-items:center;padding:0 60px;
-}
-.pbreak-inner{max-width:560px}
-.pbreak-inner .eyebrow{margin-bottom:24px}
-.pbreak-inner h2{color:var(--white);margin-top:16px;margin-bottom:20px}
-.pbreak-inner p.bd{margin-bottom:32px}
+══════════════════════════════════════════ */
+.pbreak{position:relative;height:480px;overflow:hidden}
+.pbreak img.bg{width:100%;height:100%;object-fit:cover}
+.pbreak-ov{position:absolute;inset:0;background:linear-gradient(100deg,rgba(2,24,48,.9) 0%,rgba(2,24,48,.6) 55%,rgba(2,24,48,.15) 100%);display:flex;align-items:center;padding:0 60px}
+.pbreak-content{max-width:540px}
+.pbreak-content .ey{margin-bottom:20px}
+.pbreak-content h2{color:var(--white);margin-top:12px;margin-bottom:16px}
+/* Swoosh under pbreak title */
+.pbreak-swoosh-wrap{position:relative;display:inline-block;margin-bottom:24px}
+.pbreak-swoosh-img{position:absolute;bottom:-14px;left:0;width:115%;height:24px;object-fit:contain;object-position:left}
+.pbreak-content p.bd{margin-bottom:28px}
+/* Scaffold deco in pbreak */
+.pbreak-scaff{position:absolute;right:4%;bottom:10%;z-index:2;pointer-events:none;width:120px;opacity:.18;filter:brightness(0) invert(1)}
 
-/* Swoosh decoration overlay */
-.swoosh-ov{
-  position:absolute;bottom:-10px;right:0;
-  z-index:2;pointer-events:none;opacity:.15;
-  width:600px;
-}
-
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════
    PROCESS
-═══════════════════════════════════════════ */
-.process{background:var(--navy);padding:130px 60px;position:relative;overflow:hidden}
-.process-scaffold-deco{
-  position:absolute;right:5%;top:50%;transform:translateY(-50%);
-  opacity:.04;pointer-events:none;width:300px;
-}
-.proc-steps{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:2px;max-width:1200px;margin:0 auto;
-  margin-top:72px;position:relative;
-}
-/* connector line drawn on scroll */
-.proc-connector{
-  position:absolute;top:42px;left:12.5%;right:12.5%;
-  height:1px;background:rgba(232,165,0,.08);
-  overflow:hidden;
-}
-.proc-connector-fill{
-  height:1px;background:rgba(232,165,0,.25);
-  width:0;transition:width 1.6s cubic-bezier(.16,1,.3,1) .5s;
-}
-.proc-connector.filled .proc-connector-fill{width:100%}
-.pstep{text-align:center;padding:0 20px;position:relative}
-.pstep-n{
-  width:84px;height:84px;
-  border:1.5px solid rgba(232,165,0,.2);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 28px;
-  font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;color:rgba(232,165,0,.5);
-  position:relative;z-index:1;background:var(--navy);
-  transition:background .35s,border-color .35s,color .35s;
-}
+══════════════════════════════════════════ */
+.process{background:var(--navy);padding:120px 60px;position:relative;overflow:hidden}
+/* Large scaffold deco behind */
+.proc-scaff{position:absolute;right:2%;top:50%;transform:translateY(-50%);pointer-events:none;width:260px;opacity:.05;filter:brightness(0) invert(1)}
+
+.proc-hd{text-align:center;max-width:560px;margin:0 auto 72px}
+.proc-hd .ey{justify-content:center;margin-bottom:18px}
+.proc-hd .ey::before{display:none}
+.proc-hd .ey::after{content:'';display:block;width:26px;height:1.5px;background:var(--gold);flex-shrink:0}
+
+/* Swoosh under process title */
+.proc-swoosh-wrap{position:relative;display:inline-block;margin-bottom:20px}
+.proc-swoosh-img{position:absolute;bottom:-14px;left:0;width:115%;height:24px;object-fit:contain;object-position:left;filter:none}
+
+.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1200px;margin:0 auto;position:relative}
+.proc-conn{position:absolute;top:41px;left:12.5%;right:12.5%;height:1px;background:rgba(232,165,0,.08);overflow:hidden}
+.pstep{text-align:center;padding:0 18px;position:relative}
+.pstep-n{width:82px;height:82px;border:1.5px solid rgba(232,165,0,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;color:rgba(232,165,0,.5);position:relative;z-index:1;background:var(--navy);transition:background .3s,border-color .3s,color .3s}
 .pstep:hover .pstep-n{background:var(--gold);border-color:var(--gold);color:var(--navy-dk)}
-.pstep h4{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;color:var(--white);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}
+.pstep h4{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;color:var(--white);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
 .pstep p{font-size:13px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.8}
 
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════
    PROJECTS
-═══════════════════════════════════════════ */
-.projects{padding:130px 60px;background:var(--white)}
-.proj-hd{
-  display:flex;align-items:flex-end;justify-content:space-between;
-  max-width:1360px;margin:0 auto 64px;
-}
-.proj-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:3px;max-width:1360px;margin:0 auto;
-}
-.proj{position:relative;overflow:hidden;cursor:pointer;background:var(--navy)}
-.proj-img{
-  width:100%;aspect-ratio:4/5;object-fit:cover;
-  transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s;
-}
-.proj:hover .proj-img{transform:scale(1.06);filter:brightness(.65)}
-.proj-ov{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(2,24,48,.92) 0%,rgba(2,24,48,.1) 50%);
-  opacity:0;transition:opacity .4s;
-}
-.proj:hover .proj-ov{opacity:1}
-.proj-info{
-  position:absolute;bottom:0;left:0;right:0;
-  padding:24px 22px;
-  transform:translateY(10px);transition:transform .4s cubic-bezier(.16,1,.3,1);
-}
-.proj:hover .proj-info{transform:none}
-.proj-tag{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
-.proj-name{font-family:'Oswald',sans-serif;font-weight:600;font-size:15px;color:var(--white);letter-spacing:.5px;text-transform:uppercase}
-.proj-cta{text-align:center;margin-top:56px}
-.proj-cta p{font-size:12px;color:var(--muted);margin-bottom:22px;font-style:italic}
+══════════════════════════════════════════ */
+.projects{padding:120px 60px;background:var(--white)}
+.proj-hd{display:flex;align-items:flex-end;justify-content:space-between;max-width:1340px;margin:0 auto 60px}
 
-/* ═══════════════════════════════════════════
+/* Swoosh under projects title */
+.proj-ttl-wrap{position:relative;padding-bottom:28px}
+.proj-swoosh{position:absolute;bottom:0;left:0;width:130%;height:28px;object-fit:contain;object-position:left}
+
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:1340px;margin:0 auto}
+.proj{position:relative;overflow:hidden;cursor:pointer;background:var(--navy)}
+.proj-img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s}
+.proj:hover .proj-img{transform:scale(1.06);filter:brightness(.65)}
+.proj-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,24,48,.92) 0%,rgba(2,24,48,.05) 50%);opacity:0;transition:opacity .4s}
+.proj:hover .proj-ov{opacity:1}
+.proj-info{position:absolute;bottom:0;left:0;right:0;padding:22px 20px;transform:translateY(8px);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.proj:hover .proj-info{transform:none}
+.proj-tag{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.proj-name{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;color:var(--white);letter-spacing:.5px;text-transform:uppercase}
+.proj-cta{text-align:center;margin-top:52px}
+.proj-cta p{font-size:12px;color:var(--muted);margin-bottom:20px;font-style:italic}
+
+/* ══════════════════════════════════════════
    TESTIMONIALS
-═══════════════════════════════════════════ */
-.testi-sec{background:var(--off);padding:130px 60px}
-.testi-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:24px;max-width:1200px;margin:0 auto;
-}
-.testi{
-  background:var(--white);padding:36px 32px;
-  border-top:3px solid var(--gold);
-  transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;
-}
+══════════════════════════════════════════ */
+.testi-sec{background:var(--off);padding:120px 60px}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1200px;margin:0 auto}
+.testi{background:var(--white);padding:34px 30px;border-top:3px solid var(--gold);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
 .testi:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(5,40,76,.08)}
-.stars{display:flex;gap:3px;margin-bottom:18px}
-.stars svg{width:13px;height:13px;fill:var(--gold);stroke:none}
-.testi-q{font-size:14px;font-weight:300;color:var(--text);line-height:1.85;margin-bottom:24px;font-style:italic}
-.testi-auth{display:flex;align-items:center;gap:13px}
-.testi-av{
-  width:42px;height:42px;background:var(--navy);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  font-family:'Oswald',sans-serif;font-weight:700;font-size:15px;color:var(--gold);
-}
+.stars{display:flex;gap:3px;margin-bottom:16px}
+.stars svg{width:13px;height:13px;fill:var(--gold)}
+.testi-q{font-size:14px;font-weight:300;color:var(--text);line-height:1.85;margin-bottom:22px;font-style:italic}
+.testi-auth{display:flex;align-items:center;gap:12px}
+.testi-av{width:40px;height:40px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;color:var(--gold)}
 .testi-nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;color:var(--navy);letter-spacing:.5px;text-transform:uppercase}
 .testi-loc{font-size:11px;color:var(--muted);margin-top:2px}
 
-/* ═══════════════════════════════════════════
-   CTA SECTION
-═══════════════════════════════════════════ */
+/* ══════════════════════════════════════════
+   CTA
+══════════════════════════════════════════ */
 .cta-sec{position:relative;overflow:hidden}
-.cta-bg{position:absolute;inset:0}
-.cta-bg img{width:100%;height:100%;object-fit:cover}
-.cta-ov{position:absolute;inset:0;background:rgba(2,24,48,.9)}
-/* animated swoosh in CTA */
-.cta-swoosh{
-  position:absolute;bottom:0;left:0;right:0;
-  z-index:1;pointer-events:none;
-  height:160px;overflow:hidden;
-}
-.cta-inner{
-  position:relative;z-index:2;
-  padding:130px 60px;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:80px;align-items:center;
-  max-width:1360px;margin:0 auto;
-}
-.cta-left .eyebrow{margin-bottom:20px}
-.cta-left h2{color:var(--white);margin-top:16px;margin-bottom:20px}
+.cta-bg-img{position:absolute;inset:0;z-index:0}
+.cta-bg-img img{width:100%;height:100%;object-fit:cover}
+.cta-bg-img::after{content:'';position:absolute;inset:0;background:rgba(2,24,48,.9)}
+/* Swoosh in CTA bottom */
+.cta-swoosh-deco{position:absolute;bottom:0;right:0;z-index:1;pointer-events:none;width:50%;max-width:680px}
+.cta-inner{position:relative;z-index:2;padding:120px 60px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;max-width:1340px;margin:0 auto}
+.cta-left .ey{margin-bottom:18px}
+/* Swoosh under CTA heading */
+.cta-ttl-wrap{position:relative;margin-bottom:20px;display:inline-block;padding-bottom:20px}
+.cta-swoosh-img{position:absolute;bottom:0;left:0;width:100%;height:22px;object-fit:contain;object-position:left}
+.cta-left h2{color:var(--white);margin-top:12px}
 .cta-left h2 em{color:var(--gold);font-style:normal;display:block}
-.cta-left p.bd{margin-bottom:36px}
+.cta-left p.bd{margin-bottom:32px}
 .cta-btns{display:flex;gap:14px;flex-wrap:wrap}
-.contact-cards{display:flex;flex-direction:column;gap:14px}
-.cc{
-  display:flex;align-items:center;gap:17px;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(255,255,255,.07);
-  padding:18px 22px;
-  transition:background .25s,border-color .25s,transform .25s;
-}
-.cc:hover{background:rgba(255,255,255,.09);border-color:rgba(232,165,0,.3);transform:translateX(4px)}
-.cc-ic{
-  width:42px;height:42px;background:var(--gold);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-  transition:transform .25s;
-}
-.cc:hover .cc-ic{transform:scale(1.08)}
-.cc-ic svg{width:17px;height:17px;stroke:var(--navy-dk);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.c-cards{display:flex;flex-direction:column;gap:13px}
+.cc{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);padding:17px 20px}
+.cc-ic{width:40px;height:40px;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .25s}
+.cc:hover .cc-ic{transform:scale(1.1)}
+.cc-ic svg{width:16px;height:16px;stroke:var(--navy-dk);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .cc-lb{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:3px}
 .cc-vl{font-size:14px;font-weight:400;color:var(--white)}
 
-/* ═══════════════════════════════════════════
+/* ══════════════════════════════════════════
    FOOTER
-═══════════════════════════════════════════ */
-footer{background:var(--navy-dk);padding:64px 60px 32px}
-.ft-top{
-  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;
-  gap:60px;padding-bottom:56px;
-  border-bottom:1px solid rgba(255,255,255,.07);
-}
-.ft-brand img{height:44px;width:auto;object-fit:contain}
-.ft-brand p{font-size:13px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.8;margin-top:18px;max-width:270px}
-.ft-col h5{
-  font-family:'Oswald',sans-serif;font-weight:500;font-size:10px;
-  letter-spacing:3.5px;text-transform:uppercase;
-  color:rgba(255,255,255,.4);margin-bottom:20px;
-}
-.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
-.ft-col ul li a{font-size:13px;font-weight:300;color:rgba(255,255,255,.3);transition:color .2s,padding-left .2s}
+══════════════════════════════════════════ */
+.ft-accent{height:3px;background:var(--gold)}
+footer{background:var(--navy-dk);padding:60px 60px 30px}
+.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:56px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-brand img{height:42px;width:auto;object-fit:contain}
+.ft-brand p{font-size:13px;font-weight:300;color:rgba(255,255,255,.36);line-height:1.8;margin-top:16px;max-width:260px}
+.ft-col h5{font-family:'Oswald',sans-serif;font-weight:500;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:18px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-col ul li a{font-size:13px;font-weight:300;color:rgba(255,255,255,.28);transition:color .2s,padding-left .2s}
 .ft-col ul li a:hover{color:var(--gold);padding-left:4px}
-.ft-bot{
-  display:flex;align-items:center;justify-content:space-between;
-  padding-top:26px;
-}
+.ft-bot{display:flex;align-items:center;justify-content:space-between;padding-top:24px;flex-wrap:wrap;gap:12px}
 .ft-copy{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.18)}
-.ft-legal{display:flex;gap:22px}
+.ft-legal{display:flex;gap:20px;flex-wrap:wrap}
 .ft-legal a{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.18);transition:color .2s}
 .ft-legal a:hover{color:var(--gold)}
 
-/* Gold bar footer accent */
-.ft-gold{width:100%;height:3px;background:var(--gold)}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 1024px)
+══════════════════════════════════════════ */
+@media(max-width:1024px){
+  nav{padding:0 32px}
+  .hero-inner{grid-template-columns:1fr;padding:0 32px}
+  .hero-left{padding:110px 0 40px}
+  .hero-card{display:none}
+  .hero-scaff{width:110px;right:3%}
+  .hero-swoosh-deco{width:70%;bottom:10px}
+  .about{grid-template-columns:1fr;gap:0;padding:80px 32px}
+  .about-img{max-width:500px;margin:0 auto 60px}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .gstrip-inner{grid-template-columns:repeat(2,1fr)}
+  .gs:nth-child(2){border-right:none}
+  .gs:nth-child(3){border-right:1px solid rgba(2,24,48,.1)}
+  .gs:nth-child(3),.gs:nth-child(4){border-top:1px solid rgba(2,24,48,.1)}
+  .proc-steps{grid-template-columns:repeat(2,1fr);gap:32px}
+  .proc-conn{display:none}
+  .proj-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-grid{grid-template-columns:repeat(2,1fr)}
+  .cta-inner{grid-template-columns:1fr;gap:48px;padding:80px 32px}
+  .ft-top{grid-template-columns:1fr 1fr;gap:36px;padding-bottom:40px}
+  .ft-brand{grid-column:1/-1}
+  .pbreak-scaff{display:none}
+}
+
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 768px)
+══════════════════════════════════════════ */
+@media(max-width:768px){
+  /* Nav */
+  nav{padding:0 20px;height:64px}
+  .nav-logo img{height:40px}
+  .nav-links{display:none}
+  .burger{display:flex}
+
+  /* Hero */
+  .hero-inner{padding:0 20px;grid-template-columns:1fr}
+  .hero-left{padding:100px 0 60px}
+  h1.hero-h{font-size:clamp(38px,9vw,58px)}
+  .hero-p{font-size:14px;margin-bottom:32px}
+  .hero-btns{flex-direction:column;gap:10px}
+  .hero-btns .btn{justify-content:center;width:100%}
+  .hero-scaff{width:80px;opacity:.1}
+  .hero-swoosh-deco{width:90%;bottom:5px}
+  .scroll-hint{display:none}
+
+  /* Gold strip */
+  .gstrip-inner{grid-template-columns:repeat(2,1fr)}
+  .gs{padding:16px 20px}
+  .gs-n{font-size:22px}
+  .gs:nth-child(1),.gs:nth-child(2){border-bottom:1px solid rgba(2,24,48,.1)}
+  .gs:nth-child(2){border-right:none}
+  .gs:nth-child(3){border-right:1px solid rgba(2,24,48,.1)}
+  .gs:nth-child(4){border-right:none}
+
+  /* About */
+  .about{padding:72px 20px}
+  .about-img{max-width:100%;margin:0 0 56px}
+  .about-badge{bottom:-16px;right:-12px;padding:18px 20px}
+  .about-badge-n{font-size:24px}
+  .about-scaff{width:64px;top:-10px;left:-10px}
+
+  /* Services */
+  .services{padding:72px 20px}
+  .svc-grid{grid-template-columns:1fr}
+  .svc{padding:36px 28px}
+
+  /* Photo break */
+  .pbreak{height:auto;min-height:360px}
+  .pbreak-ov{padding:40px 20px}
+  .pbreak-content{max-width:100%}
+
+  /* Process */
+  .process{padding:72px 20px}
+  .proc-steps{grid-template-columns:1fr;gap:36px}
+  .pstep{text-align:left;display:flex;gap:20px;align-items:flex-start;padding:0}
+  .pstep-n{width:60px;height:60px;min-width:60px;font-size:18px;margin:0}
+  .pstep h4{text-align:left}
+  .pstep p{text-align:left}
+
+  /* Projects */
+  .projects{padding:72px 20px}
+  .proj-hd{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:36px}
+  .proj-grid{grid-template-columns:1fr;gap:3px}
+  .proj-img{aspect-ratio:16/10}
+
+  /* Testimonials */
+  .testi-sec{padding:72px 20px}
+  .testi-grid{grid-template-columns:1fr;gap:16px}
+
+  /* CTA */
+  .cta-inner{padding:72px 20px;grid-template-columns:1fr}
+  .cta-btns{flex-direction:column}
+  .cta-btns .btn{justify-content:center}
+  .cta-swoosh-deco{display:none}
+
+  /* Footer */
+  footer{padding:48px 20px 24px}
+  .ft-top{grid-template-columns:1fr;gap:32px;padding-bottom:32px}
+  .ft-bot{flex-direction:column;align-items:flex-start;gap:10px}
+  .ft-legal{gap:12px}
+  .ft-col{margin-bottom:4px}
+
+  /* Swoosh images — scale down */
+  .sec-ttl-swoosh,.about-swoosh-img,.svc-swoosh-img,.pbreak-swoosh-img,.proc-swoosh-img,.proj-swoosh,.cta-swoosh-img{height:18px}
+
+  /* Buttons */
+  .btn{font-size:11px;padding:14px 24px}
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — SMALL (≤ 480px)
+══════════════════════════════════════════ */
+@media(max-width:480px){
+  h1.hero-h{font-size:clamp(34px,10vw,48px)}
+  h2.ttl{font-size:clamp(26px,7vw,38px)}
+  .gstrip-inner{grid-template-columns:1fr 1fr}
+  .proc-hd,.sec-hd{padding:0 4px}
+  .proj-img{aspect-ratio:4/3}
+}
 
 </style>
 </head>
 <body>
 
-<!-- ═══════════════ NAV ═══════════════ -->
+<!-- ══════════ MOBILE MENU ══════════ -->
+<div class="mobile-menu" id="mmenu">
+  <a href="#diensten" class="mmlink">Diensten</a>
+  <a href="#realisaties" class="mmlink">Realisaties</a>
+  <a href="#werkwijze" class="mmlink">Werkwijze</a>
+  <a href="#contact" class="mmlink">Contact</a>
+  <a href="tel:+32471916136" class="btn btn-gold shim">+32 471 91 61 36</a>
+</div>
+
+<!-- ══════════ NAV ══════════ -->
 <nav id="nav">
   <div class="nav-logo">
     <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png" alt="T.F.M. Construct BV">
   </div>
   <div class="nav-links">
-    <span class="nav-link-wrap"><a href="#diensten">Diensten</a></span>
-    <span class="nav-link-wrap"><a href="#realisaties">Realisaties</a></span>
-    <span class="nav-link-wrap"><a href="#werkwijze">Werkwijze</a></span>
-    <span class="nav-link-wrap"><a href="#contact">Contact</a></span>
-    <a href="tel:+32471916136" class="btn btn-gold btn-shim nav-cta">
-      +32 471 91 61 36
-      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.98.72 2.93a2 2 0 01-.45 2.11L6.09 7.91A16 16 0 0016.09 17.9l1.15-1.15a2 2 0 012.11-.45c.95.35 1.93.59 2.93.72A2 2 0 0122 16.92z"/></svg>
-    </a>
+    <a href="#diensten" class="nav-link">Diensten</a>
+    <a href="#realisaties" class="nav-link">Realisaties</a>
+    <a href="#werkwijze" class="nav-link">Werkwijze</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="tel:+32471916136" class="btn btn-gold shim" style="margin-left:12px">+32 471 91 61 36</a>
+  </div>
+  <div class="burger" id="burger">
+    <span></span><span></span><span></span>
   </div>
 </nav>
 
 
-<!-- ═══════════════ HERO ═══════════════ -->
+<!-- ══════════ HERO ══════════ -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=85&fit=crop" alt="Façade works">
+    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=85&fit=crop" alt="Façade">
   </div>
 
-  <!-- Scaffold brand element (real PNG, white via filter) -->
-  <div class="hero-scaffold">
+  <!-- Scaffold brand element (builds up on load) -->
+  <div class="hero-scaff">
     <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png"
-         alt="" style="width:180px;height:auto;filter:brightness(0) invert(1);animation:heroReveal 1.4s cubic-bezier(.16,1,.3,1) 1.8s both">
+         alt="" class="scaff-el ha6" style="width:100%;height:auto;filter:brightness(0) invert(1)">
   </div>
 
   <div class="hero-inner">
-    <!-- LEFT -->
     <div class="hero-left">
-      <div class="eyebrow hero-ey hr-1">Gevelwerken · Antwerpen</div>
+      <div class="ey ha1">Gevelwerken · Antwerpen</div>
       <h1 class="hero-h">
-        <span class="hr-2">Professionele</span><br>
-        <span class="hr-3">gevelwerken.</span>
-        <em class="hr-4">Één aanpak.</em>
+        <span class="ha2">Professionele</span><br>
+        <span class="ha3">gevelwerken.</span>
+        <em class="ha4">Één aanpak.</em>
       </h1>
-      <p class="hero-p hr-5">Van isolatie tot renovatie — T.F.M. Construct BV begeleidt uw project van A tot Z. Helder, netjes en altijd op tijd. Actief in de regio Antwerpen (35 km).</p>
-      <div class="hero-btns hr-5">
-        <a href="#contact" class="btn btn-gold btn-shim">
+      <p class="hero-p ha5">Van isolatie tot renovatie — T.F.M. Construct BV begeleidt uw project van A tot Z. Helder, netjes en op tijd. Actief in de regio Antwerpen (35 km).</p>
+      <div class="hero-btns ha5">
+        <a href="#contact" class="btn btn-gold shim">
           Gratis offerte aanvragen
           <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="#realisaties" class="btn btn-white-out">
-          Bekijk realisaties
-        </a>
+        <a href="#realisaties" class="btn btn-wo">Bekijk realisaties</a>
       </div>
     </div>
 
-    <!-- RIGHT — stats card -->
-    <div style="display:flex;justify-content:flex-end;padding:120px 0">
+    <!-- Stats card -->
+    <div class="ha6" style="display:flex;justify-content:flex-end;padding:130px 0">
       <div class="hero-card">
-        <div class="hc-label">Onze resultaten</div>
+        <div class="hc-top">Onze resultaten</div>
         <div class="hc-grid">
-          <div class="hc-item">
-            <div class="hc-n"><span class="counter" data-target="100">0</span><span>%</span></div>
-            <div class="hc-d">Kwaliteitsgarantie</div>
-          </div>
-          <div class="hc-item">
-            <div class="hc-n"><span class="counter" data-target="48">0</span><span>u</span></div>
-            <div class="hc-d">Offerte respons</div>
-          </div>
-          <div class="hc-item">
-            <div class="hc-n"><span class="counter" data-target="35">0</span><span>km</span></div>
-            <div class="hc-d">Rond Antwerpen</div>
-          </div>
-          <div class="hc-item">
-            <div class="hc-n"><span class="counter" data-target="1">0</span></div>
-            <div class="hc-d">Vast aanspreekpunt</div>
-          </div>
+          <div class="hci"><div class="hci-n"><span class="cnt" data-target="100">0</span><span>%</span></div><div class="hci-d">Kwaliteitsgarantie</div></div>
+          <div class="hci"><div class="hci-n"><span class="cnt" data-target="48">0</span><span>u</span></div><div class="hci-d">Offerte respons</div></div>
+          <div class="hci"><div class="hci-n"><span class="cnt" data-target="35">0</span><span>km</span></div><div class="hci-d">Rond Antwerpen</div></div>
+          <div class="hci"><div class="hci-n"><span class="cnt" data-target="1">0</span></div><div class="hci-d">Vast aanspreekpunt</div></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Swoosh brand element bottom of hero -->
-  <div class="hero-swoosh-deco" style="position:absolute;bottom:0;left:0;right:0;z-index:1;pointer-events:none;height:140px;overflow:hidden">
+  <!-- Swoosh brand element animates in -->
+  <div class="hero-swoosh-deco">
     <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png"
-         alt="" style="position:absolute;bottom:-10px;left:5%;width:60%;max-width:800px;height:auto;opacity:.12;animation:swooshIn 1.4s cubic-bezier(.16,1,.3,1) 1.2s both">
+         alt="" class="swoosh-el" id="hero-swoosh" style="width:100%;height:auto;opacity:.18">
   </div>
 
   <div class="scroll-hint">
     <span>Scroll</span>
-    <div class="scroll-line"></div>
+    <div class="sh-line"></div>
   </div>
 </section>
 
 
-<!-- ═══════════════ GOLD STRIP ═══════════════ -->
-<div class="gstrip" data-stagger>
+<!-- ══════════ GOLD STRIP ══════════ -->
+<div class="gstrip" data-s>
   <div class="gstrip-inner">
     <div class="gs"><div class="gs-n">Erkend</div><div class="gs-l">Erkend aannemer</div></div>
     <div class="gs"><div class="gs-n">EPS/MW</div><div class="gs-l">Isolatiesystemen</div></div>
@@ -721,37 +631,44 @@ footer{background:var(--navy-dk);padding:64px 60px 32px}
 </div>
 
 
-<!-- ═══════════════ ABOUT ═══════════════ -->
+<!-- ══════════ ABOUT ══════════ -->
 <section id="over-ons">
   <div class="about">
-    <!-- Image -->
-    <div class="about-img" data-reveal="left">
-      <img class="about-img-main" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=85&fit=crop" alt="T.F.M. Construct vakmannen aan het werk">
-      <!-- Scaffold brand element deco -->
-      <div class="about-scaffold">
+    <!-- Photo + scaffold deco -->
+    <div class="about-img" data-r="l">
+      <img class="about-img-main" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=85&fit=crop" alt="T.F.M. vakmannen">
+      <div class="about-scaff">
         <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png"
-             alt="" style="width:100%;height:auto">
+             alt="" class="scaff-el" style="width:100%;height:auto">
       </div>
       <div class="about-badge">
         <div class="about-badge-n">BV.</div>
         <div class="about-badge-l">T.F.M. Construct</div>
       </div>
     </div>
+
     <!-- Content -->
-    <div class="about-content" data-reveal="right">
-      <div class="eyebrow">Over T.F.M. Construct</div>
-      <div class="divider bar-grow"></div>
-      <h2 class="ttl" style="margin-top:4px">Geen chaos.<br>Duidelijke aanpak.</h2>
-      <p class="bd" style="margin-top:22px">T.F.M. Construct BV is een nieuwe speler in gevelwerken in de regio Antwerpen — opgericht met één duidelijke missie: professionele uitvoering, heldere communicatie en een nette oplevering. Altijd.</p>
-      <p class="bd" style="margin-top:14px">Wij geloven dat een renovatieproject niet stresserend hoeft te zijn. U heeft één vast aanspreekpunt, een duidelijke offerte en een stap-voor-stap begeleiding.</p>
-      <ul class="cklist">
+    <div class="about-content" data-r="r">
+      <div class="ey">Over T.F.M. Construct</div>
+      <span class="bar" style="margin:16px 0 20px"></span>
+
+      <!-- Title with swoosh underline -->
+      <div class="about-swoosh-wrap">
+        <h2 class="ttl">Geen chaos.<br>Duidelijke aanpak.</h2>
+        <img class="about-swoosh-img swoosh-el"
+             src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
+      </div>
+
+      <p class="bd">T.F.M. Construct BV is een nieuwe speler in gevelwerken in de regio Antwerpen — opgericht met één duidelijke missie: professionele uitvoering, heldere communicatie en een nette oplevering. Altijd.</p>
+      <p class="bd" style="margin-top:12px">Wij geloven dat een renovatieproject niet stresserend hoeft te zijn. U heeft één vast aanspreekpunt en wordt stap voor stap begeleid.</p>
+      <ul class="ck-list">
         <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Één vast aanspreekpunt van A tot Z</li>
         <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Duidelijke offerte zonder verrassingen</li>
-        <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Actief in Antwerpen en omgeving (35 km radius)</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Actief in Antwerpen en omgeving (35 km)</li>
         <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Erkend aannemer — TVA: BE 0800172103</li>
-        <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Respons binnen 48u — vlotte opstart op de werf</li>
+        <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Respons binnen 48u — vlotte opstart</li>
       </ul>
-      <a href="tel:+32471916136" class="btn btn-gold btn-shim">
+      <a href="tel:+32471916136" class="btn btn-gold shim">
         Bel ons: +32 471 91 61 36
         <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.98.72 2.93a2 2 0 01-.45 2.11L6.09 7.91A16 16 0 0016.09 17.9l1.15-1.15a2 2 0 012.11-.45c.95.35 1.93.59 2.93.72A2 2 0 0122 16.92z"/></svg>
       </a>
@@ -760,118 +677,124 @@ footer{background:var(--navy-dk);padding:64px 60px 32px}
 </section>
 
 
-<!-- ═══════════════ SERVICES ═══════════════ -->
+<!-- ══════════ SERVICES ══════════ -->
 <section id="diensten" class="services">
-  <div class="sec-hd" data-reveal>
-    <div class="eyebrow">Onze diensten</div>
-    <h2 class="ttl" style="margin-top:18px">Gevelwerken van A tot Z</h2>
-    <p class="bd" style="margin-top:14px">Alles voor uw gevel onder één dak — professioneel uitgevoerd, op maat van uw woning of gebouw.</p>
+  <div class="sec-hd" data-r>
+    <div class="ey center">Onze diensten</div>
+    <!-- Swoosh underlines the title -->
+    <div class="svc-swoosh-wrap" style="margin-top:18px">
+      <h2 class="ttl">Gevelwerken van A tot Z</h2>
+      <img class="svc-swoosh-img swoosh-el"
+           src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
+    </div>
+    <p class="bd" style="margin-top:32px">Alles voor uw gevel onder één dak — professioneel uitgevoerd, op maat van uw woning of gebouw.</p>
   </div>
-  <div class="svc-grid" data-stagger>
-    <div class="svc card-tilt">
-      <div class="svc-n">01</div>
-      <div class="svc-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="1"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="2" y1="15" x2="22" y2="15"/><line x1="8" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="16" y2="21"/></svg></div>
+  <div class="svc-grid" data-s>
+    <div class="svc">
+      <div class="svc-num">01</div>
+      <div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="1"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="2" y1="15" x2="22" y2="15"/><line x1="8" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="16" y2="21"/></svg></div>
       <h3>Gevelisolatie</h3>
-      <p>Buitengevelisolatie met EPS of minerale wol — efficiënt energieverbruik, comfortabele woning, nette afwerking met spuitkurk of crepi.</p>
+      <p>Buitengevelisolatie met EPS of minerale wol — efficiënt energieverbruik en nette afwerking.</p>
       <span class="svc-more">Meer info →</span>
     </div>
-    <div class="svc card-tilt">
-      <div class="svc-n">02</div>
-      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+    <div class="svc">
+      <div class="svc-num">02</div>
+      <div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       <h3>Gevelrenovatie</h3>
-      <p>Volledige renovatie van bestaande gevels: herstel van scheuren, reiniging en nieuw afwerkingssysteem. Uw gevel als nieuw.</p>
+      <p>Volledige renovatie: herstel van scheuren, reiniging en nieuw afwerkingssysteem.</p>
       <span class="svc-more">Meer info →</span>
     </div>
-    <div class="svc card-tilt">
-      <div class="svc-n">03</div>
-      <div class="svc-icon"><svg viewBox="0 0 24 24"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></div>
+    <div class="svc">
+      <div class="svc-num">03</div>
+      <div class="svc-ico"><svg viewBox="0 0 24 24"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></div>
       <h3>Gevelbekleding</h3>
-      <p>Plaatsing van gevelpanelen, crepi en spuitkurk — strak, duurzaam en volledig op maat van uw woning of appartement.</p>
+      <p>Plaatsing van gevelpanelen, crepi en spuitkurk — strak en duurzaam op maat.</p>
       <span class="svc-more">Meer info →</span>
     </div>
-    <div class="svc card-tilt">
-      <div class="svc-n">04</div>
-      <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+    <div class="svc">
+      <div class="svc-num">04</div>
+      <div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <h3>Reiniging & herstel</h3>
-      <p>Professionele reiniging van gevels, herstel van voegen en scheuren. Een frisse gevel zonder volledige renovatie.</p>
+      <p>Professionele reiniging en herstel van voegen. Een frisse gevel zonder volledige renovatie.</p>
       <span class="svc-more">Meer info →</span>
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════ PHOTO BREAK ═══════════════ -->
+<!-- ══════════ PHOTO BREAK ══════════ -->
 <div class="pbreak">
-  <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&q=85&fit=crop" alt="Gevelwerken">
+  <img class="bg" src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&q=85&fit=crop" alt="Gevelwerken">
   <div class="pbreak-ov">
-    <div class="pbreak-inner" data-reveal="left">
-      <div class="eyebrow">Waarom T.F.M.?</div>
-      <h2 class="ttl white">Vakmanschap dat voor<br>zichzelf spreekt.</h2>
-      <p class="bd white" style="margin-top:18px">Wij werken nauwkeurig, netjes en transparant. Elk project behandelen we alsof het ons eigen huis is.</p>
-      <a href="#contact" class="btn btn-gold btn-shim" style="margin-top:28px">
+    <div class="pbreak-content" data-r="l">
+      <div class="ey">Waarom T.F.M.?</div>
+      <!-- Swoosh under title -->
+      <div class="pbreak-swoosh-wrap" style="margin-top:14px">
+        <h2 class="ttl w">Vakmanschap dat voor<br>zichzelf spreekt.</h2>
+        <img class="pbreak-swoosh-img swoosh-el"
+             src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
+      </div>
+      <p class="bd w" style="margin-top:28px;margin-bottom:28px">Wij werken nauwkeurig, netjes en transparant. Elk project behandelen we alsof het ons eigen huis is.</p>
+      <a href="#contact" class="btn btn-gold shim">
         Gratis offerte aanvragen
         <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
   </div>
-  <!-- Swoosh brand element PNG overlay -->
-  <div class="swoosh-ov" style="position:absolute;bottom:0;right:-5%;z-index:2;pointer-events:none;width:55%;max-width:700px">
-    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png"
-         alt="" style="width:100%;height:auto;opacity:.2" data-reveal="right">
+  <!-- Scaffold deco in photo break -->
+  <div class="pbreak-scaff">
+    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png"
+         alt="" class="scaff-el" style="width:100%;height:auto">
   </div>
 </div>
 
 
-<!-- ═══════════════ PROCESS ═══════════════ -->
+<!-- ══════════ PROCESS ══════════ -->
 <section id="werkwijze" class="process">
-  <!-- Scaffold brand element deco (white on dark bg) -->
-  <div class="process-scaffold-deco">
+  <!-- Scaffold background deco -->
+  <div class="proc-scaff">
     <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png"
-         alt="" style="width:100%;height:auto;filter:brightness(0) invert(1)">
+         alt="" class="scaff-el" style="width:100%;height:auto">
   </div>
 
-  <div class="sec-hd" data-reveal style="max-width:600px;margin-left:auto;margin-right:auto">
-    <div class="eyebrow" style="justify-content:center">Werkwijze</div>
-    <h2 class="ttl white" style="margin-top:18px">Van aanvraag<br>tot oplevering</h2>
-    <p class="bd white" style="margin-top:14px">Een eenvoudig en transparant proces — u weet altijd waar u aan toe bent.</p>
+  <div class="proc-hd" data-r>
+    <div class="ey center">Werkwijze</div>
+    <!-- Swoosh under process title -->
+    <div class="proc-swoosh-wrap" style="margin-top:18px">
+      <h2 class="ttl w">Van aanvraag tot oplevering</h2>
+      <img class="proc-swoosh-img swoosh-el"
+           src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt=""
+           style="filter:none">
+    </div>
+    <p class="bd w" style="margin-top:28px">Een eenvoudig en transparant proces — u weet altijd waar u aan toe bent.</p>
   </div>
 
-  <div class="proc-steps" data-stagger>
-    <div class="proc-connector"><div class="proc-connector-fill" id="proc-fill"></div></div>
-    <div class="pstep">
-      <div class="pstep-n">01</div>
-      <h4>Plaatsbezoek</h4>
-      <p>Gratis bezoek ter plaatse — we bekijken uw gevel en bespreken uw wensen</p>
-    </div>
-    <div class="pstep">
-      <div class="pstep-n">02</div>
-      <h4>Offerte</h4>
-      <p>Heldere prijsofferte binnen 48u — duidelijk overzicht zonder verborgen kosten</p>
-    </div>
-    <div class="pstep">
-      <div class="pstep-n">03</div>
-      <h4>Uitvoering</h4>
-      <p>Vakkundig uitgevoerd met oog voor detail en netheid van begin tot einde</p>
-    </div>
-    <div class="pstep">
-      <div class="pstep-n">04</div>
-      <h4>Oplevering</h4>
-      <p>Samen overlopen we het resultaat — gegarandeerd en netjes afgewerkt</p>
-    </div>
+  <div class="proc-steps" data-s>
+    <div class="proc-conn"><div class="proc-line-fill" id="proc-fill"></div></div>
+    <div class="pstep"><div class="pstep-n">01</div><div><h4>Plaatsbezoek</h4><p>Gratis bezoek ter plaatse — we bekijken uw gevel en bespreken uw wensen</p></div></div>
+    <div class="pstep"><div class="pstep-n">02</div><div><h4>Offerte</h4><p>Heldere prijsofferte binnen 48u — duidelijk overzicht zonder verborgen kosten</p></div></div>
+    <div class="pstep"><div class="pstep-n">03</div><div><h4>Uitvoering</h4><p>Vakkundig uitgevoerd met oog voor detail en netheid van begin tot einde</p></div></div>
+    <div class="pstep"><div class="pstep-n">04</div><div><h4>Oplevering</h4><p>Samen overlopen we het resultaat — gegarandeerd en netjes afgewerkt</p></div></div>
   </div>
 </section>
 
 
-<!-- ═══════════════ PROJECTS ═══════════════ -->
+<!-- ══════════ PROJECTS ══════════ -->
 <section id="realisaties" class="projects">
-  <div class="proj-hd" data-reveal>
+  <div class="proj-hd" data-r>
     <div>
-      <div class="eyebrow">Realisaties</div>
-      <h2 class="ttl" style="margin-top:16px">Afgewerkte projecten</h2>
+      <div class="ey">Realisaties</div>
+      <!-- Swoosh underlines "Afgewerkte projecten" -->
+      <div class="proj-ttl-wrap" style="margin-top:14px">
+        <h2 class="ttl">Afgewerkte projecten</h2>
+        <img class="proj-swoosh swoosh-el"
+             src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
+      </div>
     </div>
-    <a href="#contact" class="btn btn-navy-out">Alle projecten</a>
+    <a href="#contact" class="btn btn-no">Alle projecten</a>
   </div>
-  <div class="proj-grid" data-stagger>
+
+  <div class="proj-grid" data-s>
     <div class="proj">
       <img class="proj-img" src="https://images.unsplash.com/photo-1600585154526-990dced4db3d?w=600&q=80&fit=crop" alt="">
       <div class="proj-ov"></div>
@@ -903,9 +826,9 @@ footer{background:var(--navy-dk);padding:64px 60px 32px}
       <div class="proj-info"><div class="proj-tag">Kontich</div><div class="proj-name">Volledige gevelrenovatie</div></div>
     </div>
   </div>
-  <div class="proj-cta" data-reveal>
+  <div class="proj-cta" data-r>
     <p>* Voorbeeldfoto's — eigen projectfoto's worden spoedig toegevoegd</p>
-    <a href="#contact" class="btn btn-gold btn-shim" style="margin-top:4px">
+    <a href="#contact" class="btn btn-gold shim">
       Stuur uw projectfoto's op
       <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
@@ -913,76 +836,60 @@ footer{background:var(--navy-dk);padding:64px 60px 32px}
 </section>
 
 
-<!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+<!-- ══════════ TESTIMONIALS ══════════ -->
 <section class="testi-sec">
-  <div class="sec-hd" data-reveal>
-    <div class="eyebrow">Tevreden klanten</div>
+  <div class="sec-hd" data-r style="margin-bottom:60px">
+    <div class="ey center">Tevreden klanten</div>
     <h2 class="ttl" style="margin-top:18px">Wat onze klanten zeggen</h2>
   </div>
-  <div class="testi-grid" data-stagger>
-    <div class="testi card-tilt">
-      <div class="stars">
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      </div>
-      <p class="testi-q">"Professioneel en netjes afgewerkt. Tim was altijd bereikbaar en heeft alles perfect uitgevoerd zoals beloofd. Zeker aan te bevelen!"</p>
+  <div class="testi-grid" data-s>
+    <div class="testi">
+      <div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <p class="testi-q">"Professioneel en netjes afgewerkt. Tim was altijd bereikbaar en heeft alles perfect uitgevoerd. Zeker aan te bevelen!"</p>
       <div class="testi-auth"><div class="testi-av">KV</div><div><div class="testi-nm">Karen V.</div><div class="testi-loc">Antwerpen — Gevelisolatie</div></div></div>
     </div>
-    <div class="testi card-tilt">
-      <div class="stars">
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      </div>
-      <p class="testi-q">"Snelle offerte, eerlijke prijs en uitstekend werk. De gevel is volledig vernieuwd en ziet er prachtig uit. Hartelijk dank!"</p>
+    <div class="testi">
+      <div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <p class="testi-q">"Snelle offerte, eerlijke prijs en uitstekend werk. De gevel ziet er prachtig uit. Hartelijk dank aan het T.F.M. team!"</p>
       <div class="testi-auth"><div class="testi-av">MB</div><div><div class="testi-nm">Marc B.</div><div class="testi-loc">Mechelen — Gevelrenovatie</div></div></div>
     </div>
-    <div class="testi card-tilt">
-      <div class="stars">
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-      </div>
-      <p class="testi-q">"Heel vakkundig werk. Duidelijke communicatie, geen verrassingen in de rekening. Zou T.F.M. zeker aanraden aan iedereen!"</p>
+    <div class="testi">
+      <div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+      <p class="testi-q">"Heel vakkundig werk. Duidelijke communicatie, geen verrassingen. Zou T.F.M. zeker aanraden aan iedereen!"</p>
       <div class="testi-auth"><div class="testi-av">SP</div><div><div class="testi-nm">Sophie P.</div><div class="testi-loc">Lier — Gevelbekleding</div></div></div>
     </div>
   </div>
 </section>
 
 
-<!-- ═══════════════ CTA / CONTACT ═══════════════ -->
+<!-- ══════════ CTA / CONTACT ══════════ -->
 <section id="contact" class="cta-sec">
-  <div class="cta-bg"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80&fit=crop" alt=""></div>
-  <div class="cta-ov"></div>
-
-  <!-- Swoosh brand element CTA decoration -->
-  <div class="cta-swoosh" style="position:absolute;bottom:0;right:0;z-index:1;pointer-events:none;width:50%;max-width:700px;overflow:hidden">
+  <div class="cta-bg-img"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80&fit=crop" alt=""></div>
+  <!-- Swoosh deco bottom right -->
+  <div class="cta-swoosh-deco">
     <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png"
-         alt="" style="width:100%;height:auto;opacity:.08">
+         alt="" class="swoosh-el" style="width:100%;height:auto;opacity:.1">
   </div>
-
   <div class="cta-inner">
-    <div class="cta-left" data-reveal="left">
-      <div class="eyebrow">Contact</div>
-      <div class="divider bar-grow" style="margin-top:20px"></div>
-      <h2 class="ttl white">Uw gevel verbeteren?<em>Bel ons vandaag.</em></h2>
-      <p class="bd white" style="margin-top:20px">Vraag een vrijblijvende offerte aan of stuur een foto van uw gevel via WhatsApp. Wij reageren binnen 24u en plannen een gratis plaatsbezoek.</p>
-      <div class="cta-btns" style="margin-top:36px">
-        <a href="tel:+32471916136" class="btn btn-gold btn-shim">
+    <div class="cta-left" data-r="l">
+      <div class="ey">Contact</div>
+      <span class="bar" style="margin:16px 0 16px"></span>
+      <!-- Swoosh under CTA heading -->
+      <div class="cta-ttl-wrap">
+        <h2 class="ttl w">Uw gevel verbeteren?<em>Bel ons vandaag.</em></h2>
+        <img class="cta-swoosh-img swoosh-el"
+             src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
+      </div>
+      <p class="bd w" style="margin-bottom:32px">Vrijblijvende offerte of foto van uw gevel via WhatsApp. Wij reageren binnen 24u en plannen een gratis plaatsbezoek.</p>
+      <div class="cta-btns">
+        <a href="tel:+32471916136" class="btn btn-gold shim">
           +32 471 91 61 36
           <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.98.72 2.93a2 2 0 01-.45 2.11L6.09 7.91A16 16 0 0016.09 17.9l1.15-1.15a2 2 0 012.11-.45c.95.35 1.93.59 2.93.72A2 2 0 0122 16.92z"/></svg>
         </a>
-        <a href="mailto:info@tfmconstruct.be" class="btn btn-white-out">E-mail sturen</a>
+        <a href="mailto:info@tfmconstruct.be" class="btn btn-wo">E-mail sturen</a>
       </div>
     </div>
-    <div class="contact-cards" data-reveal="right">
+    <div class="c-cards" data-r="r">
       <div class="cc">
         <div class="cc-ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.98.72 2.93a2 2 0 01-.45 2.11L6.09 7.91A16 16 0 0016.09 17.9l1.15-1.15a2 2 0 012.11-.45c.95.35 1.93.59 2.93.72A2 2 0 0122 16.92z"/></svg></div>
         <div><div class="cc-lb">Telefoon</div><div class="cc-vl">+32 471 91 61 36</div></div>
@@ -1004,12 +911,12 @@ footer{background:var(--navy-dk);padding:64px 60px 32px}
 </section>
 
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
-<div class="ft-gold"></div>
+<!-- ══════════ FOOTER ══════════ -->
+<div class="ft-accent"></div>
 <footer>
   <div class="ft-top">
     <div class="ft-brand">
-      <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png" alt="T.F.M. Construct BV">
+      <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png" alt="T.F.M. Construct BV" style="height:40px;width:auto">
       <p>Professionele gevelwerken in de regio Antwerpen. Isolatie, renovatie, bekleding en reiniging.</p>
     </div>
     <div class="ft-col">
@@ -1052,120 +959,131 @@ footer{background:var(--navy-dk);padding:64px 60px 32px}
 
 
 <script>
-/* ═══════════════════════════════════
-   STICKY NAV
-═══════════════════════════════════ */
+/* ── NAV solid on scroll ── */
 const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('solid', window.scrollY > 60);
-}, {passive:true});
+window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 60), {passive:true});
 
-/* ═══════════════════════════════════
-   SMOOTH SCROLL
-═══════════════════════════════════ */
+/* ── HAMBURGER ── */
+const burger = document.getElementById('burger');
+const mmenu  = document.getElementById('mmenu');
+burger.addEventListener('click', () => {
+  burger.classList.toggle('open');
+  mmenu.classList.toggle('open');
+  document.body.style.overflow = mmenu.classList.contains('open') ? 'hidden' : '';
+});
+mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  burger.classList.remove('open');
+  mmenu.classList.remove('open');
+  document.body.style.overflow = '';
+}));
+
+/* ── SMOOTH SCROLL ── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     const el = document.querySelector(a.getAttribute('href'));
-    if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+    if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
   });
 });
 
-/* ═══════════════════════════════════
-   INTERSECTION OBSERVER — reveal
-═══════════════════════════════════ */
-const revealOpts = {threshold:.12, rootMargin:'0px 0px -40px 0px'};
-const revealObs = new IntersectionObserver((entries) => {
+/* ── HERO ANIMATIONS on load ── */
+window.addEventListener('load', () => {
+  // Scaffold builds up on hero load
+  document.querySelector('.hero-scaff img')?.classList.add('build');
+
+  // Swoosh sweeps in (delay for after scaffold)
+  setTimeout(() => {
+    document.getElementById('hero-swoosh')?.classList.add('sweep');
+  }, 1600);
+});
+
+/* ── INTERSECTION OBSERVER ── */
+const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if(e.isIntersecting){
-      e.target.classList.add('visible');
-      // grow dividers
-      e.target.querySelectorAll('.bar-grow').forEach(b => b.classList.add('grown'));
-      // fill process connector
-      const fill = e.target.querySelector('.proc-connector');
-      if(fill) fill.classList.add('filled');
-      revealObs.unobserve(e.target);
+    if(!e.isIntersecting) return;
+
+    const el = e.target;
+    el.classList.add('in');
+
+    // grow bars
+    el.querySelectorAll('.bar').forEach(b => {
+      requestAnimationFrame(() => b.classList.add('grown'));
+    });
+
+    // process line
+    const fill = document.getElementById('proc-fill');
+    if(el.contains(fill) || el.id==='werkwijze'){
+      setTimeout(() => fill?.classList.add('grown'), 300);
     }
+
+    // trigger swoosh on elements inside revealed section
+    el.querySelectorAll('.swoosh-el:not(#hero-swoosh)').forEach((sw, i) => {
+      setTimeout(() => sw.classList.add('sweep'), 200 + i * 150);
+    });
+
+    // trigger scaffold build
+    el.querySelectorAll('.scaff-el:not(.ha6)').forEach((sc, i) => {
+      setTimeout(() => sc.classList.add('build'), 100 + i * 200);
+    });
+
+    io.unobserve(el);
   });
-}, revealOpts);
+}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
 
-document.querySelectorAll('[data-reveal],[data-stagger]').forEach(el => revealObs.observe(el));
+document.querySelectorAll('[data-r],[data-s]').forEach(el => io.observe(el));
 
-// Also observe dividers globally
-document.querySelectorAll('.bar-grow').forEach(b => {
-  const obs2 = new IntersectionObserver((ent) => {
-    if(ent[0].isIntersecting){ b.classList.add('grown'); obs2.unobserve(b); }
-  }, {threshold:.3});
-  obs2.observe(b);
+// Also observe sections that contain brand elements
+document.querySelectorAll('.pbreak,.process,.about,.cta-sec').forEach(sec => {
+  const secIo = new IntersectionObserver(([e]) => {
+    if(!e.isIntersecting) return;
+    e.target.querySelectorAll('.swoosh-el:not(#hero-swoosh)').forEach((sw, i) => {
+      setTimeout(() => sw.classList.add('sweep'), 300 + i * 200);
+    });
+    e.target.querySelectorAll('.scaff-el:not(.ha6)').forEach((sc, i) => {
+      setTimeout(() => sc.classList.add('build'), 100 + i * 300);
+    });
+    secIo.unobserve(e.target);
+  }, { threshold: 0.15 });
+  secIo.observe(sec);
 });
 
-// Process connector
-const procSec = document.querySelector('.proc-steps');
-if(procSec){
-  const obs3 = new IntersectionObserver((ent) => {
-    if(ent[0].isIntersecting){
-      document.querySelector('.proc-connector')?.classList.add('filled');
-      obs3.unobserve(procSec);
-    }
-  }, {threshold:.3});
-  obs3.observe(procSec);
-}
-
-/* ═══════════════════════════════════
-   COUNTER ANIMATION
-═══════════════════════════════════ */
-function animateCount(el, target, duration=1600){
+/* ── COUNTER animation ── */
+function animCount(el, target, dur=1600){
   const start = performance.now();
-  const update = (now) => {
-    const p = Math.min((now-start)/duration, 1);
-    // easeOutExpo
-    const ease = p===1 ? 1 : 1 - Math.pow(2,-10*p);
-    el.textContent = Math.round(ease * target);
-    if(p < 1) requestAnimationFrame(update);
-  };
-  requestAnimationFrame(update);
+  (function tick(now){
+    const p = Math.min((now-start)/dur, 1);
+    const ease = p===1 ? 1 : 1-Math.pow(2,-10*p);
+    el.textContent = Math.round(ease*target);
+    if(p<1) requestAnimationFrame(tick);
+  })(start);
 }
-
-const counterObs = new IntersectionObserver((entries) => {
+const cntObs = new IntersectionObserver(entries => {
   entries.forEach(e => {
-    if(e.isIntersecting){
-      const target = parseInt(e.target.dataset.target);
-      setTimeout(() => animateCount(e.target, target, 1800), 300);
-      counterObs.unobserve(e.target);
-    }
+    if(!e.isIntersecting) return;
+    const t = parseInt(e.target.dataset.target);
+    setTimeout(() => animCount(e.target, t, 1800), 400);
+    cntObs.unobserve(e.target);
   });
 }, {threshold:.5});
-document.querySelectorAll('.counter').forEach(c => counterObs.observe(c));
+document.querySelectorAll('.cnt').forEach(c => cntObs.observe(c));
 
-/* ═══════════════════════════════════
-   PARALLAX on hero image
-═══════════════════════════════════ */
-const heroBgImg = document.querySelector('.hero-bg img');
-if(heroBgImg){
-  window.addEventListener('scroll', () => {
-    const y = window.scrollY;
-    if(y < window.innerHeight){
-      heroBgImg.style.transform = `scale(1.06) translateY(${y * 0.25}px)`;
+/* ── PROCESS CONNECTOR ── */
+const procSteps = document.querySelector('.proc-steps');
+if(procSteps){
+  new IntersectionObserver(([e]) => {
+    if(e.isIntersecting){
+      setTimeout(() => document.getElementById('proc-fill')?.classList.add('grown'), 400);
     }
-  }, {passive:true});
+  }, {threshold:.3}).observe(procSteps);
 }
 
-/* ═══════════════════════════════════
-   CURSOR GLOW (subtle)
-═══════════════════════════════════ */
-const glow = document.createElement('div');
-glow.style.cssText = `
-  position:fixed;pointer-events:none;z-index:9999;
-  width:300px;height:300px;
-  background:radial-gradient(circle,rgba(232,165,0,.04) 0%,transparent 70%);
-  transform:translate(-50%,-50%);
-  transition:opacity .3s;
-  border-radius:50%;
-`;
-document.body.appendChild(glow);
-document.addEventListener('mousemove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top = e.clientY + 'px';
-}, {passive:true});
+/* ── HERO BG PARALLAX ── */
+const heroBgImg = document.querySelector('.hero-bg img');
+if(heroBgImg && window.innerWidth > 768){
+  window.addEventListener('scroll', () => {
+    if(scrollY < innerHeight)
+      heroBgImg.style.transform = `scale(1.07) translateY(${scrollY*.2}px)`;
+  }, {passive:true});
+}
 </script>
 </body>
 </html>
