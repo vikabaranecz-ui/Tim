@@ -356,34 +356,29 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 .ft-copy,.ft-legal{font-size:0.74rem;color:rgba(255,255,255,0.26)}
 
 /* ─ BRAND SWOOSH DECORATIES ─ */
+/* Juiste SVG-pad overal: scherpe bek links, brede boog, fijn punt rechts */
 .brand-swoosh{
   position:absolute;pointer-events:none;overflow:visible;
 }
-/* Hero — grote swoosh rechtsonder */
 .hero-swoosh{
-  bottom:-40px;right:-60px;width:55%;max-width:700px;
-  opacity:0.08;transform:rotate(-8deg);
+  bottom:-60px;right:-80px;width:60%;max-width:760px;
+  opacity:0.09;transform:rotate(-6deg);
   animation:swooshFloat 8s ease-in-out infinite;
 }
 @keyframes swooshFloat{
-  0%,100%{transform:rotate(-8deg) translateY(0)}
-  50%{transform:rotate(-8deg) translateY(-12px)}
+  0%,100%{transform:rotate(-6deg) translateY(0)}
+  50%{transform:rotate(-6deg) translateY(-14px)}
 }
-/* Kleine accent-swoosh links naast sectietitels */
 .swoosh-accent{
-  display:block;width:80px;height:28px;margin-bottom:6px;
-  overflow:visible;
+  display:block;width:88px;height:32px;margin-bottom:8px;overflow:visible;
 }
-.swoosh-accent path{fill:var(--gold)}
-/* Werkwijze — grote achtergrond swoosh */
 .process-swoosh{
-  top:50%;left:-80px;width:55%;max-width:600px;
-  opacity:0.04;transform:translateY(-50%) rotate(15deg);
+  top:50%;left:-100px;width:55%;max-width:620px;
+  opacity:0.05;transform:translateY(-50%) rotate(12deg);
 }
-/* Voorna — swoosh rechtsboven */
 .voorna-swoosh{
-  top:-20px;right:-40px;width:40%;max-width:500px;
-  opacity:0.05;transform:rotate(-20deg);
+  top:-30px;right:-60px;width:42%;max-width:520px;
+  opacity:0.06;transform:rotate(-18deg);
 }
 
 /* ─ STEIGERLIJNEN (SCAFFOLDING) ─ */
@@ -426,28 +421,80 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
   nav{padding:0 4%}
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
-  section{padding:72px 5%}
-  .hero-bg{display:none}
+  section{padding:64px 5%}
+
+  /* HERO MOBIEL — foto zichtbaar als overlay */
+  .hero{min-height:100svh}
+  .hero-bg{
+    display:block;
+    opacity:0.28;
+    background-position:center top;
+  }
+  /* Donkere overlay bovenop foto zodat tekst leesbaar blijft */
+  .hero::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to bottom,rgba(2,24,48,0.65) 0%,rgba(2,24,48,0.55) 60%,rgba(2,24,48,0.72) 100%);
+    z-index:1;pointer-events:none;
+  }
+  .hero-content{position:relative;z-index:2;padding:80px 5% 60px}
+  .hero-visual{display:none}
+
+  /* Servicegrid */
   .srv-grid{grid-template-columns:1fr 1fr}
+  .srv-card{aspect-ratio:4/5}
+
+  /* Voor & Na */
   .vn-grid{grid-template-columns:1fr}
+
+  /* Contact */
   .ct-layout{grid-template-columns:1fr}
   .f-row{grid-template-columns:1fr}
-  .hero-stats{grid-template-columns:repeat(3,1fr);gap:10px}
+
+  /* Stats balk */
+  .hero-stats{grid-template-columns:repeat(3,1fr);gap:8px}
+  .stat-num{font-size:1.6rem}
+  .stat-lbl{font-size:0.6rem}
+
+  /* Gold stats strip */
+  .gbs-item{padding:14px 18px;min-width:120px}
+  .gbs-num{font-size:1.5rem}
+  .gbs-lbl{font-size:0.65rem}
+
+  /* Footer */
   .ft-top{flex-direction:column;gap:20px;text-align:center}
   .ft-bot{flex-direction:column;text-align:center}
-  .sticky-cta{bottom:18px;right:16px;padding:12px 20px;font-size:0.82rem}
-  .gbs-item{padding:16px 20px}
+  .ft-links{flex-wrap:wrap;justify-content:center;gap:16px}
+
+  /* CTA */
+  .sticky-cta{bottom:16px;right:14px;padding:11px 18px;font-size:0.8rem}
   .cta-banner{padding:36px 5%}
+
+  /* Process */
+  .proc-steps{grid-template-columns:repeat(2,1fr);gap:24px}
+  .proc-steps::before{display:none}
+
+  /* Waarom wij */
+  .ww-layout,.ct-layout{grid-template-columns:1fr;gap:40px}
+  .ww-badge{right:0}
+
+  /* Section titels */
+  .section-title{font-size:clamp(1.7rem,6vw,2.4rem)}
+  .hero h1{font-size:clamp(2.6rem,9vw,3.8rem)}
 }
 @media(max-width:480px){
+  section{padding:56px 4%}
   .srv-grid{grid-template-columns:1fr}
+  .srv-card{aspect-ratio:3/2}
   .hero-badge{display:none}
-  .hero-stats{grid-template-columns:1fr}
-  .ct-form{padding:22px 16px}
+  .hero-stats{grid-template-columns:repeat(3,1fr);gap:6px}
+  .ct-form{padding:20px 14px}
   .hero-actions{flex-direction:column}
-  .btn-primary,.btn-outline{text-align:center;justify-content:center}
-  .oo-facts{grid-template-columns:1fr 1fr}
-  .proc-steps{grid-template-columns:1fr 1fr}
+  .btn-primary,.btn-outline{text-align:center;justify-content:center;width:100%}
+  .proc-steps{grid-template-columns:1fr 1fr;gap:18px}
+  .gold-bar-strip{flex-direction:column}
+  .gbs-item{border-right:none;border-bottom:1px solid rgba(2,24,48,0.12);width:100%;padding:12px 5%}
+  .gbs-item:last-child{border-bottom:none}
+  .vn-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -464,7 +511,7 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
   <a href="#home" class="nav-logo">
     <!-- Inline SVG swoosh — geen achtergrond -->
     <svg width="48" height="22" viewBox="0 0 120 50" aria-hidden="true" style="flex-shrink:0">
-      <path d="M 0 42 C 18 52, 78 16, 120 2 C 108 10, 56 30, 4 46 Z" fill="#E8A500"/>
+      <path d="M 0 46 L 14 34 C 38 19, 82 7, 120 1 C 117 2, 112 4, 108 5 C 77 12, 34 25, 11 40 C 6 43, 2 45, 0 46 Z" fill="#E8A500"/>
     </svg>
     <div class="nav-logo-text">
       <span class="nav-logo-name">T.F.M. Construct BV</span>
@@ -532,7 +579,7 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 
   <!-- Grote brand swoosh decoratie -->
   <svg class="brand-swoosh hero-swoosh" viewBox="0 0 600 280" aria-hidden="true">
-    <path d="M 0 220 C 60 260, 350 100, 600 10 C 570 30, 320 130, 20 250 Z" fill="#E8A500"/>
+    <path d="M 0 240 L 70 175 C 200 100, 430 38, 600 5 C 590 10, 570 16, 555 20 C 400 58, 170 125, 55 200 C 30 216, 12 232, 0 240 Z" fill="#E8A500"/>
   </svg>
   <div class="hero-content">
     <div class="hero-text">
@@ -600,7 +647,7 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 <section id="diensten">
   <div class="si">
     <div class="sec-hd reveal">
-      <svg class="swoosh-accent" viewBox="0 0 80 28" aria-hidden="true"><path d="M 0 22 C 10 28, 55 8, 80 1 C 72 5, 40 16, 2 24 Z"/></svg>
+      <svg class="swoosh-accent" viewBox="0 0 80 28" aria-hidden="true"><path d="M 0 24 L 10 17 C 28 9, 58 3, 80 0 C 78 1, 74 2, 70 3 C 50 7, 24 14, 8 22 C 4 23, 1 24, 0 24 Z" fill="#E8A500"/></svg>
       <span class="section-label">Onze expertise</span>
       <h2 class="section-title">Vier disciplines.<br>Één vakman.</h2>
       <div class="gold-line"></div>
@@ -677,13 +724,13 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
   </div>
   <!-- Grote swoosh achtergrond decoratie -->
   <svg class="brand-swoosh process-swoosh" viewBox="0 0 600 280" aria-hidden="true">
-    <path d="M 0 220 C 60 260, 350 100, 600 10 C 570 30, 320 130, 20 250 Z" fill="#E8A500"/>
+    <path d="M 0 240 L 70 175 C 200 100, 430 38, 600 5 C 590 10, 570 16, 555 20 C 400 58, 170 125, 55 200 C 30 216, 12 232, 0 240 Z" fill="#E8A500"/>
   </svg>
 
   <div class="si">
     <div class="sec-hd reveal" style="text-align:center">
       <svg style="display:block;margin:0 auto 6px;width:100px;height:34px;overflow:visible" viewBox="0 0 100 34" aria-hidden="true">
-        <path d="M 0 27 C 12 34, 68 10, 100 1 C 90 6, 50 20, 3 30 Z" fill="#E8A500" opacity="0.6"/>
+        <path d="M 0 30 L 13 22 C 35 12, 72 3, 100 0 C 97 1, 93 2, 89 3 C 63 8, 30 18, 10 27 C 5 29, 1 30, 0 30 Z" fill="#E8A500" opacity="0.65"/>
       </svg>
       <span class="section-label" style="display:block;text-align:center">Stap voor stap</span>
       <h2 class="section-title light" style="text-align:center">Van aanvraag tot oplevering</h2>
@@ -731,7 +778,7 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
 <section id="voorna" style="position:relative;overflow:hidden">
   <!-- Swoosh achtergrond decoratie Voor & Na -->
   <svg class="brand-swoosh voorna-swoosh" viewBox="0 0 600 280" aria-hidden="true">
-    <path d="M 0 220 C 60 260, 350 100, 600 10 C 570 30, 320 130, 20 250 Z" fill="#E8A500"/>
+    <path d="M 0 240 L 70 175 C 200 100, 430 38, 600 5 C 590 10, 570 16, 555 20 C 400 58, 170 125, 55 200 C 30 216, 12 232, 0 240 Z" fill="#E8A500"/>
   </svg>
 
   <div class="si">
@@ -912,7 +959,7 @@ footer{background:var(--navy-dk);border-top:1px solid rgba(232,165,0,0.08);paddi
     <div class="ft-top">
       <a href="#home" class="ft-logo">
         <svg width="44" height="20" viewBox="0 0 120 50" aria-hidden="true" style="flex-shrink:0">
-          <path d="M 0 42 C 18 52, 78 16, 120 2 C 108 10, 56 30, 4 46 Z" fill="#E8A500"/>
+          <path d="M 0 46 L 14 34 C 38 19, 82 7, 120 1 C 117 2, 112 4, 108 5 C 77 12, 34 25, 11 40 C 6 43, 2 45, 0 46 Z" fill="#E8A500"/>
         </svg>
         <div class="ft-logo-text">
           <div class="ft-name">T.F.M. Construct BV</div>
