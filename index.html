@@ -2,1088 +2,938 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>T.F.M. Construct BV — Gevelwerken & Façade Works | Antwerpen</title>
-<meta name="description" content="Professionele gevelwerken in de regio Antwerpen. Isolatie, renovatie, gevelbekleding en reiniging. Gratis offerte binnen 48u.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>T.F.M. Construct BV – Gevelbekleding & Isolatie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
-/* ─── ASSETS ─── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --logo:     url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png');
-  --swoosh:   url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png');
-  --scaffold: url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png');
-
-  --navy:#05284C; --navy-dk:#021830; --navy-md:#0A3660;
-  --gold:#E8A500; --gold2:#F5C030;
-  --white:#FFF;   --off:#F7F6F3;    --light:#EEF2F6;
-  --text:#1E2D3D; --muted:#6B7A8D;
+  --navy:#05284C;
+  --navy-dk:#021830;
+  --gold:#E8A500;
+  --gold-lt:#F5C842;
+  --white:#FFFFFF;
+  --off:#F4F6F9;
+  --text:#1A1A2E;
+  --muted:#6B7280;
+  --radius:4px;
+  --trans:0.35s ease;
 }
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
 
-/* ─── RESET ─── */
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
-img{display:block;max-width:100%}
-a{text-decoration:none;color:inherit}
-button{cursor:pointer;border:none;outline:none;font-family:inherit}
-
-
-/* ══════════════════════════════════════════
-   ANIMATION SYSTEM
-══════════════════════════════════════════ */
-
-/* 1. Hero text stagger */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(28px)}
-  to{opacity:1;transform:translateY(0)}
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(2,24,48,0.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(232,165,0,0.15);
+  padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  height:70px;
 }
-.ha1{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .4s both}
-.ha2{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .6s both}
-.ha3{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) .8s both}
-.ha4{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) 1.0s both}
-.ha5{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) 1.2s both}
-.ha6{animation:fadeUp .9s cubic-bezier(.16,1,.3,1) 1.4s both}
-
-/* 2. Swoosh sweep – left to right reveal */
-@keyframes swooshSweep{
-  0%  {clip-path:inset(0 100% 0 0);opacity:.5}
-  20% {opacity:1}
-  100%{clip-path:inset(0 0%   0 0);opacity:1}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo img{height:44px;width:auto;object-fit:contain}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{
+  color:rgba(255,255,255,0.85);text-decoration:none;
+  font-family:'Oswald',sans-serif;font-weight:400;font-size:0.85rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  transition:color var(--trans);position:relative;
 }
-.swoosh-el{
-  display:block;
-  clip-path:inset(0 100% 0 0);
-  opacity:0;
-  transition:none;
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;right:0;
+  height:2px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;transition:transform var(--trans);
 }
-.swoosh-el.sweep{
-  animation:swooshSweep .9s cubic-bezier(.16,1,.3,1) forwards;
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{
+  background:var(--gold);color:var(--navy-dk);
+  padding:10px 22px;border-radius:var(--radius);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.8rem;
+  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
+  transition:background var(--trans),transform var(--trans);
+  white-space:nowrap;
 }
-
-/* 3. Scaffold build – bottom to top */
-@keyframes scaffBuild{
-  0%  {clip-path:polygon(0% 100%,100% 100%,100% 100%,0% 100%);opacity:0}
-  10% {opacity:1}
-  100%{clip-path:polygon(0% 0%,  100% 0%,  100% 100%,0% 100%);opacity:1}
-}
-.scaff-el{
-  clip-path:polygon(0% 100%,100% 100%,100% 100%,0% 100%);
-  opacity:0;
-}
-.scaff-el.build{
-  animation:scaffBuild 1.2s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-/* 4. Scroll reveal */
-[data-r]{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-[data-r=l]{transform:translateX(-36px)}
-[data-r=r]{transform:translateX(36px)}
-[data-r].in{opacity:1;transform:none}
-
-/* 5. Stagger children */
-[data-s]>*{opacity:0;transform:translateY(22px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
-[data-s].in>*{opacity:1;transform:none}
-[data-s].in>*:nth-child(1){transition-delay:.05s}
-[data-s].in>*:nth-child(2){transition-delay:.15s}
-[data-s].in>*:nth-child(3){transition-delay:.25s}
-[data-s].in>*:nth-child(4){transition-delay:.35s}
-[data-s].in>*:nth-child(5){transition-delay:.45s}
-[data-s].in>*:nth-child(6){transition-delay:.55s}
-
-/* 6. Gold bar grow */
-.bar{display:block;height:3px;background:var(--gold);width:0;transition:width 1s cubic-bezier(.16,1,.3,1) .2s}
-.bar.grown{width:48px}
-
-/* 7. Process connector */
-.proc-line-fill{height:1px;background:rgba(232,165,0,.3);width:0;transition:width 1.8s cubic-bezier(.16,1,.3,1) .3s}
-.proc-line-fill.grown{width:100%}
-
-/* 8. Hero bg parallax zoom */
-@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.07)}}
-
-/* 9. Scroll indicator */
-@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.8;transform:scaleY(1.3)}}
-
-/* 10. Shimmer on buttons */
-@keyframes shimmer{0%{transform:translateX(-140%) skewX(-15deg)}100%{transform:translateX(240%) skewX(-15deg)}}
-.shim{position:relative;overflow:hidden}
-.shim::after{content:'';position:absolute;top:0;left:0;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);transform:translateX(-140%) skewX(-15deg)}
-.shim:hover::after{animation:shimmer .55s ease}
-
-/* 11. Contact card slide */
-.cc{transition:transform .25s ease,background .25s,border-color .25s}
-.cc:hover{transform:translateX(5px)}
-
-/* 12. Counter */
-.cnt{display:inline-block}
-
-/* ══════════════════════════════════════════
-   TYPOGRAPHY
-══════════════════════════════════════════ */
-.ey{font-family:'Oswald',sans-serif;font-weight:400;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:10px}
-.ey::before{content:'';width:26px;height:1.5px;background:var(--gold);flex-shrink:0}
-.ey.center{justify-content:center}
-.ey.center::before,.ey.center::after{content:'';display:block;width:26px;height:1.5px;background:var(--gold);flex-shrink:0}
-
-h2.ttl{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(28px,3.5vw,52px);line-height:1.0;text-transform:uppercase;letter-spacing:-.5px;color:var(--navy)}
-h2.ttl.w{color:var(--white)}
-p.bd{font-family:'Inter',sans-serif;font-weight:300;font-size:15px;line-height:1.85;color:var(--muted)}
-p.bd.w{color:rgba(255,255,255,.58)}
-
-/* Section header with swoosh underline */
-.sec-ttl-wrap{position:relative;display:inline-block}
-.sec-ttl-swoosh{position:absolute;bottom:-18px;left:0;width:120%;height:32px;object-fit:contain;object-position:left center}
-
-/* ══════════════════════════════════════════
-   BUTTONS
-══════════════════════════════════════════ */
-.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Oswald',sans-serif;font-weight:600;font-size:12px;letter-spacing:3px;text-transform:uppercase;padding:15px 32px;cursor:pointer;border:none;transition:background .25s,color .25s,transform .15s}
-.btn:active{transform:scale(.97)}
-.btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;flex-shrink:0;transition:transform .22s}
-.btn:hover svg{transform:translateX(4px)}
-.btn-gold{background:var(--gold);color:var(--navy-dk)}
-.btn-gold:hover{background:var(--gold2)}
-.btn-wo{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,.35)}
-.btn-wo:hover{background:var(--gold);color:var(--navy-dk);border-color:var(--gold)}
-.btn-no{background:transparent;color:var(--navy);border:1.5px solid var(--navy)}
-.btn-no:hover{background:var(--navy);color:var(--white)}
-
-/* ══════════════════════════════════════════
-   NAV
-══════════════════════════════════════════ */
-nav{position:fixed;top:0;left:0;right:0;z-index:300;height:76px;padding:0 60px;display:flex;align-items:center;justify-content:space-between;background:transparent;transition:background .35s,box-shadow .35s}
-nav.solid{background:rgba(2,24,48,.97);backdrop-filter:blur(14px);box-shadow:0 2px 30px rgba(0,0,0,.3)}
-.nav-logo img{height:50px;width:auto;object-fit:contain}
-.nav-links{display:flex;align-items:center;gap:34px}
-.nav-link{font-family:'Oswald',sans-serif;font-weight:400;font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.7);transition:color .2s;position:relative}
-.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--gold);transition:width .3s}
-.nav-link:hover{color:var(--white)}
-.nav-link:hover::after{width:100%}
-
-/* Hamburger */
-.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:310}
-.burger span{display:block;width:24px;height:2px;background:var(--white);transition:transform .3s,opacity .3s}
-.burger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.burger.open span:nth-child(2){opacity:0}
-.burger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-
-/* Mobile menu */
+.nav-cta:hover{background:var(--gold-lt);transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:var(--trans);border-radius:2px}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .mobile-menu{
-  display:none;position:fixed;inset:0;z-index:290;
-  background:rgba(2,24,48,.98);backdrop-filter:blur(20px);
-  flex-direction:column;align-items:center;justify-content:center;gap:32px;
+  display:none;position:fixed;inset:0;z-index:99;
+  background:var(--navy-dk);
+  flex-direction:column;align-items:center;justify-content:center;gap:40px;
 }
 .mobile-menu.open{display:flex}
-.mobile-menu a{font-family:'Oswald',sans-serif;font-weight:500;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.8);transition:color .2s}
+.mobile-menu a{
+  color:var(--white);text-decoration:none;
+  font-family:'Oswald',sans-serif;font-weight:500;font-size:1.6rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  transition:color var(--trans);
+}
 .mobile-menu a:hover{color:var(--gold)}
-.mobile-menu .btn{margin-top:16px}
-
-/* ══════════════════════════════════════════
-   HERO
-══════════════════════════════════════════ */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;animation:heroZoom 18s ease-in-out alternate infinite}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(110deg,rgba(2,24,48,.94) 0%,rgba(2,24,48,.76) 45%,rgba(2,24,48,.38) 100%)}
-
-/* Scaffold brand decoration */
-.hero-scaff{
-  position:absolute;right:5%;top:50%;transform:translateY(-50%);
-  z-index:1;pointer-events:none;width:160px;opacity:.14;
+.mobile-menu .m-cta{
+  background:var(--gold);color:var(--navy-dk);
+  padding:14px 36px;border-radius:var(--radius);font-size:1rem;
 }
 
-/* Swoosh bottom decoration */
-.hero-swoosh-deco{
-  position:absolute;bottom:20px;left:2%;z-index:1;
-  pointer-events:none;width:55%;max-width:740px;
+/* ─── HERO ─── */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;
+  background:linear-gradient(135deg,var(--navy-dk) 0%,var(--navy) 60%,#073560 100%);
+  overflow:hidden;padding-top:70px;
 }
-
-.hero-inner{
+.hero-bg-img{
+  position:absolute;inset:0;
+  background:url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_11_51%20AM.png') center/cover no-repeat;
+  opacity:0.18;
+}
+.hero-content{
   position:relative;z-index:2;
-  width:100%;max-width:1340px;margin:0 auto;
-  display:grid;grid-template-columns:1fr 380px;
-  gap:40px;align-items:center;padding:0 60px;
+  max-width:1200px;margin:0 auto;padding:80px 5%;
+  display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;
 }
-.hero-left{padding:130px 0}
-.hero-ey{margin-bottom:26px}
-h1.hero-h{font-family:'Oswald',sans-serif;font-weight:700;font-size:clamp(44px,5.5vw,82px);line-height:.93;color:var(--white);text-transform:uppercase;letter-spacing:-1.5px;margin-bottom:28px}
-h1.hero-h em{color:var(--gold);font-style:normal;display:block}
-.hero-p{font-size:15px;line-height:1.85;color:rgba(255,255,255,.62);font-weight:300;max-width:450px;margin-bottom:44px}
-.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.hero-text{flex:1}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(232,165,0,0.12);border:1px solid rgba(232,165,0,0.35);
+  padding:6px 16px;border-radius:40px;margin-bottom:28px;
+}
+.hero-badge span{
+  font-family:'Oswald',sans-serif;font-weight:400;font-size:0.75rem;
+  letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);
+}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+.hero h1{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(2.4rem,5vw,4rem);line-height:1.05;
+  color:var(--white);margin-bottom:24px;
+}
+.hero h1 em{color:var(--gold);font-style:normal}
+.hero p{
+  font-size:1.05rem;line-height:1.75;color:rgba(255,255,255,0.75);
+  max-width:480px;margin-bottom:40px;font-weight:300;
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{
+  background:var(--gold);color:var(--navy-dk);
+  padding:14px 32px;border-radius:var(--radius);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.9rem;
+  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
+  transition:background var(--trans),transform var(--trans);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-primary:hover{background:var(--gold-lt);transform:translateY(-2px)}
+.btn-outline{
+  border:1.5px solid rgba(255,255,255,0.4);color:var(--white);
+  padding:14px 32px;border-radius:var(--radius);
+  font-family:'Oswald',sans-serif;font-weight:500;font-size:0.9rem;
+  letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;
+  transition:border-color var(--trans),background var(--trans);
+}
+.btn-outline:hover{border-color:var(--gold);background:rgba(232,165,0,0.08)}
+.hero-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px;
+}
+.stat-card{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  border-radius:8px;padding:20px 16px;text-align:center;
+}
+.stat-num{
+  font-family:'Oswald',sans-serif;font-weight:700;font-size:1.9rem;
+  color:var(--gold);display:block;line-height:1;
+}
+.stat-lbl{
+  font-size:0.72rem;color:rgba(255,255,255,0.6);
+  letter-spacing:0.08em;text-transform:uppercase;margin-top:6px;display:block;
+}
+.hero-visual{
+  position:relative;display:flex;justify-content:center;align-items:center;
+}
+.hero-photo-frame{
+  position:relative;border-radius:12px;overflow:hidden;
+  width:100%;max-width:460px;aspect-ratio:3/4;
+  border:2px solid rgba(232,165,0,0.25);
+}
+.hero-photo-frame img{width:100%;height:100%;object-fit:cover}
+.hero-photo-tag{
+  position:absolute;bottom:20px;left:20px;right:20px;
+  background:rgba(2,24,48,0.88);backdrop-filter:blur(8px);
+  border-left:3px solid var(--gold);padding:12px 16px;border-radius:4px;
+}
+.hero-photo-tag p{font-size:0.8rem;color:rgba(255,255,255,0.7);margin-bottom:2px}
+.hero-photo-tag strong{font-family:'Oswald',sans-serif;font-weight:500;color:var(--white);font-size:0.95rem}
 
-/* Glass card */
-.hero-card{background:rgba(255,255,255,.07);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.1);overflow:hidden;align-self:center}
-.hc-top{background:var(--gold);padding:13px 20px;font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--navy-dk)}
-.hc-grid{display:grid;grid-template-columns:1fr 1fr}
-.hci{padding:22px 18px;border-bottom:1px solid rgba(255,255,255,.07);border-right:1px solid rgba(255,255,255,.07)}
-.hci:nth-child(even){border-right:none}
-.hci:nth-last-child(-n+2){border-bottom:none}
-.hci-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:28px;color:var(--white);line-height:1;margin-bottom:4px}
-.hci-n span{color:var(--gold)}
-.hci-d{font-size:10px;font-weight:400;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase}
+/* ─── GOLD ARC DIVIDER ─── */
+.arc-divider{
+  position:relative;height:80px;overflow:hidden;
+  background:var(--navy);
+}
+.arc-divider svg{
+  position:absolute;bottom:0;width:100%;height:100%;
+}
+.arc-divider.light-to-navy{background:var(--off)}
+.arc-divider.navy-to-light{background:var(--navy)}
 
-.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s .9s both}
-.scroll-hint span{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3)}
-.sh-line{width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,.4),transparent);animation:scrollPulse 2s ease-in-out 2s infinite}
+/* ─── SECTION BASE ─── */
+section{padding:100px 5%}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{
+  font-family:'Oswald',sans-serif;font-weight:400;font-size:0.75rem;
+  letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:12px;display:block;
+}
+.section-title{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:clamp(1.8rem,3.5vw,2.8rem);line-height:1.1;
+  color:var(--navy);margin-bottom:16px;
+}
+.section-title.light{color:var(--white)}
+.section-subtitle{
+  font-size:1rem;line-height:1.7;color:var(--muted);
+  max-width:560px;font-weight:300;
+}
+.section-subtitle.light{color:rgba(255,255,255,0.65)}
+.section-header{margin-bottom:60px}
+.gold-line{
+  width:52px;height:3px;background:var(--gold);
+  border-radius:2px;margin:16px 0 0;
+}
 
-/* ══════════════════════════════════════════
-   GOLD STRIP
-══════════════════════════════════════════ */
-.gstrip{background:var(--gold)}
-.gstrip-inner{display:grid;grid-template-columns:repeat(4,1fr);max-width:1260px;margin:0 auto}
-.gs{padding:24px 32px;text-align:center;border-right:1px solid rgba(2,24,48,.1)}
-.gs:last-child{border-right:none}
-.gs-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:28px;color:var(--navy-dk);line-height:1}
-.gs-l{font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:rgba(2,24,48,.5);margin-top:5px}
+/* ─── DIENSTEN ─── */
+#diensten{background:var(--off)}
+.services-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+}
+.service-card{
+  position:relative;border-radius:10px;overflow:hidden;
+  aspect-ratio:3/4;cursor:default;
+  box-shadow:0 8px 32px rgba(5,40,76,0.18);
+  transition:transform var(--trans),box-shadow var(--trans);
+}
+.service-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(5,40,76,0.28)}
+.service-card img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.5s ease;
+}
+.service-card:hover img{transform:scale(1.06)}
+.service-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(2,24,48,0.92) 0%,rgba(2,24,48,0.35) 55%,transparent 100%);
+}
+.service-info{
+  position:absolute;bottom:0;left:0;right:0;padding:28px 22px;
+}
+.service-icon{
+  width:44px;height:44px;border-radius:8px;
+  background:rgba(232,165,0,0.15);border:1px solid rgba(232,165,0,0.4);
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+}
+.service-icon svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.service-card h3{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1.25rem;
+  color:var(--white);margin-bottom:8px;letter-spacing:0.02em;
+}
+.service-card p{font-size:0.82rem;line-height:1.55;color:rgba(255,255,255,0.72);font-weight:300}
+.service-tag{
+  display:inline-block;margin-top:12px;
+  background:var(--gold);color:var(--navy-dk);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.68rem;
+  letter-spacing:0.12em;text-transform:uppercase;padding:4px 10px;border-radius:3px;
+}
 
-/* ══════════════════════════════════════════
-   ABOUT
-══════════════════════════════════════════ */
-.about{padding:120px 60px;display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center;max-width:1340px;margin:0 auto}
-.about-img{position:relative}
-.about-img-main{width:100%;aspect-ratio:3/4;object-fit:cover}
-/* Scaffold decoration in about */
-.about-scaff{position:absolute;top:-16px;left:-16px;width:90px;opacity:.08;pointer-events:none}
-.about-badge{position:absolute;bottom:-22px;right:-22px;background:var(--navy);padding:24px 26px;display:flex;flex-direction:column;align-items:center;z-index:2}
-.about-badge-n{font-family:'Oswald',sans-serif;font-weight:700;font-size:30px;color:var(--gold);line-height:1}
-.about-badge-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:3px;text-align:center}
-.about-content .ey{margin-bottom:18px}
-.ck-list{list-style:none;display:flex;flex-direction:column;gap:13px;margin:28px 0 36px}
-.ck-list li{display:flex;align-items:flex-start;gap:13px;font-size:14px;color:var(--text);line-height:1.6}
-.ck{width:20px;height:20px;min-width:20px;background:var(--gold);display:flex;align-items:center;justify-content:center;margin-top:2px;flex-shrink:0}
-.ck svg{width:10px;height:10px;stroke:var(--navy-dk);fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+/* ─── VOOR & NA ─── */
+#voorna{background:var(--navy-dk)}
+.voorna-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:60px}
+.voorna-item{border-radius:10px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.35)}
+.voorna-pair{display:grid;grid-template-columns:1fr 1fr}
+.voorna-half{position:relative;aspect-ratio:4/5;overflow:hidden}
+.voorna-half img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease}
+.voorna-item:hover .voorna-half img{transform:scale(1.04)}
+.voorna-label{
+  position:absolute;top:12px;left:12px;
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.72rem;
+  letter-spacing:0.15em;text-transform:uppercase;
+  padding:5px 10px;border-radius:3px;
+}
+.label-voor{background:rgba(30,30,30,0.85);color:#ccc}
+.label-na{background:var(--gold);color:var(--navy-dk)}
+.voorna-divider{
+  position:relative;width:3px;background:var(--gold);
+  display:flex;align-items:center;justify-content:center;z-index:2;
+}
+.voorna-divider::before{
+  content:'';position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:28px;height:28px;border-radius:50%;
+  background:var(--gold);
+}
 
-/* Swoosh under About heading */
-.about-swoosh-wrap{position:relative;display:inline-block;margin-bottom:28px}
-.about-swoosh-img{position:absolute;bottom:-14px;left:0;width:100%;height:24px;object-fit:contain;object-position:left}
+/* ─── WAAROM WIJ ─── */
+#waarom{background:var(--white)}
+.waarom-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.waarom-photo{
+  position:relative;border-radius:12px;overflow:hidden;
+  aspect-ratio:4/5;
+  border:2px solid rgba(232,165,0,0.2);
+}
+.waarom-photo img{width:100%;height:100%;object-fit:cover}
+.waarom-photo-badge{
+  position:absolute;bottom:24px;right:-20px;
+  background:var(--gold);padding:18px 24px;border-radius:8px;
+  box-shadow:0 8px 24px rgba(232,165,0,0.35);text-align:center;
+}
+.waarom-photo-badge strong{
+  display:block;font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:1.8rem;color:var(--navy-dk);line-height:1;
+}
+.waarom-photo-badge span{
+  font-size:0.72rem;font-weight:600;color:var(--navy);
+  letter-spacing:0.08em;text-transform:uppercase;
+}
+.waarom-features{display:flex;flex-direction:column;gap:28px}
+.feature-row{
+  display:flex;gap:20px;align-items:flex-start;
+  padding:24px;border-radius:8px;border:1px solid #E8ECF0;
+  transition:border-color var(--trans),box-shadow var(--trans);
+}
+.feature-row:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(232,165,0,0.1)}
+.feature-icon{
+  width:48px;height:48px;min-width:48px;border-radius:8px;
+  background:linear-gradient(135deg,var(--navy),var(--navy-dk));
+  display:flex;align-items:center;justify-content:center;
+}
+.feature-icon svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.feature-text h4{
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:1rem;
+  color:var(--navy);margin-bottom:6px;letter-spacing:0.02em;
+}
+.feature-text p{font-size:0.85rem;line-height:1.6;color:var(--muted);font-weight:400}
 
-/* ══════════════════════════════════════════
-   SERVICES
-══════════════════════════════════════════ */
-.services{background:var(--off);padding:120px 60px}
-.sec-hd{text-align:center;margin-bottom:72px;max-width:600px;margin-left:auto;margin-right:auto}
-.sec-hd .ey{justify-content:center;margin-bottom:18px}
-.sec-hd .ey::before{display:none}
-.sec-hd .ey::after{content:'';display:block;width:26px;height:1.5px;background:var(--gold);flex-shrink:0}
+/* ─── OVER ONS ─── */
+#overons{background:var(--off)}
+.overons-layout{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.overons-content .section-title{color:var(--navy)}
+.overons-text{
+  font-size:0.95rem;line-height:1.8;color:var(--muted);
+  margin:20px 0 32px;font-weight:300;
+}
+.overons-facts{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:36px;
+}
+.fact-box{
+  background:var(--white);border-radius:8px;padding:18px;
+  border-left:3px solid var(--gold);
+}
+.fact-box strong{
+  display:block;font-family:'Oswald',sans-serif;font-weight:700;
+  font-size:1.6rem;color:var(--navy);line-height:1;
+}
+.fact-box span{font-size:0.78rem;color:var(--muted);font-weight:400;margin-top:4px;display:block}
+.overons-photo{
+  position:relative;border-radius:12px;overflow:hidden;aspect-ratio:3/4;
+  box-shadow:0 16px 48px rgba(5,40,76,0.2);
+}
+.overons-photo img{width:100%;height:100%;object-fit:cover}
+.overons-photo::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 60%,rgba(2,24,48,0.7));
+  z-index:1;
+}
 
-/* Swoosh under services title */
-.svc-swoosh-wrap{position:relative;display:inline-block;margin-bottom:32px}
-.svc-swoosh-img{position:absolute;bottom:-16px;left:0;width:110%;height:28px;object-fit:contain;object-position:left}
+/* ─── CONTACT ─── */
+#contact{
+  background:linear-gradient(135deg,var(--navy-dk) 0%,var(--navy) 100%);
+  position:relative;overflow:hidden;
+}
+#contact::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23E8A500' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.contact-layout{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
+}
+.contact-info{color:var(--white)}
+.contact-info .section-title{color:var(--white)}
+.contact-info .section-subtitle{color:rgba(255,255,255,0.65);margin-bottom:40px}
+.contact-detail{
+  display:flex;gap:16px;align-items:flex-start;margin-bottom:24px;
+}
+.contact-detail-icon{
+  width:44px;height:44px;min-width:44px;border-radius:8px;
+  background:rgba(232,165,0,0.12);border:1px solid rgba(232,165,0,0.3);
+  display:flex;align-items:center;justify-content:center;
+}
+.contact-detail-icon svg{width:20px;height:20px;fill:none;stroke:var(--gold);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.contact-detail-text p{font-size:0.78rem;color:rgba(255,255,255,0.5);font-weight:300;margin-bottom:2px}
+.contact-detail-text strong{font-size:0.95rem;color:var(--white);font-weight:500}
+.contact-form{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(8px);border-radius:12px;padding:40px;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{margin-bottom:20px}
+.form-group label{
+  display:block;font-size:0.78rem;font-weight:500;
+  color:rgba(255,255,255,0.7);letter-spacing:0.05em;margin-bottom:8px;
+}
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  border-radius:var(--radius);padding:12px 16px;
+  color:var(--white);font-family:'Inter',sans-serif;font-size:0.9rem;
+  transition:border-color var(--trans);outline:none;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder{color:rgba(255,255,255,0.3)}
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{border-color:var(--gold)}
+.form-group select option{background:var(--navy-dk);color:var(--white)}
+.form-group textarea{resize:vertical;min-height:120px}
+.form-submit{
+  width:100%;background:var(--gold);color:var(--navy-dk);
+  border:none;padding:14px;border-radius:var(--radius);
+  font-family:'Oswald',sans-serif;font-weight:600;font-size:0.9rem;
+  letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;
+  transition:background var(--trans),transform var(--trans);
+}
+.form-submit:hover{background:var(--gold-lt);transform:translateY(-1px)}
 
-.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1340px;margin:0 auto}
-.svc{background:var(--white);padding:42px 30px;position:relative;overflow:hidden;cursor:pointer;border-bottom:3px solid transparent;transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s,border-color .3s}
-.svc:hover{transform:translateY(-6px);box-shadow:0 28px 60px rgba(5,40,76,.1);border-bottom-color:var(--gold)}
-.svc-num{font-family:'Oswald',sans-serif;font-weight:700;font-size:88px;color:var(--light);position:absolute;top:0;right:12px;line-height:1;z-index:0;transition:color .4s}
-.svc:hover .svc-num{color:rgba(232,165,0,.06)}
-.svc-ico{width:54px;height:54px;background:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:22px;position:relative;z-index:1;transition:background .3s}
-.svc:hover .svc-ico{background:var(--gold)}
-.svc-ico svg{width:24px;height:24px;stroke:var(--gold);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
-.svc:hover .svc-ico svg{stroke:var(--navy-dk)}
-.svc h3{font-family:'Oswald',sans-serif;font-weight:600;font-size:16px;color:var(--navy);letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;position:relative;z-index:1}
-.svc p{font-size:13px;line-height:1.8;color:var(--muted);margin-bottom:20px;position:relative;z-index:1;font-weight:300}
-.svc-more{display:inline-flex;align-items:center;gap:5px;font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--navy);border-bottom:1.5px solid var(--gold);padding-bottom:2px;position:relative;z-index:1;transition:color .2s}
-.svc:hover .svc-more{color:var(--gold)}
+/* ─── FOOTER ─── */
+footer{
+  background:var(--navy-dk);
+  border-top:1px solid rgba(232,165,0,0.1);
+  padding:48px 5% 32px;
+}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-top{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,0.08);
+  margin-bottom:28px;
+}
+.footer-logo img{height:40px;width:auto}
+.footer-links{display:flex;gap:32px;list-style:none}
+.footer-links a{
+  color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.82rem;
+  transition:color var(--trans);
+}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+}
+.footer-copy{font-size:0.78rem;color:rgba(255,255,255,0.3)}
+.footer-legal{font-size:0.78rem;color:rgba(255,255,255,0.3)}
 
-/* ══════════════════════════════════════════
-   PHOTO BREAK
-══════════════════════════════════════════ */
-.pbreak{position:relative;height:480px;overflow:hidden}
-.pbreak img.bg{width:100%;height:100%;object-fit:cover}
-.pbreak-ov{position:absolute;inset:0;background:linear-gradient(100deg,rgba(2,24,48,.9) 0%,rgba(2,24,48,.6) 55%,rgba(2,24,48,.15) 100%);display:flex;align-items:center;padding:0 60px}
-.pbreak-content{max-width:540px}
-.pbreak-content .ey{margin-bottom:20px}
-.pbreak-content h2{color:var(--white);margin-top:12px;margin-bottom:16px}
-/* Swoosh under pbreak title */
-.pbreak-swoosh-wrap{position:relative;display:inline-block;margin-bottom:24px}
-.pbreak-swoosh-img{position:absolute;bottom:-14px;left:0;width:115%;height:24px;object-fit:contain;object-position:left}
-.pbreak-content p.bd{margin-bottom:28px}
-/* Scaffold deco in pbreak */
-.pbreak-scaff{position:absolute;right:4%;bottom:10%;z-index:2;pointer-events:none;width:120px;opacity:.18;filter:brightness(0) invert(1)}
+/* ─── SCROLL ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-left.in{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal-right.in{opacity:1;transform:none}
+.delay-1{transition-delay:0.1s}
+.delay-2{transition-delay:0.2s}
+.delay-3{transition-delay:0.3s}
+.delay-4{transition-delay:0.4s}
 
-/* ══════════════════════════════════════════
-   PROCESS
-══════════════════════════════════════════ */
-.process{background:var(--navy);padding:120px 60px;position:relative;overflow:hidden}
-/* Large scaffold deco behind */
-.proc-scaff{position:absolute;right:2%;top:50%;transform:translateY(-50%);pointer-events:none;width:260px;opacity:.05;filter:brightness(0) invert(1)}
-
-.proc-hd{text-align:center;max-width:560px;margin:0 auto 72px}
-.proc-hd .ey{justify-content:center;margin-bottom:18px}
-.proc-hd .ey::before{display:none}
-.proc-hd .ey::after{content:'';display:block;width:26px;height:1.5px;background:var(--gold);flex-shrink:0}
-
-/* Swoosh under process title */
-.proc-swoosh-wrap{position:relative;display:inline-block;margin-bottom:20px}
-.proc-swoosh-img{position:absolute;bottom:-14px;left:0;width:115%;height:24px;object-fit:contain;object-position:left;filter:none}
-
-.proc-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;max-width:1200px;margin:0 auto;position:relative}
-.proc-conn{position:absolute;top:41px;left:12.5%;right:12.5%;height:1px;background:rgba(232,165,0,.08);overflow:hidden}
-.pstep{text-align:center;padding:0 18px;position:relative}
-.pstep-n{width:82px;height:82px;border:1.5px solid rgba(232,165,0,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 26px;font-family:'Oswald',sans-serif;font-weight:700;font-size:22px;color:rgba(232,165,0,.5);position:relative;z-index:1;background:var(--navy);transition:background .3s,border-color .3s,color .3s}
-.pstep:hover .pstep-n{background:var(--gold);border-color:var(--gold);color:var(--navy-dk)}
-.pstep h4{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;color:var(--white);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-.pstep p{font-size:13px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.8}
-
-/* ══════════════════════════════════════════
-   PROJECTS
-══════════════════════════════════════════ */
-.projects{padding:120px 60px;background:var(--white)}
-.proj-hd{display:flex;align-items:flex-end;justify-content:space-between;max-width:1340px;margin:0 auto 60px}
-
-/* Swoosh under projects title */
-.proj-ttl-wrap{position:relative;padding-bottom:28px}
-.proj-swoosh{position:absolute;bottom:0;left:0;width:130%;height:28px;object-fit:contain;object-position:left}
-
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:1340px;margin:0 auto}
-.proj{position:relative;overflow:hidden;cursor:pointer;background:var(--navy)}
-.proj-img{width:100%;aspect-ratio:4/5;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1),filter .4s}
-.proj:hover .proj-img{transform:scale(1.06);filter:brightness(.65)}
-.proj-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(2,24,48,.92) 0%,rgba(2,24,48,.05) 50%);opacity:0;transition:opacity .4s}
-.proj:hover .proj-ov{opacity:1}
-.proj-info{position:absolute;bottom:0;left:0;right:0;padding:22px 20px;transform:translateY(8px);transition:transform .4s cubic-bezier(.16,1,.3,1)}
-.proj:hover .proj-info{transform:none}
-.proj-tag{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
-.proj-name{font-family:'Oswald',sans-serif;font-weight:600;font-size:14px;color:var(--white);letter-spacing:.5px;text-transform:uppercase}
-.proj-cta{text-align:center;margin-top:52px}
-.proj-cta p{font-size:12px;color:var(--muted);margin-bottom:20px;font-style:italic}
-
-/* ══════════════════════════════════════════
-   TESTIMONIALS
-══════════════════════════════════════════ */
-.testi-sec{background:var(--off);padding:120px 60px}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1200px;margin:0 auto}
-.testi{background:var(--white);padding:34px 30px;border-top:3px solid var(--gold);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s}
-.testi:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(5,40,76,.08)}
-.stars{display:flex;gap:3px;margin-bottom:16px}
-.stars svg{width:13px;height:13px;fill:var(--gold)}
-.testi-q{font-size:14px;font-weight:300;color:var(--text);line-height:1.85;margin-bottom:22px;font-style:italic}
-.testi-auth{display:flex;align-items:center;gap:12px}
-.testi-av{width:40px;height:40px;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Oswald',sans-serif;font-weight:700;font-size:14px;color:var(--gold)}
-.testi-nm{font-family:'Oswald',sans-serif;font-weight:600;font-size:13px;color:var(--navy);letter-spacing:.5px;text-transform:uppercase}
-.testi-loc{font-size:11px;color:var(--muted);margin-top:2px}
-
-/* ══════════════════════════════════════════
-   CTA
-══════════════════════════════════════════ */
-.cta-sec{position:relative;overflow:hidden}
-.cta-bg-img{position:absolute;inset:0;z-index:0}
-.cta-bg-img img{width:100%;height:100%;object-fit:cover}
-.cta-bg-img::after{content:'';position:absolute;inset:0;background:rgba(2,24,48,.9)}
-/* Swoosh in CTA bottom */
-.cta-swoosh-deco{position:absolute;bottom:0;right:0;z-index:1;pointer-events:none;width:50%;max-width:680px}
-.cta-inner{position:relative;z-index:2;padding:120px 60px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;max-width:1340px;margin:0 auto}
-.cta-left .ey{margin-bottom:18px}
-/* Swoosh under CTA heading */
-.cta-ttl-wrap{position:relative;margin-bottom:20px;display:inline-block;padding-bottom:20px}
-.cta-swoosh-img{position:absolute;bottom:0;left:0;width:100%;height:22px;object-fit:contain;object-position:left}
-.cta-left h2{color:var(--white);margin-top:12px}
-.cta-left h2 em{color:var(--gold);font-style:normal;display:block}
-.cta-left p.bd{margin-bottom:32px}
-.cta-btns{display:flex;gap:14px;flex-wrap:wrap}
-.c-cards{display:flex;flex-direction:column;gap:13px}
-.cc{display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);padding:17px 20px}
-.cc-ic{width:40px;height:40px;background:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .25s}
-.cc:hover .cc-ic{transform:scale(1.1)}
-.cc-ic svg{width:16px;height:16px;stroke:var(--navy-dk);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.cc-lb{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:3px}
-.cc-vl{font-size:14px;font-weight:400;color:var(--white)}
-
-/* ══════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════ */
-.ft-accent{height:3px;background:var(--gold)}
-footer{background:var(--navy-dk);padding:60px 60px 30px}
-.ft-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:56px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.07)}
-.ft-brand img{height:42px;width:auto;object-fit:contain}
-.ft-brand p{font-size:13px;font-weight:300;color:rgba(255,255,255,.36);line-height:1.8;margin-top:16px;max-width:260px}
-.ft-col h5{font-family:'Oswald',sans-serif;font-weight:500;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.38);margin-bottom:18px}
-.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.ft-col ul li a{font-size:13px;font-weight:300;color:rgba(255,255,255,.28);transition:color .2s,padding-left .2s}
-.ft-col ul li a:hover{color:var(--gold);padding-left:4px}
-.ft-bot{display:flex;align-items:center;justify-content:space-between;padding-top:24px;flex-wrap:wrap;gap:12px}
-.ft-copy{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.18)}
-.ft-legal{display:flex;gap:20px;flex-wrap:wrap}
-.ft-legal a{font-family:'Oswald',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.18);transition:color .2s}
-.ft-legal a:hover{color:var(--gold)}
-
-
-/* ══════════════════════════════════════════
-   RESPONSIVE — TABLET (≤ 1024px)
-══════════════════════════════════════════ */
+/* ─── RESPONSIVE ─── */
 @media(max-width:1024px){
-  nav{padding:0 32px}
-  .hero-inner{grid-template-columns:1fr;padding:0 32px}
-  .hero-left{padding:110px 0 40px}
-  .hero-card{display:none}
-  .hero-scaff{width:110px;right:3%}
-  .hero-swoosh-deco{width:70%;bottom:10px}
-  .about{grid-template-columns:1fr;gap:0;padding:80px 32px}
-  .about-img{max-width:500px;margin:0 auto 60px}
-  .svc-grid{grid-template-columns:repeat(2,1fr)}
-  .gstrip-inner{grid-template-columns:repeat(2,1fr)}
-  .gs:nth-child(2){border-right:none}
-  .gs:nth-child(3){border-right:1px solid rgba(2,24,48,.1)}
-  .gs:nth-child(3),.gs:nth-child(4){border-top:1px solid rgba(2,24,48,.1)}
-  .proc-steps{grid-template-columns:repeat(2,1fr);gap:32px}
-  .proc-conn{display:none}
-  .proj-grid{grid-template-columns:repeat(2,1fr)}
-  .testi-grid{grid-template-columns:repeat(2,1fr)}
-  .cta-inner{grid-template-columns:1fr;gap:48px;padding:80px 32px}
-  .ft-top{grid-template-columns:1fr 1fr;gap:36px;padding-bottom:40px}
-  .ft-brand{grid-column:1/-1}
-  .pbreak-scaff{display:none}
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .voorna-grid{grid-template-columns:1fr 1fr}
+  .waarom-layout,.overons-layout,.contact-layout{grid-template-columns:1fr;gap:48px}
+  .waarom-photo-badge{right:0}
+  .hero-content{grid-template-columns:1fr;gap:48px}
+  .hero-visual{display:none}
 }
-
-
-/* ══════════════════════════════════════════
-   RESPONSIVE — MOBILE (≤ 768px)
-══════════════════════════════════════════ */
 @media(max-width:768px){
-  /* Nav */
-  nav{padding:0 20px;height:64px}
-  .nav-logo img{height:40px}
-  .nav-links{display:none}
-  .burger{display:flex}
-
-  /* Hero */
-  .hero-inner{padding:0 20px;grid-template-columns:1fr}
-  .hero-left{padding:100px 0 60px}
-  h1.hero-h{font-size:clamp(38px,9vw,58px)}
-  .hero-p{font-size:14px;margin-bottom:32px}
-  .hero-btns{flex-direction:column;gap:10px}
-  .hero-btns .btn{justify-content:center;width:100%}
-  .hero-scaff{width:80px;opacity:.1}
-  .hero-swoosh-deco{width:90%;bottom:5px}
-  .scroll-hint{display:none}
-
-  /* Gold strip */
-  .gstrip-inner{grid-template-columns:repeat(2,1fr)}
-  .gs{padding:16px 20px}
-  .gs-n{font-size:22px}
-  .gs:nth-child(1),.gs:nth-child(2){border-bottom:1px solid rgba(2,24,48,.1)}
-  .gs:nth-child(2){border-right:none}
-  .gs:nth-child(3){border-right:1px solid rgba(2,24,48,.1)}
-  .gs:nth-child(4){border-right:none}
-
-  /* About */
-  .about{padding:72px 20px}
-  .about-img{max-width:100%;margin:0 0 56px}
-  .about-badge{bottom:-16px;right:-12px;padding:18px 20px}
-  .about-badge-n{font-size:24px}
-  .about-scaff{width:64px;top:-10px;left:-10px}
-
-  /* Services */
-  .services{padding:72px 20px}
-  .svc-grid{grid-template-columns:1fr}
-  .svc{padding:36px 28px}
-
-  /* Photo break */
-  .pbreak{height:auto;min-height:360px}
-  .pbreak-ov{padding:40px 20px}
-  .pbreak-content{max-width:100%}
-
-  /* Process */
-  .process{padding:72px 20px}
-  .proc-steps{grid-template-columns:1fr;gap:36px}
-  .pstep{text-align:left;display:flex;gap:20px;align-items:flex-start;padding:0}
-  .pstep-n{width:60px;height:60px;min-width:60px;font-size:18px;margin:0}
-  .pstep h4{text-align:left}
-  .pstep p{text-align:left}
-
-  /* Projects */
-  .projects{padding:72px 20px}
-  .proj-hd{flex-direction:column;align-items:flex-start;gap:20px;margin-bottom:36px}
-  .proj-grid{grid-template-columns:1fr;gap:3px}
-  .proj-img{aspect-ratio:16/10}
-
-  /* Testimonials */
-  .testi-sec{padding:72px 20px}
-  .testi-grid{grid-template-columns:1fr;gap:16px}
-
-  /* CTA */
-  .cta-inner{padding:72px 20px;grid-template-columns:1fr}
-  .cta-btns{flex-direction:column}
-  .cta-btns .btn{justify-content:center}
-  .cta-swoosh-deco{display:none}
-
-  /* Footer */
-  footer{padding:48px 20px 24px}
-  .ft-top{grid-template-columns:1fr;gap:32px;padding-bottom:32px}
-  .ft-bot{flex-direction:column;align-items:flex-start;gap:10px}
-  .ft-legal{gap:12px}
-  .ft-col{margin-bottom:4px}
-
-  /* Swoosh images — scale down */
-  .sec-ttl-swoosh,.about-swoosh-img,.svc-swoosh-img,.pbreak-swoosh-img,.proc-swoosh-img,.proj-swoosh,.cta-swoosh-img{height:18px}
-
-  /* Buttons */
-  .btn{font-size:11px;padding:14px 24px}
+  nav{padding:0 4%}
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  section{padding:72px 5%}
+  .services-grid{grid-template-columns:1fr 1fr}
+  .voorna-grid{grid-template-columns:1fr}
+  .contact-layout{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr 1fr 1fr;gap:12px}
+  .footer-top{flex-direction:column;gap:24px;text-align:center}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .overons-facts{grid-template-columns:1fr 1fr}
 }
-
-/* ══════════════════════════════════════════
-   RESPONSIVE — SMALL (≤ 480px)
-══════════════════════════════════════════ */
 @media(max-width:480px){
-  h1.hero-h{font-size:clamp(34px,10vw,48px)}
-  h2.ttl{font-size:clamp(26px,7vw,38px)}
-  .gstrip-inner{grid-template-columns:1fr 1fr}
-  .proc-hd,.sec-hd{padding:0 4px}
-  .proj-img{aspect-ratio:4/3}
+  .services-grid{grid-template-columns:1fr}
+  .hero-stats{grid-template-columns:1fr}
+  .hero-badge{display:none}
+  .contact-form{padding:28px 20px}
+  .hero-actions{flex-direction:column}
+  .btn-primary,.btn-outline{text-align:center;justify-content:center}
 }
-
 </style>
 </head>
 <body>
 
-<!-- ══════════ MOBILE MENU ══════════ -->
-<div class="mobile-menu" id="mmenu">
-  <a href="#diensten" class="mmlink">Diensten</a>
-  <a href="#realisaties" class="mmlink">Realisaties</a>
-  <a href="#werkwijze" class="mmlink">Werkwijze</a>
-  <a href="#contact" class="mmlink">Contact</a>
-  <a href="tel:+32471916136" class="btn btn-gold shim">+32 471 91 61 36</a>
-</div>
-
-<!-- ══════════ NAV ══════════ -->
-<nav id="nav">
-  <div class="nav-logo">
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">
     <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png" alt="T.F.M. Construct BV">
-  </div>
-  <div class="nav-links">
-    <a href="#diensten" class="nav-link">Diensten</a>
-    <a href="#realisaties" class="nav-link">Realisaties</a>
-    <a href="#werkwijze" class="nav-link">Werkwijze</a>
-    <a href="#contact" class="nav-link">Contact</a>
-    <a href="tel:+32471916136" class="btn btn-gold shim" style="margin-left:12px">+32 471 91 61 36</a>
-  </div>
-  <div class="burger" id="burger">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#diensten">Diensten</a></li>
+    <li><a href="#voorna">Projecten</a></li>
+    <li><a href="#waarom">Voordelen</a></li>
+    <li><a href="#overons">Over ons</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Gratis offerte</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
-  </div>
+  </button>
 </nav>
 
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#diensten" class="m-link">Diensten</a>
+  <a href="#voorna" class="m-link">Projecten</a>
+  <a href="#waarom" class="m-link">Voordelen</a>
+  <a href="#overons" class="m-link">Over ons</a>
+  <a href="#contact" class="m-link">Contact</a>
+  <a href="#contact" class="m-cta">Gratis offerte</a>
+</div>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="hero">
-  <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=85&fit=crop" alt="Façade">
-  </div>
-
-  <!-- Scaffold brand element (builds up on load) -->
-  <div class="hero-scaff">
-    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png"
-         alt="" class="scaff-el ha6" style="width:100%;height:auto;filter:brightness(0) invert(1)">
-  </div>
-
-  <div class="hero-inner">
-    <div class="hero-left">
-      <div class="ey ha1">Gevelwerken · Antwerpen</div>
-      <h1 class="hero-h">
-        <span class="ha2">Professionele</span><br>
-        <span class="ha3">gevelwerken.</span>
-        <em class="ha4">Één aanpak.</em>
-      </h1>
-      <p class="hero-p ha5">Van isolatie tot renovatie — T.F.M. Construct BV begeleidt uw project van A tot Z. Helder, netjes en op tijd. Actief in de regio Antwerpen (35 km).</p>
-      <div class="hero-btns ha5">
-        <a href="#contact" class="btn btn-gold shim">
-          Gratis offerte aanvragen
-          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>Actief in heel België</span>
+      </div>
+      <h1>Uw gevel in <em>vakkundige</em> handen</h1>
+      <p>T.F.M. Construct BV levert topkwaliteit in spuitkurk, crepi, gevelisolatie en kaleien. Duurzame afwerking, heldere communicatie, nul compromissen op kwaliteit.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.62 3.41 2 2 0 013.61 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.6a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Vraag offerte aan
         </a>
-        <a href="#realisaties" class="btn btn-wo">Bekijk realisaties</a>
+        <a href="#voorna" class="btn-outline">Bekijk projecten</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <span class="stat-num">10+</span>
+          <span class="stat-lbl">Jaar ervaring</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">500+</span>
+          <span class="stat-lbl">Projecten</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-num">100%</span>
+          <span class="stat-lbl">Tevreden klanten</span>
+        </div>
       </div>
     </div>
-
-    <!-- Stats card -->
-    <div class="ha6" style="display:flex;justify-content:flex-end;padding:130px 0">
-      <div class="hero-card">
-        <div class="hc-top">Onze resultaten</div>
-        <div class="hc-grid">
-          <div class="hci"><div class="hci-n"><span class="cnt" data-target="100">0</span><span>%</span></div><div class="hci-d">Kwaliteitsgarantie</div></div>
-          <div class="hci"><div class="hci-n"><span class="cnt" data-target="48">0</span><span>u</span></div><div class="hci-d">Offerte respons</div></div>
-          <div class="hci"><div class="hci-n"><span class="cnt" data-target="35">0</span><span>km</span></div><div class="hci-d">Rond Antwerpen</div></div>
-          <div class="hci"><div class="hci-n"><span class="cnt" data-target="1">0</span></div><div class="hci-d">Vast aanspreekpunt</div></div>
+    <div class="hero-visual">
+      <div class="hero-photo-frame">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_11_51%20AM.png" alt="TFM vakman aan het werk">
+        <div class="hero-photo-tag">
+          <p>Specialist gevelafwerking</p>
+          <strong>T.F.M. Construct BV</strong>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Swoosh brand element animates in -->
-  <div class="hero-swoosh-deco">
-    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png"
-         alt="" class="swoosh-el" id="hero-swoosh" style="width:100%;height:auto;opacity:.18">
-  </div>
-
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="sh-line"></div>
-  </div>
 </section>
 
-
-<!-- ══════════ GOLD STRIP ══════════ -->
-<div class="gstrip" data-s>
-  <div class="gstrip-inner">
-    <div class="gs"><div class="gs-n">Erkend</div><div class="gs-l">Erkend aannemer</div></div>
-    <div class="gs"><div class="gs-n">EPS/MW</div><div class="gs-l">Isolatiesystemen</div></div>
-    <div class="gs"><div class="gs-n">BTW</div><div class="gs-l">BE 0800172103</div></div>
-    <div class="gs"><div class="gs-n">Gratis</div><div class="gs-l">Plaatsbezoek</div></div>
-  </div>
-</div>
-
-
-<!-- ══════════ ABOUT ══════════ -->
-<section id="over-ons">
-  <div class="about">
-    <!-- Photo + scaffold deco -->
-    <div class="about-img" data-r="l">
-      <img class="about-img-main" src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=85&fit=crop" alt="T.F.M. vakmannen">
-      <div class="about-scaff">
-        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png"
-             alt="" class="scaff-el" style="width:100%;height:auto">
-      </div>
-      <div class="about-badge">
-        <div class="about-badge-n">BV.</div>
-        <div class="about-badge-l">T.F.M. Construct</div>
-      </div>
+<!-- DIENSTEN -->
+<section id="diensten">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label">Onze expertise</span>
+      <h2 class="section-title">Wat wij voor u doen</h2>
+      <div class="gold-line"></div>
+      <p class="section-subtitle" style="margin-top:16px">Vakmanschap dat generaties meegaat. Wij specialiseren ons in vier disciplines van geveltechniek.</p>
     </div>
+    <div class="services-grid">
 
-    <!-- Content -->
-    <div class="about-content" data-r="r">
-      <div class="ey">Over T.F.M. Construct</div>
-      <span class="bar" style="margin:16px 0 20px"></span>
-
-      <!-- Title with swoosh underline -->
-      <div class="about-swoosh-wrap">
-        <h2 class="ttl">Geen chaos.<br>Duidelijke aanpak.</h2>
-        <img class="about-swoosh-img swoosh-el"
-             src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
+      <div class="service-card reveal delay-1">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk6.jpg" alt="Spuitkurk gevel">
+        <div class="service-overlay"></div>
+        <div class="service-info">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          </div>
+          <h3>Spuitkurk</h3>
+          <p>Geluids- en warmte-isolerende gevelbekleding op kurk basis. Dampopen, duurzaam en volledig onderhoudsvrij.</p>
+          <span class="service-tag">Isolerend &amp; duurzaam</span>
+        </div>
       </div>
 
-      <p class="bd">T.F.M. Construct BV is een nieuwe speler in gevelwerken in de regio Antwerpen — opgericht met één duidelijke missie: professionele uitvoering, heldere communicatie en een nette oplevering. Altijd.</p>
-      <p class="bd" style="margin-top:12px">Wij geloven dat een renovatieproject niet stresserend hoeft te zijn. U heeft één vast aanspreekpunt en wordt stap voor stap begeleid.</p>
-      <ul class="ck-list">
-        <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Één vast aanspreekpunt van A tot Z</li>
-        <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Duidelijke offerte zonder verrassingen</li>
-        <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Actief in Antwerpen en omgeving (35 km)</li>
-        <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Erkend aannemer — TVA: BE 0800172103</li>
-        <li><span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Respons binnen 48u — vlotte opstart</li>
-      </ul>
-      <a href="tel:+32471916136" class="btn btn-gold shim">
-        Bel ons: +32 471 91 61 36
-        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.98.72 2.93a2 2 0 01-.45 2.11L6.09 7.91A16 16 0 0016.09 17.9l1.15-1.15a2 2 0 012.11-.45c.95.35 1.93.59 2.93.72A2 2 0 0122 16.92z"/></svg>
-      </a>
-    </div>
-  </div>
-</section>
+      <div class="service-card reveal delay-2">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/Crepi.Diensten.jpg" alt="Crepi gevel">
+        <div class="service-overlay"></div>
+        <div class="service-info">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+          </div>
+          <h3>Crepi</h3>
+          <p>Klassieke en moderne gevelbepleistring met een perfecte afwerking. Weerbestendig en esthetisch verfijnd.</p>
+          <span class="service-tag">Klassiek &amp; tijdloos</span>
+        </div>
+      </div>
 
+      <div class="service-card reveal delay-3">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202025-11-09%20at%2013.47.41.jpeg" alt="Gevelisolatie plaatsen">
+        <div class="service-overlay"></div>
+        <div class="service-info">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Gevelisolatie</h3>
+          <p>Buitenisolatie met EPS- of minerale wolplaten. Lagere energiefactuur en verhoogd wooncomfort het hele jaar door.</p>
+          <span class="service-tag">Energiebesparend</span>
+        </div>
+      </div>
 
-<!-- ══════════ SERVICES ══════════ -->
-<section id="diensten" class="services">
-  <div class="sec-hd" data-r>
-    <div class="ey center">Onze diensten</div>
-    <!-- Swoosh underlines the title -->
-    <div class="svc-swoosh-wrap" style="margin-top:18px">
-      <h2 class="ttl">Gevelwerken van A tot Z</h2>
-      <img class="svc-swoosh-img swoosh-el"
-           src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
-    </div>
-    <p class="bd" style="margin-top:32px">Alles voor uw gevel onder één dak — professioneel uitgevoerd, op maat van uw woning of gebouw.</p>
-  </div>
-  <div class="svc-grid" data-s>
-    <div class="svc">
-      <div class="svc-num">01</div>
-      <div class="svc-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="1"/><line x1="2" y1="9" x2="22" y2="9"/><line x1="2" y1="15" x2="22" y2="15"/><line x1="8" y1="3" x2="8" y2="21"/><line x1="16" y1="3" x2="16" y2="21"/></svg></div>
-      <h3>Gevelisolatie</h3>
-      <p>Buitengevelisolatie met EPS of minerale wol — efficiënt energieverbruik en nette afwerking.</p>
-      <span class="svc-more">Meer info →</span>
-    </div>
-    <div class="svc">
-      <div class="svc-num">02</div>
-      <div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <h3>Gevelrenovatie</h3>
-      <p>Volledige renovatie: herstel van scheuren, reiniging en nieuw afwerkingssysteem.</p>
-      <span class="svc-more">Meer info →</span>
-    </div>
-    <div class="svc">
-      <div class="svc-num">03</div>
-      <div class="svc-ico"><svg viewBox="0 0 24 24"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></div>
-      <h3>Gevelbekleding</h3>
-      <p>Plaatsing van gevelpanelen, crepi en spuitkurk — strak en duurzaam op maat.</p>
-      <span class="svc-more">Meer info →</span>
-    </div>
-    <div class="svc">
-      <div class="svc-num">04</div>
-      <div class="svc-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-      <h3>Reiniging & herstel</h3>
-      <p>Professionele reiniging en herstel van voegen. Een frisse gevel zonder volledige renovatie.</p>
-      <span class="svc-more">Meer info →</span>
+      <div class="service-card reveal delay-4">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/4cda2b359e94c863015f9eca1671f4f2.jpg" alt="Kaleien geveltechniek">
+        <div class="service-overlay"></div>
+        <div class="service-info">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </div>
+          <h3>Kaleien</h3>
+          <p>Traditionele kaleiafwerking voor een authentieke, adembrekende uitstraling. Milieuvriendelijk en dampopen van nature.</p>
+          <span class="service-tag">Traditioneel vakwerk</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
+<!-- VOOR & NA -->
+<section id="voorna">
+  <div class="section-inner">
+    <div class="section-header reveal">
+      <span class="section-label" style="color:var(--gold)">Gerealiseerde projecten</span>
+      <h2 class="section-title light">Voor &amp; Na</h2>
+      <div class="gold-line"></div>
+      <p class="section-subtitle light" style="margin-top:16px">Zien is geloven. Ontdek hoe wij gevels transformeren van verouderd naar uitmuntend.</p>
+    </div>
+    <div class="voorna-grid">
 
-<!-- ══════════ PHOTO BREAK ══════════ -->
-<div class="pbreak">
-  <img class="bg" src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&q=85&fit=crop" alt="Gevelwerken">
-  <div class="pbreak-ov">
-    <div class="pbreak-content" data-r="l">
-      <div class="ey">Waarom T.F.M.?</div>
-      <!-- Swoosh under title -->
-      <div class="pbreak-swoosh-wrap" style="margin-top:14px">
-        <h2 class="ttl w">Vakmanschap dat voor<br>zichzelf spreekt.</h2>
-        <img class="pbreak-swoosh-img swoosh-el"
-             src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
+      <div class="voorna-item reveal delay-1">
+        <div class="voorna-pair">
+          <div class="voorna-half">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.30.23.jpeg" alt="Voor renovatie">
+            <span class="voorna-label label-voor">Voor</span>
+          </div>
+          <div style="width:3px;background:var(--gold);flex-shrink:0"></div>
+          <div class="voorna-half">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.30.23%20(1).jpeg" alt="Na renovatie">
+            <span class="voorna-label label-na">Na</span>
+          </div>
+        </div>
       </div>
-      <p class="bd w" style="margin-top:28px;margin-bottom:28px">Wij werken nauwkeurig, netjes en transparant. Elk project behandelen we alsof het ons eigen huis is.</p>
-      <a href="#contact" class="btn btn-gold shim">
-        Gratis offerte aanvragen
-        <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-  <!-- Scaffold deco in photo break -->
-  <div class="pbreak-scaff">
-    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png"
-         alt="" class="scaff-el" style="width:100%;height:auto">
-  </div>
-</div>
 
-
-<!-- ══════════ PROCESS ══════════ -->
-<section id="werkwijze" class="process">
-  <!-- Scaffold background deco -->
-  <div class="proc-scaff">
-    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_41_42%20PM.png"
-         alt="" class="scaff-el" style="width:100%;height:auto">
-  </div>
-
-  <div class="proc-hd" data-r>
-    <div class="ey center">Werkwijze</div>
-    <!-- Swoosh under process title -->
-    <div class="proc-swoosh-wrap" style="margin-top:18px">
-      <h2 class="ttl w">Van aanvraag tot oplevering</h2>
-      <img class="proc-swoosh-img swoosh-el"
-           src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt=""
-           style="filter:none">
-    </div>
-    <p class="bd w" style="margin-top:28px">Een eenvoudig en transparant proces — u weet altijd waar u aan toe bent.</p>
-  </div>
-
-  <div class="proc-steps" data-s>
-    <div class="proc-conn"><div class="proc-line-fill" id="proc-fill"></div></div>
-    <div class="pstep"><div class="pstep-n">01</div><div><h4>Plaatsbezoek</h4><p>Gratis bezoek ter plaatse — we bekijken uw gevel en bespreken uw wensen</p></div></div>
-    <div class="pstep"><div class="pstep-n">02</div><div><h4>Offerte</h4><p>Heldere prijsofferte binnen 48u — duidelijk overzicht zonder verborgen kosten</p></div></div>
-    <div class="pstep"><div class="pstep-n">03</div><div><h4>Uitvoering</h4><p>Vakkundig uitgevoerd met oog voor detail en netheid van begin tot einde</p></div></div>
-    <div class="pstep"><div class="pstep-n">04</div><div><h4>Oplevering</h4><p>Samen overlopen we het resultaat — gegarandeerd en netjes afgewerkt</p></div></div>
-  </div>
-</section>
-
-
-<!-- ══════════ PROJECTS ══════════ -->
-<section id="realisaties" class="projects">
-  <div class="proj-hd" data-r>
-    <div>
-      <div class="ey">Realisaties</div>
-      <!-- Swoosh underlines "Afgewerkte projecten" -->
-      <div class="proj-ttl-wrap" style="margin-top:14px">
-        <h2 class="ttl">Afgewerkte projecten</h2>
-        <img class="proj-swoosh swoosh-el"
-             src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
+      <div class="voorna-item reveal delay-2">
+        <div class="voorna-pair">
+          <div class="voorna-half">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.35.19.jpeg" alt="Voor renovatie">
+            <span class="voorna-label label-voor">Voor</span>
+          </div>
+          <div style="width:3px;background:var(--gold);flex-shrink:0"></div>
+          <div class="voorna-half">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.35.19%20(1).jpeg" alt="Na renovatie">
+            <span class="voorna-label label-na">Na</span>
+          </div>
+        </div>
       </div>
-    </div>
-    <a href="#contact" class="btn btn-no">Alle projecten</a>
-  </div>
 
-  <div class="proj-grid" data-s>
-    <div class="proj">
-      <img class="proj-img" src="https://images.unsplash.com/photo-1600585154526-990dced4db3d?w=600&q=80&fit=crop" alt="">
-      <div class="proj-ov"></div>
-      <div class="proj-info"><div class="proj-tag">Antwerpen</div><div class="proj-name">Gevelisolatie + Spuitkurk</div></div>
-    </div>
-    <div class="proj">
-      <img class="proj-img" src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80&fit=crop" alt="">
-      <div class="proj-ov"></div>
-      <div class="proj-info"><div class="proj-tag">Mechelen</div><div class="proj-name">Gevelrenovatie Crepi</div></div>
-    </div>
-    <div class="proj">
-      <img class="proj-img" src="https://images.unsplash.com/photo-1512917774080-9991b1c3d3e4?w=600&q=80&fit=crop" alt="">
-      <div class="proj-ov"></div>
-      <div class="proj-info"><div class="proj-tag">Sint-Pieters-Leeuw</div><div class="proj-name">Gevelbekleding op maat</div></div>
-    </div>
-    <div class="proj">
-      <img class="proj-img" src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&q=80&fit=crop" alt="">
-      <div class="proj-ov"></div>
-      <div class="proj-info"><div class="proj-tag">Boom</div><div class="proj-name">Gevelreiniging & herstel</div></div>
-    </div>
-    <div class="proj">
-      <img class="proj-img" src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80&fit=crop" alt="">
-      <div class="proj-ov"></div>
-      <div class="proj-info"><div class="proj-tag">Lier</div><div class="proj-name">Buitengevelisolatie EPS</div></div>
-    </div>
-    <div class="proj">
-      <img class="proj-img" src="https://images.unsplash.com/photo-1575517111839-3a3843ee7f5d?w=600&q=80&fit=crop" alt="">
-      <div class="proj-ov"></div>
-      <div class="proj-info"><div class="proj-tag">Kontich</div><div class="proj-name">Volledige gevelrenovatie</div></div>
-    </div>
-  </div>
-  <div class="proj-cta" data-r>
-    <p>* Voorbeeldfoto's — eigen projectfoto's worden spoedig toegevoegd</p>
-    <a href="#contact" class="btn btn-gold shim">
-      Stuur uw projectfoto's op
-      <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-  </div>
-</section>
+      <div class="voorna-item reveal delay-3">
+        <div class="voorna-pair">
+          <div class="voorna-half">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/bb2384c285b1788261c01c12cf75f4a3.jpg" alt="Voor renovatie">
+            <span class="voorna-label label-voor">Voor</span>
+          </div>
+          <div style="width:3px;background:var(--gold);flex-shrink:0"></div>
+          <div class="voorna-half">
+            <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jan%2029%2C%202026%20at%2010_46_54%20AM.png" alt="Na renovatie">
+            <span class="voorna-label label-na">Na</span>
+          </div>
+        </div>
+      </div>
 
-
-<!-- ══════════ TESTIMONIALS ══════════ -->
-<section class="testi-sec">
-  <div class="sec-hd" data-r style="margin-bottom:60px">
-    <div class="ey center">Tevreden klanten</div>
-    <h2 class="ttl" style="margin-top:18px">Wat onze klanten zeggen</h2>
-  </div>
-  <div class="testi-grid" data-s>
-    <div class="testi">
-      <div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-      <p class="testi-q">"Professioneel en netjes afgewerkt. Tim was altijd bereikbaar en heeft alles perfect uitgevoerd. Zeker aan te bevelen!"</p>
-      <div class="testi-auth"><div class="testi-av">KV</div><div><div class="testi-nm">Karen V.</div><div class="testi-loc">Antwerpen — Gevelisolatie</div></div></div>
-    </div>
-    <div class="testi">
-      <div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-      <p class="testi-q">"Snelle offerte, eerlijke prijs en uitstekend werk. De gevel ziet er prachtig uit. Hartelijk dank aan het T.F.M. team!"</p>
-      <div class="testi-auth"><div class="testi-av">MB</div><div><div class="testi-nm">Marc B.</div><div class="testi-loc">Mechelen — Gevelrenovatie</div></div></div>
-    </div>
-    <div class="testi">
-      <div class="stars"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-      <p class="testi-q">"Heel vakkundig werk. Duidelijke communicatie, geen verrassingen. Zou T.F.M. zeker aanraden aan iedereen!"</p>
-      <div class="testi-auth"><div class="testi-av">SP</div><div><div class="testi-nm">Sophie P.</div><div class="testi-loc">Lier — Gevelbekleding</div></div></div>
     </div>
   </div>
 </section>
 
-
-<!-- ══════════ CTA / CONTACT ══════════ -->
-<section id="contact" class="cta-sec">
-  <div class="cta-bg-img"><img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&q=80&fit=crop" alt=""></div>
-  <!-- Swoosh deco bottom right -->
-  <div class="cta-swoosh-deco">
-    <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png"
-         alt="" class="swoosh-el" style="width:100%;height:auto;opacity:.1">
-  </div>
-  <div class="cta-inner">
-    <div class="cta-left" data-r="l">
-      <div class="ey">Contact</div>
-      <span class="bar" style="margin:16px 0 16px"></span>
-      <!-- Swoosh under CTA heading -->
-      <div class="cta-ttl-wrap">
-        <h2 class="ttl w">Uw gevel verbeteren?<em>Bel ons vandaag.</em></h2>
-        <img class="cta-swoosh-img swoosh-el"
-             src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/af75bf95-7767-43db-8f05-3691b1a1ccfd.png" alt="">
+<!-- WAAROM WIJ -->
+<section id="waarom">
+  <div class="section-inner">
+    <div class="waarom-layout">
+      <div class="waarom-photo reveal-left">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk6.jpg" alt="Kwalitatief vakmanschap TFM">
+        <div class="waarom-photo-badge">
+          <strong>A+</strong>
+          <span>Kwaliteitsgarantie</span>
+        </div>
       </div>
-      <p class="bd w" style="margin-bottom:32px">Vrijblijvende offerte of foto van uw gevel via WhatsApp. Wij reageren binnen 24u en plannen een gratis plaatsbezoek.</p>
-      <div class="cta-btns">
-        <a href="tel:+32471916136" class="btn btn-gold shim">
-          +32 471 91 61 36
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.98.72 2.93a2 2 0 01-.45 2.11L6.09 7.91A16 16 0 0016.09 17.9l1.15-1.15a2 2 0 012.11-.45c.95.35 1.93.59 2.93.72A2 2 0 0122 16.92z"/></svg>
-        </a>
-        <a href="mailto:info@tfmconstruct.be" class="btn btn-wo">E-mail sturen</a>
-      </div>
-    </div>
-    <div class="c-cards" data-r="r">
-      <div class="cc">
-        <div class="cc-ic"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.13 1 .37 1.98.72 2.93a2 2 0 01-.45 2.11L6.09 7.91A16 16 0 0016.09 17.9l1.15-1.15a2 2 0 012.11-.45c.95.35 1.93.59 2.93.72A2 2 0 0122 16.92z"/></svg></div>
-        <div><div class="cc-lb">Telefoon</div><div class="cc-vl">+32 471 91 61 36</div></div>
-      </div>
-      <div class="cc">
-        <div class="cc-ic"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-        <div><div class="cc-lb">E-mail</div><div class="cc-vl">info@tfmconstruct.be</div></div>
-      </div>
-      <div class="cc">
-        <div class="cc-ic"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div><div class="cc-lb">Adres</div><div class="cc-vl">Bergensesteenweg 24 bus 8<br>Sint-Pieters-Leeuw</div></div>
-      </div>
-      <div class="cc">
-        <div class="cc-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
-        <div><div class="cc-lb">WhatsApp</div><div class="cc-vl">Stuur een foto van uw gevel</div></div>
+      <div class="reveal-right">
+        <span class="section-label">Waarom T.F.M.?</span>
+        <h2 class="section-title">Wij zijn anders. Hier is waarom.</h2>
+        <div class="gold-line" style="margin-bottom:32px"></div>
+        <div class="waarom-features">
+          <div class="feature-row">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>10 jaar gegarandeerde vakgarantie</h4>
+              <p>Elk project verlaten wij met een schriftelijke garantie. Uw investering is beschermd — zonder asterisken.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Correcte planning, stipte oplevering</h4>
+              <p>Wij respecteren uw agenda. Vastgelegde startdatum = vastgelegde opleverdatum. Geen verrassingen.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Gecertificeerd en volledig verzekerd</h4>
+              <p>Onze ploeg is BA-verzekerd en werkt uitsluitend met gecertificeerde materialen van Europese topleveranciers.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Transparante prijzen zonder verborgen kosten</h4>
+              <p>Gedetailleerde offerte vóór de start. Geen meerwerk zonder uw akkoord. Wat we bespreken, factureren we.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="feature-text">
+              <h4>Actief in heel België</h4>
+              <p>Van Antwerpen tot Luik, van Gent tot Hasselt. Wij komen naar u toe — zonder aanrijtoeslag binnen onze regio's.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- OVER ONS -->
+<section id="overons">
+  <div class="section-inner">
+    <div class="overons-layout">
+      <div class="overons-content reveal-left">
+        <span class="section-label">Wie zijn wij</span>
+        <h2 class="section-title">Over T.F.M. Construct BV</h2>
+        <div class="gold-line"></div>
+        <p class="overons-text">
+          T.F.M. Construct BV is een Belgisch familiebedrijf gespecialiseerd in de complete geveltechniek. Opgericht met één doel: gevels afleveren die decennia lang impeccabel ogen en maximaal beschermen.<br><br>
+          Ons team bestaat uit gediplomeerde vakmensen die elke opdracht behandelen als hun eigen woning. Wij werken enkel met gecertificeerde materialen en volgen de strengste bouwnormen — niet omdat het moet, maar omdat het onze standaard is.
+        </p>
+        <div class="overons-facts">
+          <div class="fact-box">
+            <strong>10+</strong>
+            <span>Jaar vakervaring</span>
+          </div>
+          <div class="fact-box">
+            <strong>500+</strong>
+            <span>Afgewerkte projecten</span>
+          </div>
+          <div class="fact-box">
+            <strong>4</strong>
+            <span>Gespecialiseerde diensten</span>
+          </div>
+          <div class="fact-box">
+            <strong>BE</strong>
+            <span>Heel België bediend</span>
+          </div>
+        </div>
+        <a href="#contact" class="btn-primary" style="background:var(--navy);color:var(--white)">Maak kennis met ons team</a>
+      </div>
+      <div class="overons-photo reveal-right">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_11_51%20AM.png" alt="TFM vakman">
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- ══════════ FOOTER ══════════ -->
-<div class="ft-accent"></div>
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-layout">
+      <div class="contact-info reveal-left">
+        <span class="section-label">Direct contact</span>
+        <h2 class="section-title light">Klaar om uw gevel te transformeren?</h2>
+        <div class="gold-line" style="margin-bottom:32px"></div>
+        <p class="section-subtitle light">Vraag vandaag nog een vrijblijvende offerte aan. Wij reageren binnen 24 uur.</p>
+
+        <div style="margin-top:40px">
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12 19.79 19.79 0 011.62 3.41 2 2 0 013.61 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 8.6a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <p>Telefoon</p>
+              <strong>+32 (0) 475 00 00 00</strong>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <p>E-mail</p>
+              <strong>info@tfmconstruct.be</strong>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <p>Actiegebied</p>
+              <strong>Heel België</strong>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <p>Responstijd</p>
+              <strong>Binnen 24 uur</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form reveal-right">
+        <h3 style="font-family:'Oswald',sans-serif;font-weight:600;font-size:1.3rem;color:var(--white);margin-bottom:28px">Vrijblijvende offerte aanvragen</h3>
+        <form>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Voornaam</label>
+              <input type="text" placeholder="Jan">
+            </div>
+            <div class="form-group">
+              <label>Achternaam</label>
+              <input type="text" placeholder="Janssen">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>E-mailadres</label>
+            <input type="email" placeholder="jan@email.be">
+          </div>
+          <div class="form-group">
+            <label>Telefoonnummer</label>
+            <input type="tel" placeholder="+32 4xx xx xx xx">
+          </div>
+          <div class="form-group">
+            <label>Gewenste dienst</label>
+            <select>
+              <option value="">Selecteer een dienst</option>
+              <option>Spuitkurk</option>
+              <option>Crepi</option>
+              <option>Gevelisolatie</option>
+              <option>Kaleien</option>
+              <option>Meerdere diensten</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Uw bericht</label>
+            <textarea placeholder="Beschrijf kort uw project..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Offerte aanvragen →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <div class="ft-top">
-    <div class="ft-brand">
-      <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png" alt="T.F.M. Construct BV" style="height:40px;width:auto">
-      <p>Professionele gevelwerken in de regio Antwerpen. Isolatie, renovatie, bekleding en reiniging.</p>
-    </div>
-    <div class="ft-col">
-      <h5>Diensten</h5>
-      <ul>
-        <li><a href="#diensten">Gevelisolatie</a></li>
-        <li><a href="#diensten">Gevelrenovatie</a></li>
-        <li><a href="#diensten">Gevelbekleding</a></li>
-        <li><a href="#diensten">Gevelreiniging</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h5>Bedrijf</h5>
-      <ul>
-        <li><a href="#over-ons">Over ons</a></li>
-        <li><a href="#realisaties">Realisaties</a></li>
-        <li><a href="#werkwijze">Werkwijze</a></li>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <a href="#home" class="footer-logo">
+        <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%203%2C%202026%20at%2010_14_53%20PM.png" alt="T.F.M. Construct BV">
+      </a>
+      <ul class="footer-links">
+        <li><a href="#diensten">Diensten</a></li>
+        <li><a href="#voorna">Projecten</a></li>
+        <li><a href="#waarom">Voordelen</a></li>
+        <li><a href="#overons">Over ons</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
-    <div class="ft-col">
-      <h5>Contact</h5>
-      <ul>
-        <li><a href="tel:+32471916136">+32 471 91 61 36</a></li>
-        <li><a href="mailto:info@tfmconstruct.be">info@tfmconstruct.be</a></li>
-        <li><a href="#">Bergensesteenweg 24 bus 8</a></li>
-        <li><a href="#">Sint-Pieters-Leeuw</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="ft-bot">
-    <div class="ft-copy">© 2025 T.F.M. Construct BV — Gevelwerken | Façade Works</div>
-    <div class="ft-legal">
-      <a href="#">Privacy</a>
-      <a href="#">Cookiebeleid</a>
-      <a href="#">TVA: BE 0800172103</a>
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 T.F.M. Construct BV — Alle rechten voorbehouden</span>
+      <span class="footer-legal">BTW BE 0000.000.000 | Erkenning klasse D</span>
     </div>
   </div>
 </footer>
 
-
 <script>
-/* ── NAV solid on scroll ── */
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > 60), {passive:true});
-
-/* ── HAMBURGER ── */
-const burger = document.getElementById('burger');
-const mmenu  = document.getElementById('mmenu');
-burger.addEventListener('click', () => {
-  burger.classList.toggle('open');
-  mmenu.classList.toggle('open');
-  document.body.style.overflow = mmenu.classList.contains('open') ? 'hidden' : '';
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('open');
+  mobileMenu.classList.toggle('open');
+  document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
 });
-mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-  burger.classList.remove('open');
-  mmenu.classList.remove('open');
-  document.body.style.overflow = '';
-}));
-
-/* ── SMOOTH SCROLL ── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const el = document.querySelector(a.getAttribute('href'));
-    if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
+document.querySelectorAll('.m-link, .m-cta').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
   });
 });
 
-/* ── HERO ANIMATIONS on load ── */
-window.addEventListener('load', () => {
-  // Scaffold builds up on hero load
-  document.querySelector('.hero-scaff img')?.classList.add('build');
-
-  // Swoosh sweeps in (delay for after scaffold)
-  setTimeout(() => {
-    document.getElementById('hero-swoosh')?.classList.add('sweep');
-  }, 1600);
-});
-
-/* ── INTERSECTION OBSERVER ── */
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(!e.isIntersecting) return;
-
-    const el = e.target;
-    el.classList.add('in');
-
-    // grow bars
-    el.querySelectorAll('.bar').forEach(b => {
-      requestAnimationFrame(() => b.classList.add('grown'));
-    });
-
-    // process line
-    const fill = document.getElementById('proc-fill');
-    if(el.contains(fill) || el.id==='werkwijze'){
-      setTimeout(() => fill?.classList.add('grown'), 300);
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in');
+      observer.unobserve(entry.target);
     }
-
-    // trigger swoosh on elements inside revealed section
-    el.querySelectorAll('.swoosh-el:not(#hero-swoosh)').forEach((sw, i) => {
-      setTimeout(() => sw.classList.add('sweep'), 200 + i * 150);
-    });
-
-    // trigger scaffold build
-    el.querySelectorAll('.scaff-el:not(.ha6)').forEach((sc, i) => {
-      setTimeout(() => sc.classList.add('build'), 100 + i * 200);
-    });
-
-    io.unobserve(el);
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+}, { threshold: 0.12 });
 
-document.querySelectorAll('[data-r],[data-s]').forEach(el => io.observe(el));
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
 
-// Also observe sections that contain brand elements
-document.querySelectorAll('.pbreak,.process,.about,.cta-sec').forEach(sec => {
-  const secIo = new IntersectionObserver(([e]) => {
-    if(!e.isIntersecting) return;
-    e.target.querySelectorAll('.swoosh-el:not(#hero-swoosh)').forEach((sw, i) => {
-      setTimeout(() => sw.classList.add('sweep'), 300 + i * 200);
-    });
-    e.target.querySelectorAll('.scaff-el:not(.ha6)').forEach((sc, i) => {
-      setTimeout(() => sc.classList.add('build'), 100 + i * 300);
-    });
-    secIo.unobserve(e.target);
-  }, { threshold: 0.15 });
-  secIo.observe(sec);
+// Voorna grid flex fix
+document.querySelectorAll('.voorna-pair').forEach(pair => {
+  pair.style.display = 'flex';
 });
-
-/* ── COUNTER animation ── */
-function animCount(el, target, dur=1600){
-  const start = performance.now();
-  (function tick(now){
-    const p = Math.min((now-start)/dur, 1);
-    const ease = p===1 ? 1 : 1-Math.pow(2,-10*p);
-    el.textContent = Math.round(ease*target);
-    if(p<1) requestAnimationFrame(tick);
-  })(start);
-}
-const cntObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if(!e.isIntersecting) return;
-    const t = parseInt(e.target.dataset.target);
-    setTimeout(() => animCount(e.target, t, 1800), 400);
-    cntObs.unobserve(e.target);
-  });
-}, {threshold:.5});
-document.querySelectorAll('.cnt').forEach(c => cntObs.observe(c));
-
-/* ── PROCESS CONNECTOR ── */
-const procSteps = document.querySelector('.proc-steps');
-if(procSteps){
-  new IntersectionObserver(([e]) => {
-    if(e.isIntersecting){
-      setTimeout(() => document.getElementById('proc-fill')?.classList.add('grown'), 400);
-    }
-  }, {threshold:.3}).observe(procSteps);
-}
-
-/* ── HERO BG PARALLAX ── */
-const heroBgImg = document.querySelector('.hero-bg img');
-if(heroBgImg && window.innerWidth > 768){
-  window.addEventListener('scroll', () => {
-    if(scrollY < innerHeight)
-      heroBgImg.style.transform = `scale(1.07) translateY(${scrollY*.2}px)`;
-  }, {passive:true});
-}
 </script>
 </body>
 </html>
