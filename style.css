@@ -53,7 +53,7 @@ section{padding:80px 0}
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:70px;background:var(--navy-dk);display:flex;align-items:center;transition:box-shadow var(--transition)}
 .nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.4)}
 .nav-inner{max-width:1200px;width:100%;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
-.logo-img{height:46px;width:auto}
+.logo-img{height:46px;width:auto;max-width:140px}
 .nav-links{display:flex;align-items:center;gap:2rem}
 .nav-links a{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);transition:color var(--transition);padding:.25rem 0;border-bottom:2px solid transparent}
 .nav-links a:hover,.nav-links a.active{color:var(--white);border-bottom-color:var(--gold)}
@@ -276,36 +276,95 @@ section{padding:80px 0}
 @media(max-width:768px){
   .nav-links,.nav-cta{display:none}
   .hamburger{display:flex}
-  section{padding:56px 0}
-  .stats{grid-template-columns:1fr}
-  .services-grid{grid-template-columns:1fr 1fr}
+  section{padding:48px 0}
+  .si{padding:0 16px}
+  /* Stats: 3 kolommen op mobiel — kleine kaartjes */
+  .stats{grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:2rem}
+  .stat-card{padding:1rem .5rem}
+  .stat-num{font-size:2rem}
+  .stat-txt{font-size:.75rem}
+  /* Services */
+  .services-grid{grid-template-columns:1fr 1fr;gap:1rem}
   .services-grid.two-col{grid-template-columns:1fr 1fr}
-  .process-grid{grid-template-columns:1fr 1fr}
+  .services-group{margin-top:2rem}
+  .service-card-img{height:180px}
+  .service-card-body{padding:1rem}
+  .service-card-body h3{font-size:1.2rem}
+  /* Process */
+  .process-grid{grid-template-columns:1fr 1fr;gap:1.5rem}
+  .step-num{font-size:3rem}
+  .step-icon{width:48px;height:48px}
+  .step-icon svg{width:22px;height:22px}
+  /* Voor & Na */
   .vn-grid{grid-template-columns:1fr}
+  /* Contact */
   .contact-grid{grid-template-columns:1fr;gap:2rem}
+  /* Footer */
   .footer-grid{grid-template-columns:1fr 1fr}
+  .footer-bottom{flex-direction:column;text-align:center;gap:.5rem}
+  /* Over ons */
   .story-grid{grid-template-columns:1fr}
   .story-img{order:-1}
-  .values-grid{grid-template-columns:1fr}
+  .story-img img{height:280px}
+  .values-grid{grid-template-columns:1fr 1fr;gap:1rem}
+  .value-card{padding:1.25rem}
   .advantages{grid-template-columns:1fr}
+  /* Diensten */
   .service-row-inner{grid-template-columns:1fr}
   .service-row-inner.reverse{direction:ltr}
-  .service-photo img{height:280px}
+  .service-photo img{height:260px}
+  /* Projecten */
   .project-photos{grid-template-columns:1fr}
-  .map-wrap{flex-direction:column}
-  .footer-grid{grid-template-columns:1fr}
+  .project-photo img{height:240px}
+  /* Kaart */
+  .map-wrap{flex-direction:column;gap:1.5rem}
+  /* Floating knoppen — kleiner op mobiel */
+  .wa-float{width:48px;height:48px;bottom:20px;left:16px}
+  .wa-float svg{width:24px;height:24px}
+  .sticky-cta{font-size:.8rem;padding:.55rem 1.1rem;bottom:20px;right:16px}
+  /* Hero */
+  .hero{min-height:90vh}
+  .hero-sub{font-size:1rem}
+  .hero-btns{gap:.75rem}
+  /* Page hero */
+  .page-hero{padding:110px 0 60px}
+  /* Section titles */
+  .section-title{font-size:clamp(1.6rem,5vw,2.4rem)}
 }
 
 /* ---------- Responsive: 480px ---------- */
 @media(max-width:480px){
+  section{padding:36px 0}
+  .si{padding:0 12px}
+  /* Services: 1 kolom op klein scherm */
   .services-grid{grid-template-columns:1fr}
   .services-grid.two-col{grid-template-columns:1fr}
+  .services-group-header .group-count{display:none}
+  /* Stats: nog steeds 3 kolommen maar nog compacter */
+  .stats{gap:.5rem}
+  .stat-card{padding:.75rem .4rem}
+  .stat-num{font-size:1.7rem}
+  .stat-txt{font-size:.7rem}
+  /* Process: 1 kolom */
   .process-grid{grid-template-columns:1fr}
-  .hero h1{font-size:2.4rem}
-  .hero-btns{flex-direction:column}
-  .vn-pair{grid-template-columns:1fr}
+  .process-step{display:flex;align-items:flex-start;gap:1rem;text-align:left}
+  .step-num{font-size:2.5rem;min-width:48px}
+  .step-icon{margin:0;flex-shrink:0}
+  /* Hero */
+  .hero h1{font-size:2.2rem}
+  .hero-btns{flex-direction:column;align-items:flex-start}
+  .hero-btns .btn-primary,.hero-btns .btn-outline{width:100%;justify-content:center}
+  /* Values */
+  .values-grid{grid-template-columns:1fr}
+  /* Footer */
+  .footer-grid{grid-template-columns:1fr}
   .footer-bottom{flex-direction:column;text-align:center}
-  .project-photo img{height:220px}
+  /* Project */
+  .project-photo img{height:200px}
+  /* Lightbox navigatie */
+  .lb-prev,.lb-next{padding:8px 12px;font-size:1.5rem}
+  /* Floating knoppen — op heel klein scherm */
+  .sticky-cta{display:none}
 }
 
 /* ---------- LIGHTBOX ---------- */
@@ -327,7 +386,7 @@ section{padding:80px 0}
 .prov-label{fill:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;text-anchor:middle;pointer-events:none;font-weight:600;letter-spacing:.05em}
 .city-dot{fill:var(--gold)}
 .city-lbl{fill:rgba(255,255,255,0.8);font-family:'Barlow Condensed',sans-serif;font-size:10px;pointer-events:none}
-.map-inner-wrap{background:#fff;border-radius:8px;padding:24px;max-width:700px;margin:0 auto;box-shadow:0 4px 20px rgba(5,40,76,.08)}
+.map-inner-wrap{background:transparent;border-radius:0;padding:0;max-width:700px;margin:0 auto;box-shadow:none}
 
 /* ---------- Services category headers ---------- */
 .service-category-header{padding:60px 0 20px;text-align:center}
