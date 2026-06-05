@@ -99,7 +99,7 @@ section{padding:80px 0}
 .stat-txt{font-family:'Barlow Condensed',sans-serif;font-size:.95rem;letter-spacing:.05em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-top:.25rem}
 
 /* ---------- Service cards ---------- */
-.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
 .service-card{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);background:var(--white);transition:transform var(--transition),box-shadow var(--transition);cursor:pointer}
 .service-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(5,40,76,.18)}
 .service-card-img{height:220px;overflow:hidden}
@@ -271,7 +271,7 @@ section{padding:80px 0}
   .hamburger{display:flex}
   section{padding:56px 0}
   .stats{grid-template-columns:1fr}
-  .services-grid{grid-template-columns:1fr 1fr}
+  .services-grid{grid-template-columns:1fr 1fr;}
   .process-grid{grid-template-columns:1fr 1fr}
   .vn-grid{grid-template-columns:1fr}
   .contact-grid{grid-template-columns:1fr;gap:2rem}
@@ -298,3 +298,38 @@ section{padding:80px 0}
   .footer-bottom{flex-direction:column;text-align:center}
   .project-photo img{height:220px}
 }
+
+/* ---------- LIGHTBOX ---------- */
+.lb-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.lb-overlay.open{opacity:1;pointer-events:all}
+.lb-overlay img{max-width:94vw;max-height:90vh;object-fit:contain;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.lb-close{position:absolute;top:20px;right:24px;color:#fff;font-size:2.2rem;cursor:pointer;line-height:1;background:none;border:none;opacity:.7}
+.lb-close:hover{opacity:1}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:2rem;padding:12px 18px;cursor:pointer;border-radius:4px;transition:background .2s}
+.lb-prev{left:16px}.lb-next{right:16px}
+.lb-prev:hover,.lb-next:hover{background:rgba(232,165,0,0.5)}
+[data-lb]{cursor:zoom-in}
+
+/* ---------- Flanders Map (accurate) ---------- */
+.flanders-map{width:100%;height:auto}
+.province{fill:var(--navy);stroke:#fff;stroke-width:1.5;cursor:pointer;transition:fill .25s}
+.province:hover{fill:var(--gold)}
+.province.active-prov{fill:var(--gold)}
+.prov-label{fill:#fff;font-family:'Barlow Condensed',sans-serif;font-size:12px;text-anchor:middle;pointer-events:none;font-weight:600;letter-spacing:.05em}
+.city-dot{fill:var(--gold)}
+.city-lbl{fill:rgba(255,255,255,0.8);font-family:'Barlow Condensed',sans-serif;font-size:10px;pointer-events:none}
+.map-inner-wrap{background:var(--navy-dk);border-radius:8px;padding:24px;max-width:700px;margin:0 auto}
+
+/* ---------- Services category headers ---------- */
+.service-category-header{padding:60px 0 20px;text-align:center}
+.service-category-header.dark-bg{background:var(--navy-dk)}
+.service-category-header.dark-bg .section-title{color:var(--white)}
+.service-category-header.dark-bg .section-label{color:var(--gold)}
+.service-category-subtitle{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;color:#888;letter-spacing:.04em;margin-top:.25rem}
+.service-category-header.dark-bg .service-category-subtitle{color:rgba(255,255,255,.6)}
+.dakwerken-section{background:var(--navy-dk)}
+.dakwerken-section .service-row{border-bottom-color:rgba(255,255,255,.1)}
+.dakwerken-section .service-info h2{color:var(--white)}
+.dakwerken-section .service-info p{color:rgba(255,255,255,.75)}
+.dakwerken-section .service-info .section-label{color:var(--gold)}
+.dakwerken-section .service-features li{color:rgba(255,255,255,.8)}

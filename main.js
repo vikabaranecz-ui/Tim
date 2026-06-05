@@ -119,3 +119,29 @@
   }
 
 })();
+
+// LIGHTBOX
+(function(){
+  const overlay = document.createElement('div');
+  overlay.className = 'lb-overlay';
+  overlay.innerHTML = '<button class="lb-close" aria-label="Sluiten">&times;</button><button class="lb-prev" aria-label="Vorige">&#8249;</button><img alt=""><button class="lb-next" aria-label="Volgende">&#8250;</button>';
+  document.body.appendChild(overlay);
+  const img = overlay.querySelector('img');
+  let imgs = [], cur = 0;
+  function open(i){ cur=i; img.src=imgs[i].src; img.alt=imgs[i].alt; overlay.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ overlay.classList.remove('open'); document.body.style.overflow=''; img.src=''; }
+  function prev(){ open((cur-1+imgs.length)%imgs.length); }
+  function next(){ open((cur+1)%imgs.length); }
+  overlay.querySelector('.lb-close').addEventListener('click',close);
+  overlay.querySelector('.lb-prev').addEventListener('click',prev);
+  overlay.querySelector('.lb-next').addEventListener('click',next);
+  overlay.addEventListener('click',e=>{ if(e.target===overlay)close(); });
+  document.addEventListener('keydown',e=>{ if(!overlay.classList.contains('open'))return; if(e.key==='Escape')close(); if(e.key==='ArrowLeft')prev(); if(e.key==='ArrowRight')next(); });
+  document.addEventListener('DOMContentLoaded',()=>{
+    imgs = Array.from(document.querySelectorAll('[data-lb] img, img[data-lb]'));
+    imgs.forEach((im,i)=>{
+      const wrap = im.closest('[data-lb]') || im;
+      wrap.addEventListener('click',()=>open(i));
+    });
+  });
+})();
