@@ -206,37 +206,41 @@
         <a href="contact.html" class="btn-primary" style="margin-top:1.5rem;display:inline-flex">Gratis plaatsbezoek aanvragen</a>
       </div>
       <div class="map-svg-wrap reveal-r" style="position:relative">
-        <svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kaart van de vijf Vlaamse provincies">
-          <polygon class="province" data-name="West-Vlaanderen"
-            points="20,120 20,380 170,380 190,300 200,220 180,160 140,110"/>
-          <polygon class="province" data-name="Oost-Vlaanderen"
-            points="180,160 200,220 190,300 240,310 280,300 300,240 310,180 280,140 230,120"/>
-          <polygon class="province" data-name="Antwerpen"
-            points="280,60 310,180 360,200 440,200 480,160 500,80 440,40 340,30"/>
-          <polygon class="province" data-name="Vlaams-Brabant"
-            points="300,240 310,180 360,200 390,280 370,340 320,350 280,300"/>
-          <polygon class="province" data-name="Limburg"
-            points="440,200 480,160 560,180 590,240 570,320 500,340 420,320 390,280 440,200"/>
-          <!-- Province labels -->
-          <text class="prov-label" x="100" y="255">West-</text>
-          <text class="prov-label" x="100" y="270">Vlaanderen</text>
-          <text class="prov-label" x="240" y="235">Oost-</text>
-          <text class="prov-label" x="240" y="250">Vlaanderen</text>
-          <text class="prov-label" x="388" y="112">Antwerpen</text>
-          <text class="prov-label" x="333" y="278">Vl.-Brabant</text>
-          <text class="prov-label" x="490" y="265">Limburg</text>
-          <!-- City dots & labels -->
-          <circle class="city-dot" cx="235" cy="270" r="5"/>
-          <text class="city-label" x="243" y="266">Gent</text>
-          <circle class="city-dot" cx="370" cy="140" r="5"/>
-          <text class="city-label" x="378" y="136">Antwerpen</text>
-          <circle class="city-dot" cx="80" cy="220" r="5"/>
-          <text class="city-label" x="88" y="216">Brugge</text>
-          <circle class="city-dot" cx="510" cy="270" r="5"/>
-          <text class="city-label" x="518" y="266">Hasselt</text>
-          <circle class="city-dot" cx="350" cy="290" r="5"/>
-          <text class="city-label" x="358" y="286">Leuven</text>
-        </svg>
+        <div class="map-inner-wrap">
+<svg viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" class="flanders-map" aria-label="Kaart van Vlaanderen">
+  <!-- West-Vlaanderen -->
+  <path id="west-vl" class="province" d="M 15 56 L 82 30 L 130 22 L 168 28 L 172 52 L 188 92 L 198 145 L 195 210 L 182 258 L 168 310 L 140 338 L 95 348 L 50 342 L 22 318 L 10 280 L 8 200 L 12 130 Z" data-name="West-Vlaanderen"/>
+  <!-- Oost-Vlaanderen -->
+  <path id="oost-vl" class="province" d="M 168 28 L 210 18 L 248 14 L 282 20 L 298 35 L 300 75 L 308 120 L 310 165 L 298 195 L 285 230 L 268 268 L 250 298 L 230 318 L 200 328 L 168 310 L 182 258 L 195 210 L 198 145 L 188 92 L 172 52 Z" data-name="Oost-Vlaanderen"/>
+  <!-- Antwerpen -->
+  <path id="antwerpen" class="province" d="M 282 20 L 330 8 L 390 2 L 460 5 L 510 12 L 545 22 L 548 65 L 540 100 L 525 135 L 498 168 L 460 185 L 415 192 L 370 195 L 330 192 L 308 165 L 308 120 L 300 75 L 298 35 Z" data-name="Antwerpen"/>
+  <!-- Vlaams-Brabant (with Brussels hole) -->
+  <path id="vl-brabant" class="province" d="M 308 165 L 330 192 L 370 195 L 390 215 L 398 250 L 392 285 L 375 315 L 348 335 L 315 342 L 285 330 L 268 305 L 268 268 L 285 230 L 298 195 Z" data-name="Vlaams-Brabant"/>
+  <!-- Brussels (small enclave - shown white/lighter) -->
+  <rect id="brussels" x="330" y="240" width="42" height="38" rx="3" fill="rgba(255,255,255,0.15)" stroke="white" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- Limburg -->
+  <path id="limburg" class="province" d="M 370 195 L 415 192 L 460 185 L 498 168 L 540 160 L 570 172 L 595 198 L 605 240 L 598 282 L 578 318 L 545 340 L 510 350 L 468 348 L 430 338 L 400 315 L 390 285 L 398 250 L 390 215 Z" data-name="Limburg"/>
+
+  <!-- Province name labels -->
+  <text x="90" y="195" class="prov-label">West-<tspan x="90" dy="18">Vlaanderen</tspan></text>
+  <text x="230" y="175" class="prov-label">Oost-<tspan x="230" dy="18">Vlaanderen</tspan></text>
+  <text x="410" y="95" class="prov-label">Antwerpen</text>
+  <text x="330" y="275" class="prov-label" font-size="11">Vlaams-<tspan x="330" dy="15">Brabant</tspan></text>
+  <text x="478" y="272" class="prov-label">Limburg</text>
+
+  <!-- City dots -->
+  <circle cx="105" cy="168" r="5" class="city-dot"/><text x="115" y="172" class="city-lbl">Brugge</text>
+  <circle cx="220" cy="210" r="5" class="city-dot"/><text x="230" y="214" class="city-lbl">Gent</text>
+  <circle cx="370" cy="120" r="5" class="city-dot"/><text x="380" y="124" class="city-lbl">Antwerpen</text>
+  <circle cx="340" cy="300" r="5" class="city-dot"/><text x="350" y="304" class="city-lbl">Leuven</text>
+  <circle cx="490" cy="270" r="5" class="city-dot"/><text x="500" y="274" class="city-lbl">Hasselt</text>
+  <circle cx="135" cy="310" r="4" class="city-dot"/><text x="145" y="314" class="city-lbl">Kortrijk</text>
+  <circle cx="460" cy="140" r="4" class="city-dot"/><text x="470" y="144" class="city-lbl">Mechelen</text>
+
+  <!-- Brussels label -->
+  <text x="351" y="262" fill="rgba(255,255,255,0.5)" font-size="9" font-family="Barlow Condensed,sans-serif" text-anchor="middle">Brussel</text>
+</svg>
+        </div>
         <div class="map-tooltip" role="tooltip"></div>
       </div>
     </div>
@@ -414,7 +418,7 @@
       <div>
         <h4>Navigatie</h4>
         <nav class="footer-links" aria-label="Voettekst navigatie">
-          <a href="index.html">Hoofdpagina</a>
+          <a href="index.html">Home</a>
           <a href="over-ons.html">Over ons</a>
           <a href="diensten.html">Diensten</a>
           <a href="projecten.html">Projecten</a>
@@ -428,6 +432,8 @@
           <a href="diensten.html#crepi">Crepi</a>
           <a href="diensten.html#gevelisolatie">Gevelisolatie</a>
           <a href="diensten.html#kaleien">Kaleien</a>
+          <a href="diensten.html#steenstrips">Steenstrips</a>
+          <a href="diensten.html#dakrenovatie">Dakrenovatie</a>
         </nav>
       </div>
     </div>
