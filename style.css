@@ -85,13 +85,13 @@ section{padding:80px 0}
 .hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
 
 /* Page hero (inner pages) */
-.page-hero{background:var(--white);padding:140px 0 80px;text-align:center;border-bottom:3px solid var(--gold)}
+.page-hero{background:var(--navy-dk);padding:140px 0 80px;text-align:center}
 .page-hero .section-label{color:var(--gold)}
-.page-hero h1{color:var(--navy);font-size:clamp(2.2rem,5vw,3.8rem)}
-.breadcrumb{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.75rem;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;color:rgba(5,40,76,.5)}
+.page-hero h1{color:var(--white);font-size:clamp(2.2rem,5vw,3.8rem)}
+.breadcrumb{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:.75rem;font-family:'Barlow Condensed',sans-serif;font-size:.95rem;color:rgba(255,255,255,.6)}
 .breadcrumb a{color:var(--gold);transition:opacity var(--transition)}
 .breadcrumb a:hover{opacity:.8}
-.breadcrumb span{color:rgba(5,40,76,.35)}
+.breadcrumb span{color:rgba(255,255,255,.4)}
 
 /* ---------- Stat cards ---------- */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
@@ -134,14 +134,14 @@ section{padding:80px 0}
 .map-tooltip{position:absolute;background:var(--navy-dk);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:.85rem;padding:.4rem .8rem;border-radius:4px;pointer-events:none;opacity:0;transition:opacity .2s;white-space:nowrap;z-index:50}
 
 /* ---------- Process ---------- */
-.process-section{background:var(--off);padding:80px 0;border-top:1px solid rgba(5,40,76,.07);border-bottom:1px solid rgba(5,40,76,.07)}
+.process-section{background:var(--navy);padding:80px 0}
 .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;margin-top:3rem}
-.process-step{text-align:center;color:var(--navy)}
+.process-step{text-align:center;color:var(--white)}
 .step-num{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:var(--gold);line-height:1}
-.step-icon{width:60px;height:60px;background:var(--white);border:2px solid rgba(5,40,76,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;box-shadow:0 4px 12px rgba(5,40,76,.08)}
-.step-icon svg{width:28px;height:28px;fill:var(--navy)}
-.process-step h3{font-size:1.3rem;margin-bottom:.5rem;color:var(--navy)}
-.process-step p{font-size:.9rem;color:#555;line-height:1.6}
+.step-icon{width:60px;height:60px;background:rgba(255,255,255,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem}
+.step-icon svg{width:28px;height:28px;fill:var(--gold)}
+.process-step h3{font-size:1.3rem;margin-bottom:.5rem;color:var(--white)}
+.process-step p{font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.6}
 
 /* ---------- Voor & Na ---------- */
 .vn-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem}
@@ -391,14 +391,14 @@ section{padding:80px 0}
 
 /* ---------- Services category headers ---------- */
 .service-category-header{padding:60px 0 20px;text-align:center}
-.service-category-header.dark-bg{background:var(--off);border-top:3px solid var(--gold)}
-.service-category-header.dark-bg .section-title{color:var(--navy)}
+.service-category-header.dark-bg{background:var(--navy-dk)}
+.service-category-header.dark-bg .section-title{color:var(--white)}
 .service-category-header.dark-bg .section-label{color:var(--gold)}
 .service-category-subtitle{font-family:'Barlow Condensed',sans-serif;font-size:1.1rem;color:#888;letter-spacing:.04em;margin-top:.25rem}
-.service-category-header.dark-bg .service-category-subtitle{color:#666}
-.dakwerken-section{background:var(--off)}
-.dakwerken-section .service-row{border-bottom-color:rgba(5,40,76,.08)}
-.dakwerken-section .service-info h2{color:var(--navy)}
-.dakwerken-section .service-info p{color:#444}
+.service-category-header.dark-bg .service-category-subtitle{color:rgba(255,255,255,.6)}
+.dakwerken-section{background:var(--navy-dk)}
+.dakwerken-section .service-row{border-bottom-color:rgba(255,255,255,.1)}
+.dakwerken-section .service-info h2{color:var(--white)}
+.dakwerken-section .service-info p{color:rgba(255,255,255,.75)}
 .dakwerken-section .service-info .section-label{color:var(--gold)}
-.dakwerken-section .service-features li{color:#333}
+.dakwerken-section .service-features li{color:rgba(255,255,255,.85)}
