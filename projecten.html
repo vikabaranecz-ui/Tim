@@ -43,6 +43,7 @@
     .pcard-photos { display:grid; grid-template-columns:1fr 1fr; }
     .pcard-photo { position:relative; aspect-ratio:4/3; overflow:hidden; }
     .pcard-photo img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; transition:transform .45s ease; }
+    #crepi .pcard-photo img { object-position:center center; }
     .pcard-photo:hover img { transform:scale(1.03); }
     .pcard-photo-label { position:absolute; bottom:12px; left:12px; font-family:'Barrow Condensed','Barlow Condensed',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.2rem .6rem; border-radius:3px; pointer-events:none; }
     .lbl-voor { background:rgba(5,40,76,.72); color:#fff; }
@@ -133,7 +134,7 @@
   <div class="projects-list">
 
     <!-- 01 CREPI -->
-    <article class="pcard reveal">
+    <article class="pcard reveal" id="crepi">
       <div class="pcard-meta">
         <span class="pcard-num">01</span>
         <span class="pcard-type">Crepi</span>
