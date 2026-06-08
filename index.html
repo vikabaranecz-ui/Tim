@@ -67,14 +67,18 @@
       <img src="logo.svg" class="logo-img" alt="T.F.M. Construct BV" width="160" height="90">
     </a>
     <div class="nav-links">
-      <a href="index.html" class="active">Home</a>
-      <a href="over-ons.html">Over ons</a>
-      <a href="diensten.html">Diensten</a>
-      <a href="projecten.html">Projecten</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" class="active" data-i18n="nav.home">Home</a>
+      <a href="over-ons.html" data-i18n="nav.over">Over ons</a>
+      <a href="diensten.html" data-i18n="nav.diensten">Diensten</a>
+      <a href="projecten.html" data-i18n="nav.projecten">Projecten</a>
+      <a href="contact.html" data-i18n="nav.contact">Contact</a>
     </div>
-    <a href="contact.html" class="nav-cta">Offerte aanvragen</a>
-    <button class="hamburger" aria-label="Menu openen" aria-expanded="false">
+    <a href="contact.html" class="nav-cta" data-i18n="nav.cta">Offerte aanvragen</a>
+    <div class="lang-switch" role="group" aria-label="Taal / Langue">
+      <button class="lang-btn active" data-lang="nl" aria-pressed="true">NL</button>
+      <button class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
+    </div>
+    <button class="hamburger" data-i18n-aria="nav.menu-aria" aria-label="Menu openen" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -82,12 +86,12 @@
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" role="dialog" aria-modal="true" aria-label="Mobiel menu">
-  <a href="index.html" class="active">Home</a>
-  <a href="over-ons.html">Over ons</a>
-  <a href="diensten.html">Diensten</a>
-  <a href="projecten.html">Projecten</a>
-  <a href="contact.html">Contact</a>
-  <a href="contact.html" class="btn-primary">Offerte aanvragen</a>
+  <a href="index.html" class="active" data-i18n="nav.home">Home</a>
+  <a href="over-ons.html" data-i18n="nav.over">Over ons</a>
+  <a href="diensten.html" data-i18n="nav.diensten">Diensten</a>
+  <a href="projecten.html" data-i18n="nav.projecten">Projecten</a>
+  <a href="contact.html" data-i18n="nav.contact">Contact</a>
+  <a href="contact.html" class="btn-primary" data-i18n="nav.cta">Offerte aanvragen</a>
 </div>
 
 <!-- ===== HERO ===== -->
@@ -95,25 +99,25 @@
   <div class="hero-bg" style="background-image:url('https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_41_10%20AM.png')"></div>
   <div class="hero-overlay"></div>
   <div class="si hero-content">
-    <p class="hero-label">T.F.M. Construct BV — Gevel- &amp; Dakspecialist in Vlaanderen</p>
-    <h1>Uw gevel en dak in vakkundige handen</h1>
-    <p class="hero-sub">Van spuitkurk tot dakrenovatie — wij leveren totaaloplossingen voor gevel en dak, voor particulieren en bedrijven in heel Vlaanderen.</p>
+    <p class="hero-label" data-i18n="idx.hero.label">T.F.M. Construct BV — Gevel- &amp; Dakspecialist in Vlaanderen</p>
+    <h1 data-i18n="idx.hero.h1">Uw gevel en dak in vakkundige handen</h1>
+    <p class="hero-sub" data-i18n="idx.hero.sub">Van spuitkurk tot dakrenovatie — wij leveren totaaloplossingen voor gevel en dak, voor particulieren en bedrijven in heel Vlaanderen.</p>
     <div class="hero-btns">
-      <a href="contact.html" class="btn-primary">Gratis offerte aanvragen</a>
-      <a href="projecten.html" class="btn-outline">Onze projecten bekijken</a>
+      <a href="contact.html" class="btn-primary" data-i18n="idx.hero.btn1">Gratis offerte aanvragen</a>
+      <a href="projecten.html" class="btn-outline" data-i18n="idx.hero.btn2">Onze projecten bekijken</a>
     </div>
     <div class="stats">
       <div class="stat-card">
         <div class="stat-num">10j</div>
-        <div class="stat-txt">Garantie</div>
+        <div class="stat-txt" data-i18n="stat.garantie">Garantie</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">48u</div>
-        <div class="stat-txt">Offerte</div>
+        <div class="stat-txt" data-i18n="stat.offerte">Offerte</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">Gratis</div>
-        <div class="stat-txt">Plaatsbezoek</div>
+        <div class="stat-txt" data-i18n="stat.plaatsbezoek">Plaatsbezoek</div>
       </div>
     </div>
   </div>
@@ -123,10 +127,10 @@
 <section id="diensten" style="background:var(--off)">
   <div class="si">
     <div class="section-center reveal">
-      <p class="section-label">Onze specialisaties</p>
-      <h2 class="section-title">Wat wij voor u doen</h2>
+      <p class="section-label" data-i18n="idx.svc.label">Onze specialisaties</p>
+      <h2 class="section-title" data-i18n="idx.svc.title">Wat wij voor u doen</h2>
       <div class="gold-line"></div>
-      <p style="color:#555;max-width:600px;margin:0 auto">Met jarenlange expertise in gevel- en dakrenovatie bieden wij u de meest geschikte oplossing voor elk gebouw in Vlaanderen.</p>
+      <p style="color:#555;max-width:600px;margin:0 auto" data-i18n="idx.svc.sub">Met jarenlange expertise in gevel- en dakrenovatie bieden wij u de meest geschikte oplossing voor elk gebouw in Vlaanderen.</p>
     </div>
 
     <!-- Gevelwerken -->
@@ -135,8 +139,8 @@
         <div class="group-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </div>
-        <h3>Gevelwerken</h3>
-        <span class="group-count">5 diensten</span>
+        <h3 data-i18n="idx.gevel.title">Gevelwerken</h3>
+        <span class="group-count" data-i18n="idx.gevel.count">5 diensten</span>
       </div>
       <div class="services-grid">
         <a href="diensten.html#gevelisolatie" class="service-card reveal" style="transition-delay:.05s">
@@ -144,9 +148,9 @@
             <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/isolatie%20plasteren.png" alt="Gevelisolatie buitengevel" width="300" height="220" loading="lazy">
           </div>
           <div class="service-card-body">
-            <h3>Gevelisolatie</h3>
-            <p>Thermische buitengevelisolatie die uw energierekening verlaagt en het wooncomfort verhoogt.</p>
-            <span class="service-card-link">Meer info &rarr;</span>
+            <h3 data-i18n="svc.gevelisolatie">Gevelisolatie</h3>
+            <p data-i18n="svc.gevelisolatie.desc">Thermische buitengevelisolatie die uw energierekening verlaagt en het wooncomfort verhoogt.</p>
+            <span class="service-card-link" data-i18n="idx.svc.more">Meer info &rarr;</span>
           </div>
         </a>
         <a href="diensten.html#spuitkurk" class="service-card reveal" style="transition-delay:.1s">
@@ -154,9 +158,9 @@
             <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk6.jpg" alt="Spuitkurk gevelafwerking" width="300" height="220" loading="lazy">
           </div>
           <div class="service-card-body">
-            <h3>Spuitkurk</h3>
-            <p>Dampopen, isolerend en decoratief. Spuitkurk is een duurzame gevelafwerking met uitstekende eigenschappen.</p>
-            <span class="service-card-link">Meer info &rarr;</span>
+            <h3 data-i18n="svc.spuitkurk">Spuitkurk</h3>
+            <p data-i18n="svc.spuitkurk.desc">Dampopen, isolerend en decoratief. Spuitkurk is een duurzame gevelafwerking met uitstekende eigenschappen.</p>
+            <span class="service-card-link" data-i18n="idx.svc.more">Meer info &rarr;</span>
           </div>
         </a>
         <a href="diensten.html#crepi" class="service-card reveal" style="transition-delay:.15s">
@@ -164,9 +168,9 @@
             <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/crepi%20diesten.png" alt="Crepi gevelbepleistering" width="300" height="220" loading="lazy">
           </div>
           <div class="service-card-body">
-            <h3>Crepi</h3>
-            <p>Traditionele gevelbepleistering die uw gevel beschermt en een strakke, esthetische afwerking geeft.</p>
-            <span class="service-card-link">Meer info &rarr;</span>
+            <h3 data-i18n="svc.crepi">Crepi</h3>
+            <p data-i18n="svc.crepi.desc">Traditionele gevelbepleistering die uw gevel beschermt en een strakke, esthetische afwerking geeft.</p>
+            <span class="service-card-link" data-i18n="idx.svc.more">Meer info &rarr;</span>
           </div>
         </a>
         <a href="diensten.html#steenstrips" class="service-card reveal" style="transition-delay:.2s">
@@ -174,9 +178,9 @@
             <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/steenstrips_proses.jpg.png" alt="Steenstrips gevelafwerking" width="300" height="220" loading="lazy">
           </div>
           <div class="service-card-body">
-            <h3>Steenstrips</h3>
-            <p>De uitstraling van natuursteen of baksteen zonder de hoge kostprijs. Lichtgewicht, vochtbestendig en verfijnd.</p>
-            <span class="service-card-link">Meer info &rarr;</span>
+            <h3 data-i18n="svc.steenstrips">Steenstrips</h3>
+            <p data-i18n="svc.steenstrips.desc">De uitstraling van natuursteen of baksteen zonder de hoge kostprijs. Lichtgewicht, vochtbestendig en verfijnd.</p>
+            <span class="service-card-link" data-i18n="idx.svc.more">Meer info &rarr;</span>
           </div>
         </a>
         <a href="diensten.html#kaleien" class="service-card reveal" style="transition-delay:.25s">
@@ -184,9 +188,9 @@
             <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/Kaleien" alt="Kaleien historische gevels" width="300" height="220" loading="lazy">
           </div>
           <div class="service-card-body">
-            <h3>Kaleien</h3>
-            <p>Kalkhoudende afwerking voor historische en erfgoedpanden. Ademend, duurzaam en authentiek.</p>
-            <span class="service-card-link">Meer info &rarr;</span>
+            <h3 data-i18n="svc.kaleien">Kaleien</h3>
+            <p data-i18n="svc.kaleien.desc">Kalkhoudende afwerking voor historische en erfgoedpanden. Ademend, duurzaam en authentiek.</p>
+            <span class="service-card-link" data-i18n="idx.svc.more">Meer info &rarr;</span>
           </div>
         </a>
       </div>
@@ -198,8 +202,8 @@
         <div class="group-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 12L12 2l10 10"/><path d="M4 10v10a1 1 0 001 1h4v-5h6v5h4a1 1 0 001-1V10"/></svg>
         </div>
-        <h3>Dakwerken</h3>
-        <span class="group-count">2 diensten</span>
+        <h3 data-i18n="idx.dak.title">Dakwerken</h3>
+        <span class="group-count" data-i18n="idx.dak.count">2 diensten</span>
       </div>
       <div class="services-grid two-col">
         <a href="diensten.html#dakrenovatie" class="service-card reveal" style="transition-delay:.05s">
@@ -207,9 +211,9 @@
             <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jun%204%2C%202026%20at%2012_37_25%20AM.png" alt="Dakrenovatie" width="300" height="220" loading="lazy">
           </div>
           <div class="service-card-body">
-            <h3>Dakrenovatie</h3>
-            <p>Volledige dakrenovatie door erkende vakmensen. Wij herstellen en vernieuwen uw dak met hoogwaardige materialen en garantie.</p>
-            <span class="service-card-link">Meer info &rarr;</span>
+            <h3 data-i18n="svc.dakrenovatie">Dakrenovatie</h3>
+            <p data-i18n="svc.dakrenovatie.desc">Volledige dakrenovatie door erkende vakmensen. Wij herstellen en vernieuwen uw dak met hoogwaardige materialen en garantie.</p>
+            <span class="service-card-link" data-i18n="idx.svc.more">Meer info &rarr;</span>
           </div>
         </a>
         <a href="diensten.html#dakisolatie" class="service-card reveal" style="transition-delay:.1s">
@@ -217,16 +221,16 @@
             <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/ChatGPT%20Image%20Jan%2029%2C%202026%20at%2010_46_54%20AM.png" alt="Dakisolatie" width="300" height="220" loading="lazy">
           </div>
           <div class="service-card-body">
-            <h3>Dakisolatie</h3>
-            <p>Effectieve dakisolatie die energieverlies drastisch vermindert. Betere thermische prestaties en lager energieverbruik.</p>
-            <span class="service-card-link">Meer info &rarr;</span>
+            <h3 data-i18n="svc.dakisolatie">Dakisolatie</h3>
+            <p data-i18n="svc.dakisolatie.desc">Effectieve dakisolatie die energieverlies drastisch vermindert. Betere thermische prestaties en lager energieverbruik.</p>
+            <span class="service-card-link" data-i18n="idx.svc.more">Meer info &rarr;</span>
           </div>
         </a>
       </div>
     </div>
 
     <div style="text-align:center;margin-top:2.5rem">
-      <a href="diensten.html" class="btn-primary">Alle diensten bekijken</a>
+      <a href="diensten.html" class="btn-primary" data-i18n="idx.svc.all">Alle diensten bekijken</a>
     </div>
   </div>
 </section>
@@ -236,12 +240,12 @@
   <div class="si">
     <div class="map-wrap">
       <div class="map-text reveal">
-        <p class="section-label">Werkgebied</p>
-        <h2 class="section-title">Actief in heel Vlaanderen</h2>
+        <p class="section-label" data-i18n="idx.map.label">Werkgebied</p>
+        <h2 class="section-title" data-i18n="idx.map.title">Actief in heel Vlaanderen</h2>
         <div class="gold-line left"></div>
-        <p>Van kust tot Kempen &mdash; wij komen naar u toe. T.F.M. Construct BV is actief in alle vijf de Vlaamse provincies en voert opdrachten uit bij particulieren, bedrijven en overheden.</p>
-        <p style="margin-top:1rem">Of u nu in Gent, Antwerpen, Brugge, Hasselt of Leuven woont &mdash; onze vakbekwame teams staan voor u klaar voor een gratis plaatsbezoek en vrijblijvende offerte.</p>
-        <a href="contact.html" class="btn-primary" style="margin-top:1.5rem;display:inline-flex">Gratis plaatsbezoek aanvragen</a>
+        <p data-i18n="idx.map.p1">Van kust tot Kempen &mdash; wij komen naar u toe. T.F.M. Construct BV is actief in alle vijf de Vlaamse provincies en voert opdrachten uit bij particulieren, bedrijven en overheden.</p>
+        <p style="margin-top:1rem" data-i18n="idx.map.p2">Of u nu in Gent, Antwerpen, Brugge, Hasselt of Leuven woont &mdash; onze vakbekwame teams staan voor u klaar voor een gratis plaatsbezoek en vrijblijvende offerte.</p>
+        <a href="contact.html" class="btn-primary" style="margin-top:1.5rem;display:inline-flex" data-i18n="idx.map.btn">Gratis plaatsbezoek aanvragen</a>
       </div>
       <div class="map-svg-wrap reveal-r" style="position:relative">
         <div class="map-inner-wrap">
@@ -257,8 +261,8 @@
 <section class="process-section">
   <div class="si">
     <div class="section-center reveal">
-      <p class="section-label" style="color:var(--gold)">Werkwijze</p>
-      <h2 class="section-title light">Hoe wij werken</h2>
+      <p class="section-label" style="color:var(--gold)" data-i18n="process.label">Werkwijze</p>
+      <h2 class="section-title light" data-i18n="process.title">Hoe wij werken</h2>
       <div class="gold-line"></div>
     </div>
     <div class="process-grid">
@@ -267,32 +271,32 @@
         <div class="step-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
         </div>
-        <h3>Contact &amp; Aanvraag</h3>
-        <p>U neemt contact op via onze website, telefoon of WhatsApp. We beantwoorden elke aanvraag snel en professioneel.</p>
+        <h3 data-i18n="step1.title">Contact &amp; Aanvraag</h3>
+        <p data-i18n="step1.p">U neemt contact op via onze website, telefoon of WhatsApp. We beantwoorden elke aanvraag snel en professioneel.</p>
       </div>
       <div class="process-step reveal" style="transition-delay:.1s">
         <div class="step-num">02</div>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
-        <h3>Gratis Plaatsbezoek</h3>
-        <p>Onze expert komt ter plaatse om de situatie te beoordelen en de beste oplossing voor uw gevel of dak voor te stellen.</p>
+        <h3 data-i18n="step2.title">Gratis Plaatsbezoek</h3>
+        <p data-i18n="step2.p">Onze expert komt ter plaatse om de situatie te beoordelen en de beste oplossing voor uw gevel of dak voor te stellen.</p>
       </div>
       <div class="process-step reveal" style="transition-delay:.15s">
         <div class="step-num">03</div>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         </div>
-        <h3>Offerte binnen 48u</h3>
-        <p>U ontvangt een gedetailleerde en transparante offerte zonder verrassingen, binnen 48 uur na het plaatsbezoek.</p>
+        <h3 data-i18n="step3.title">Offerte binnen 48u</h3>
+        <p data-i18n="step3.p">U ontvangt een gedetailleerde en transparante offerte zonder verrassingen, binnen 48 uur na het plaatsbezoek.</p>
       </div>
       <div class="process-step reveal" style="transition-delay:.2s">
         <div class="step-num">04</div>
         <div class="step-icon">
           <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
         </div>
-        <h3>Vakkundige Uitvoering</h3>
-        <p>Na akkoord voert ons team het werk uit met hoogwaardige materialen en 10 jaar garantie op het resultaat.</p>
+        <h3 data-i18n="step4.title">Vakkundige Uitvoering</h3>
+        <p data-i18n="step4.p">Na akkoord voert ons team het werk uit met hoogwaardige materialen en 10 jaar garantie op het resultaat.</p>
       </div>
     </div>
   </div>
@@ -302,35 +306,35 @@
 <section style="background:var(--off)">
   <div class="si">
     <div class="section-center reveal">
-      <p class="section-label">Realisaties</p>
-      <h2 class="section-title">Voor &amp; Na</h2>
+      <p class="section-label" data-i18n="vn.label">Realisaties</p>
+      <h2 class="section-title" data-i18n="vn.title">Voor &amp; Na</h2>
       <div class="gold-line"></div>
-      <p style="color:#555;max-width:560px;margin:0 auto">Ontdek de transformatie die T.F.M. Construct BV realiseert. Elk project getuigt van vakmanschap en aandacht voor detail.</p>
+      <p style="color:#555;max-width:560px;margin:0 auto" data-i18n="vn.sub">Ontdek de transformatie die T.F.M. Construct BV realiseert. Elk project getuigt van vakmanschap en aandacht voor detail.</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:2.5rem">
       <div class="reveal" style="position:relative;border-radius:8px;overflow:hidden">
         <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/steenstrips_voor.JPG"
              alt="Gevel voor steenstrips renovatie" width="580" height="380" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center top;display:block">
-        <div class="vn-label">Voor — Steenstrips</div>
+        <div class="vn-label" data-i18n="vn.voor.steel">Voor — Steenstrips</div>
       </div>
       <div class="reveal-r" style="position:relative;border-radius:8px;overflow:hidden">
         <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/steenstrips_na2.JPG"
              alt="Gevel na steenstrips renovatie" width="580" height="380" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center top;display:block">
-        <div class="vn-label" style="background:linear-gradient(transparent,rgba(232,165,0,.85));color:var(--navy)">Na — Steenstrips</div>
+        <div class="vn-label" style="background:linear-gradient(transparent,rgba(232,165,0,.85));color:var(--navy)" data-i18n="vn.na.steel">Na — Steenstrips</div>
       </div>
       <div class="reveal" style="position:relative;border-radius:8px;overflow:hidden">
         <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/crepi_voor.jpeg"
              alt="Gevel voor crepi renovatie" width="580" height="380" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center center;display:block">
-        <div class="vn-label">Voor — Crepi</div>
+        <div class="vn-label" data-i18n="vn.voor.crepi">Voor — Crepi</div>
       </div>
       <div class="reveal-r" style="position:relative;border-radius:8px;overflow:hidden">
         <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/crepi_na.png"
              alt="Gevel na crepi renovatie" width="580" height="380" loading="lazy" style="width:100%;height:300px;object-fit:cover;object-position:center center;display:block">
-        <div class="vn-label" style="background:linear-gradient(transparent,rgba(232,165,0,.85));color:var(--navy)">Na — Crepi</div>
+        <div class="vn-label" style="background:linear-gradient(transparent,rgba(232,165,0,.85));color:var(--navy)" data-i18n="vn.na.crepi">Na — Crepi</div>
       </div>
     </div>
     <div style="text-align:center;margin-top:2rem">
-      <a href="projecten.html" class="btn-primary">Alle projecten bekijken</a>
+      <a href="projecten.html" class="btn-primary" data-i18n="vn.btn">Alle projecten bekijken</a>
     </div>
   </div>
 </section>
@@ -338,9 +342,9 @@
 <!-- ===== CTA BANNER ===== -->
 <section class="cta-banner">
   <div class="si reveal">
-    <h2>Klaar voor een perfecte gevel of dak?</h2>
-    <p>Neem vandaag nog contact op voor een gratis plaatsbezoek en vrijblijvende offerte. Wij staan voor u klaar in heel Vlaanderen.</p>
-    <a href="contact.html" class="btn-primary">Offerte aanvragen</a>
+    <h2 data-i18n="cta.h2">Klaar voor een perfecte gevel of dak?</h2>
+    <p data-i18n="cta.p">Neem vandaag nog contact op voor een gratis plaatsbezoek en vrijblijvende offerte. Wij staan voor u klaar in heel Vlaanderen.</p>
+    <a href="contact.html" class="btn-primary" data-i18n="cta.btn">Offerte aanvragen</a>
   </div>
 </section>
 
@@ -348,31 +352,31 @@
 <section id="contact" class="contact-section">
   <div class="si">
     <div class="section-center reveal">
-      <p class="section-label">Neem contact op</p>
-      <h2 class="section-title">Vraag uw offerte aan</h2>
+      <p class="section-label" data-i18n="form.label">Neem contact op</p>
+      <h2 class="section-title" data-i18n="form.title">Vraag uw offerte aan</h2>
       <div class="gold-line"></div>
     </div>
     <div class="contact-grid">
       <div class="reveal">
         <form class="contact-form" novalidate>
           <div class="form-group">
-            <label for="naam">Naam *</label>
-            <input type="text" id="naam" name="naam" placeholder="Jan Janssen" required>
+            <label for="naam" data-i18n="form.naam">Naam *</label>
+            <input type="text" id="naam" name="naam" placeholder="Jan Janssen" data-i18n-ph="form.ph.naam" required>
           </div>
           <div class="form-group">
-            <label for="tel">Telefoonnummer *</label>
+            <label for="tel" data-i18n="form.tel">Telefoonnummer *</label>
             <input type="tel" id="tel" name="tel" placeholder="+32 4 75 00 00 00" required>
           </div>
           <div class="form-group">
-            <label for="email">E-mailadres *</label>
+            <label for="email" data-i18n="form.email">E-mailadres *</label>
             <input type="email" id="email" name="email" placeholder="jan@email.be" required>
           </div>
           <div class="form-group">
-            <label for="bericht">Bericht</label>
-            <textarea id="bericht" name="bericht" placeholder="Beschrijf uw project..."></textarea>
+            <label for="bericht" data-i18n="form.bericht">Bericht</label>
+            <textarea id="bericht" name="bericht" placeholder="Beschrijf uw project..." data-i18n-ph="form.ph.bericht"></textarea>
           </div>
-          <button type="submit" class="btn-primary form-submit">Verstuur aanvraag</button>
-          <p class="form-note">Wij antwoorden binnen 24 uur. Uw gegevens worden nooit gedeeld met derden.</p>
+          <button type="submit" class="btn-primary form-submit" data-i18n="form.submit">Verstuur aanvraag</button>
+          <p class="form-note" data-i18n="form.note">Wij antwoorden binnen 24 uur. Uw gegevens worden nooit gedeeld met derden.</p>
         </form>
       </div>
       <div class="contact-info reveal-r">
@@ -381,7 +385,7 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
           </div>
           <div>
-            <h4>Telefoon</h4>
+            <h4 data-i18n="form.tel.label">Telefoon</h4>
             <a href="tel:+3247500000">+32 475 00 00 00</a>
           </div>
         </div>
@@ -390,7 +394,7 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
           </div>
           <div>
-            <h4>E-mail</h4>
+            <h4 data-i18n="form.email.label">E-mail</h4>
             <a href="mailto:info@tfmconstruct.be">info@tfmconstruct.be</a>
           </div>
         </div>
@@ -399,8 +403,8 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.115.549 4.1 1.51 5.83L.057 24l6.304-1.654A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.817 9.817 0 01-5.012-1.375l-.36-.213-3.732.979.997-3.64-.235-.374A9.818 9.818 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182 17.43 2.182 21.818 6.57 21.818 12c0 5.43-4.388 9.818-9.818 9.818z"/></svg>
           </div>
           <div>
-            <h4>WhatsApp</h4>
-            <a href="https://wa.me/3247500000" target="_blank" rel="noopener">Stuur een bericht</a>
+            <h4 data-i18n="form.wa.label">WhatsApp</h4>
+            <a href="https://wa.me/3247500000" target="_blank" rel="noopener" data-i18n="form.wa.link">Stuur een bericht</a>
           </div>
         </div>
         <div class="info-card">
@@ -408,8 +412,8 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div>
-            <h4>Openingsuren</h4>
-            <p>Ma&ndash;Vr: 07:00&ndash;18:00<br>Za: 08:00&ndash;14:00</p>
+            <h4 data-i18n="form.uur.label">Openingsuren</h4>
+            <p data-i18n="form.uur.val">Ma&ndash;Vr: 07:00&ndash;18:00<br>Za: 08:00&ndash;14:00</p>
           </div>
         </div>
       </div>
@@ -423,33 +427,33 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="logo.svg" class="logo-img" alt="T.F.M. Construct BV" width="160" height="90" loading="lazy">
-        <p>T.F.M. Construct BV is uw specialist in gevel- en dakwerken in Vlaanderen. Kwaliteit, vakmanschap en garantie staan bij ons centraal.</p>
+        <p data-i18n="footer.brand">T.F.M. Construct BV is uw specialist in gevel- en dakwerken in Vlaanderen. Kwaliteit, vakmanschap en garantie staan bij ons centraal.</p>
       </div>
       <div>
-        <h4>Navigatie</h4>
+        <h4 data-i18n="footer.nav">Navigatie</h4>
         <nav class="footer-links" aria-label="Voettekst navigatie">
-          <a href="index.html">Home</a>
-          <a href="over-ons.html">Over ons</a>
-          <a href="diensten.html">Diensten</a>
-          <a href="projecten.html">Projecten</a>
-          <a href="contact.html">Contact</a>
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="over-ons.html" data-i18n="nav.over">Over ons</a>
+          <a href="diensten.html" data-i18n="nav.diensten">Diensten</a>
+          <a href="projecten.html" data-i18n="nav.projecten">Projecten</a>
+          <a href="contact.html" data-i18n="nav.contact">Contact</a>
         </nav>
       </div>
       <div>
-        <h4>Diensten</h4>
+        <h4 data-i18n="footer.svc">Diensten</h4>
         <nav class="footer-links" aria-label="Diensten navigatie">
-          <a href="diensten.html#spuitkurk">Spuitkurk</a>
-          <a href="diensten.html#crepi">Crepi</a>
-          <a href="diensten.html#gevelisolatie">Gevelisolatie</a>
-          <a href="diensten.html#kaleien">Kaleien</a>
-          <a href="diensten.html#steenstrips">Steenstrips</a>
-          <a href="diensten.html#dakrenovatie">Dakrenovatie</a>
+          <a href="diensten.html#spuitkurk" data-i18n="svc.spuitkurk">Spuitkurk</a>
+          <a href="diensten.html#crepi" data-i18n="svc.crepi">Crepi</a>
+          <a href="diensten.html#gevelisolatie" data-i18n="svc.gevelisolatie">Gevelisolatie</a>
+          <a href="diensten.html#kaleien" data-i18n="svc.kaleien">Kaleien</a>
+          <a href="diensten.html#steenstrips" data-i18n="svc.steenstrips">Steenstrips</a>
+          <a href="diensten.html#dakrenovatie" data-i18n="svc.dakrenovatie">Dakrenovatie</a>
         </nav>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 T.F.M. Construct BV &mdash; Alle rechten voorbehouden</p>
-      <p>Actief in heel <strong style="color:var(--gold)">Vlaanderen</strong></p>
+      <p data-i18n="footer.copy">&copy; 2026 T.F.M. Construct BV &mdash; Alle rechten voorbehouden</p>
+      <p data-i18n="footer.region">Actief in heel <strong style="color:var(--gold)">Vlaanderen</strong></p>
     </div>
   </div>
 </footer>
@@ -460,8 +464,9 @@
 </a>
 
 <!-- Sticky CTA -->
-<a href="contact.html" class="sticky-cta" aria-label="Offerte aanvragen">Offerte aanvragen</a>
+<a href="contact.html" class="sticky-cta" data-i18n="sticky.cta" aria-label="Offerte aanvragen">Offerte aanvragen</a>
 
+<script src="lang.js" defer></script>
 <script src="main.js" defer></script>
 </body>
 </html>
