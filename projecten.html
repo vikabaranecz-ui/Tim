@@ -6,61 +6,62 @@
   <title>Projecten — Voor &amp; Na Galerij | T.F.M. Construct BV</title>
   <meta name="description" content="Bekijk de voor- en nafoto's van T.F.M. Construct BV projecten in Vlaanderen. Gevelrenovaties, spuitkurk, crepi, dakrenovaties en dakisolatie met spectaculaire resultaten.">
   <link rel="canonical" href="https://tfmconstruct.be/projecten.html">
-
   <meta property="og:type" content="website">
   <meta property="og:title" content="Projecten — Voor &amp; Na Galerij | T.F.M. Construct BV">
   <meta property="og:description" content="Bekijk onze realisaties: voor- en nafoto's van gevelrenovaties, spuitkurk, crepi, dakrenovaties en dakisolatie in Vlaanderen.">
   <meta property="og:url" content="https://tfmconstruct.be/projecten.html">
-
   <meta name="geo.region" content="BE-VLG">
   <meta name="geo.placename" content="Vlaanderen">
   <meta name="ICBM" content="51.0,4.0">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link rel="stylesheet" href="style.css">
-
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://tfmconstruct.be/"},
-      {"@type":"ListItem","position":2,"name":"Projecten","item":"https://tfmconstruct.be/projecten.html"}
-    ]
-  }
+  {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tfmconstruct.be/"},{"@type":"ListItem","position":2,"name":"Projecten","item":"https://tfmconstruct.be/projecten.html"}]}
   </script>
 
   <style>
-    /* Project case layout */
-    .project-case{border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 4px 24px rgba(5,40,76,.09);margin-bottom:60px}
-    .project-case-header{background:var(--navy);padding:28px 36px;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
-    .project-case-header h3{color:#fff;font-size:1.35rem;margin:0}
-    .project-case-header .project-type{background:var(--gold);color:var(--navy);font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .8rem;border-radius:20px;white-space:nowrap}
-    .project-facts{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid rgba(5,40,76,.08)}
-    .project-fact{padding:20px 24px;border-right:1px solid rgba(5,40,76,.08)}
-    .project-fact:last-child{border-right:none}
-    .fact-label{font-family:'Barlow Condensed',sans-serif;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:4px}
-    .fact-value{font-size:.9rem;color:var(--navy);font-weight:600;line-height:1.35}
-    .project-photos-row{display:grid;grid-template-columns:1fr 1fr;gap:0}
-    .project-photo-wrap{position:relative;overflow:hidden;aspect-ratio:4/3;cursor:zoom-in}
-    .project-photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
-    .project-photo-wrap:hover img{transform:scale(1.04)}
-    .photo-label{position:absolute;top:12px;left:12px;background:rgba(5,40,76,.82);color:#fff;font-family:'Barlow Condensed',sans-serif;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .65rem;border-radius:4px;pointer-events:none}
-    .photo-label.na{background:rgba(232,165,0,.92);color:var(--navy)}
-    .project-extra-photos{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(5,40,76,.06)}
-    .project-extra-photos .project-photo-wrap{aspect-ratio:4/3}
+    /* ── Minimalist project cards ── */
+    .projects-list { display:flex; flex-direction:column; gap:80px; padding:60px 0 100px; }
+
+    .pcard { background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 2px 16px rgba(5,40,76,.07); }
+
+    .pcard-meta { padding:32px 36px 0; display:flex; align-items:baseline; gap:16px; }
+    .pcard-num { font-family:'Barlow Condensed',sans-serif; font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+    .pcard-type { font-family:'Barlow Condensed',sans-serif; font-size:.75rem; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:rgba(5,40,76,.35); }
+
+    .pcard-title { padding:8px 36px 0; font-size:1.25rem; font-weight:700; color:var(--navy); margin:0; line-height:1.3; }
+
+    .pcard-divider { height:1px; background:rgba(5,40,76,.07); margin:20px 36px 0; }
+
+    .pcard-facts { display:grid; grid-template-columns:1fr 1fr; gap:0; padding:0 36px; margin:20px 0; }
+    .pcard-fact { padding:10px 0; border-bottom:1px solid rgba(5,40,76,.05); }
+    .pcard-fact:nth-last-child(-n+2) { border-bottom:none; }
+    .fact-label { font-family:'Barlow Condensed',sans-serif; font-size:.68rem; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:3px; }
+    .fact-text { font-size:.855rem; color:#444; line-height:1.45; }
+
+    .pcard-photos { display:grid; grid-template-columns:1fr 1fr; }
+    .pcard-photo { position:relative; aspect-ratio:4/3; overflow:hidden; }
+    .pcard-photo img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .45s ease; }
+    .pcard-photo:hover img { transform:scale(1.03); }
+    .pcard-photo-label { position:absolute; bottom:12px; left:12px; font-family:'Barrow Condensed','Barlow Condensed',sans-serif; font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; padding:.2rem .6rem; border-radius:3px; pointer-events:none; }
+    .lbl-voor { background:rgba(5,40,76,.72); color:#fff; }
+    .lbl-na   { background:rgba(232,165,0,.9);  color:var(--navy); }
+
+    .pcard-extra { display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(5,40,76,.05); }
+    .pcard-extra .pcard-photo { aspect-ratio:3/2; }
+
+    /* Mobile */
     @media(max-width:768px){
-      .project-facts{grid-template-columns:1fr 1fr}
-      .project-fact{border-right:1px solid rgba(5,40,76,.08);border-bottom:1px solid rgba(5,40,76,.08)}
-      .project-fact:nth-child(2n){border-right:none}
-      .project-extra-photos{grid-template-columns:1fr 1fr}
+      .pcard-meta, .pcard-title, .pcard-divider { padding-left:20px; padding-right:20px; }
+      .pcard-facts { padding:0 20px; grid-template-columns:1fr; }
+      .pcard-fact { border-bottom:1px solid rgba(5,40,76,.05); }
+      .pcard-fact:last-child { border-bottom:none; }
+      .pcard-extra { grid-template-columns:1fr 1fr; }
     }
     @media(max-width:480px){
-      .project-photos-row{grid-template-columns:1fr}
-      .project-case-header{padding:20px}
-      .project-facts{grid-template-columns:1fr 1fr}
+      .pcard-photos { grid-template-columns:1fr; }
+      .pcard-extra { grid-template-columns:1fr 1fr; }
     }
   </style>
 </head>
@@ -94,7 +95,7 @@
   <a href="contact.html" class="btn-primary">Offerte aanvragen</a>
 </div>
 
-<!-- PAGE HERO -->
+<!-- HERO -->
 <header class="page-hero">
   <div class="si">
     <p class="section-label">Onze realisaties</p>
@@ -108,247 +109,243 @@
 </header>
 
 <!-- INTRO -->
-<section style="padding:60px 0 20px">
+<section style="padding:64px 0 0">
   <div class="si section-center reveal">
     <p class="section-label">Voor &amp; Na</p>
     <h2 class="section-title">Het resultaat spreekt voor zich</h2>
     <div class="gold-line"></div>
-    <p style="color:#555;max-width:620px;margin:0 auto">Elk project dat T.F.M. Construct BV uitvoert is een bewijs van ons vakmanschap. Hieronder vindt u de reële situaties: het probleem, wat de klant vroeg, onze aanpak en het eindresultaat.</p>
+    <p style="color:#666;max-width:560px;margin:0 auto;font-size:.95rem">Vier uitgevoerde projecten in Vlaanderen &mdash; per object het probleem, de vraag, onze aanpak en het resultaat.</p>
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section style="padding:20px 0 80px;background:var(--off)">
-  <div class="si">
+<div class="si">
+  <div class="projects-list">
 
-    <!-- PROJECT 1 — SPUITKURK -->
-    <article class="project-case reveal">
-      <div class="project-case-header">
-        <h3>Residenti&euml;le woning &mdash; Spuitkurk gevelafwerking</h3>
-        <span class="project-type">Spuitkurk</span>
+    <!-- 01 SPUITKURK -->
+    <article class="pcard reveal">
+      <div class="pcard-meta">
+        <span class="pcard-num">01</span>
+        <span class="pcard-type">Spuitkurk</span>
       </div>
-      <div class="project-facts">
-        <div class="project-fact">
+      <h3 class="pcard-title">Residenti&euml;le woning &mdash; gevelrenovatie met spuitkurk</h3>
+      <div class="pcard-divider"></div>
+      <div class="pcard-facts">
+        <div class="pcard-fact">
           <div class="fact-label">Probleem</div>
-          <div class="fact-value">Verouderde, gescheurde gevelbepleistering met vochtinsijpeling en slechte isolatie</div>
+          <div class="fact-text">Gescheurde bepleistering, vochtinsijpeling, slechte isolatie</div>
         </div>
-        <div class="project-fact">
+        <div class="pcard-fact">
           <div class="fact-label">Vraag van de klant</div>
-          <div class="fact-value">Duurzame gevelrenovatie met betere isolatie en een frisse uitstraling zonder grote werken</div>
+          <div class="fact-text">Duurzame renovatie met betere isolatie en frisse uitstraling</div>
         </div>
-        <div class="project-fact">
-          <div class="fact-label">Onze oplossing</div>
-          <div class="fact-value">Volledige reiniging van de gevel, herstel van scheuren, aanbreng van spuitkurk in twee lagen</div>
+        <div class="pcard-fact">
+          <div class="fact-label">Onze aanpak</div>
+          <div class="fact-text">Reiniging, herstel scheuren, spuitkurk in twee lagen aangebracht</div>
         </div>
-        <div class="project-fact">
+        <div class="pcard-fact">
           <div class="fact-label">Resultaat</div>
-          <div class="fact-value">Dampopen, isolerende afwerking &mdash; gevel 100% waterdicht, energierekening merkbaar verlaagd</div>
+          <div class="fact-text">Dampopen, waterdichte afwerking &mdash; energierekening merkbaar verlaagd</div>
         </div>
       </div>
-      <div class="project-photos-row">
-        <div class="project-photo-wrap" data-lb>
+      <div class="pcard-photos">
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk_voor.jpg"
-               alt="Gevel voor spuitkurk renovatie" width="720" height="540" loading="lazy">
-          <span class="photo-label">Voor</span>
+               alt="Gevel voor spuitkurk" width="720" height="540" loading="lazy">
+          <span class="pcard-photo-label lbl-voor">Voor</span>
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk_na.png"
-               alt="Gevel na spuitkurk renovatie" width="720" height="540" loading="lazy">
-          <span class="photo-label na">Na</span>
+               alt="Gevel na spuitkurk" width="720" height="540" loading="lazy">
+          <span class="pcard-photo-label lbl-na">Na</span>
         </div>
       </div>
-      <div class="project-extra-photos">
-        <div class="project-photo-wrap" data-lb>
+      <div class="pcard-extra">
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk_reiningen.png"
-               alt="Reiniging gevel voor spuitkurk" width="480" height="360" loading="lazy">
-          <span class="photo-label">Reiniging</span>
+               alt="Reiniging gevel" width="480" height="320" loading="lazy">
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk_sprei.png"
-               alt="Spuitkurk aanbreng proces" width="480" height="360" loading="lazy">
-          <span class="photo-label">In uitvoering</span>
+               alt="Spuitkurk aanbreng" width="480" height="320" loading="lazy">
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/spuitkurk_voor2.jpeg"
-               alt="Tweede aanzicht voor renovatie" width="480" height="360" loading="lazy">
-          <span class="photo-label">Voor &mdash; detail</span>
+               alt="Tweede aanzicht voor" width="480" height="320" loading="lazy">
         </div>
       </div>
     </article>
 
-    <!-- PROJECT 2 — CREPI -->
-    <article class="project-case reveal" style="transition-delay:.1s">
-      <div class="project-case-header">
-        <h3>Halfopen bebouwing &mdash; Crepi gevelbepleistering</h3>
-        <span class="project-type">Crepi</span>
+    <!-- 02 CREPI -->
+    <article class="pcard reveal" style="transition-delay:.08s">
+      <div class="pcard-meta">
+        <span class="pcard-num">02</span>
+        <span class="pcard-type">Crepi</span>
       </div>
-      <div class="project-facts">
-        <div class="project-fact">
+      <h3 class="pcard-title">Halfopen bebouwing &mdash; volledige gevelbepleistering in crepi</h3>
+      <div class="pcard-divider"></div>
+      <div class="pcard-facts">
+        <div class="pcard-fact">
           <div class="fact-label">Probleem</div>
-          <div class="fact-value">Oude, verkleinde pleisterlaag met loslatende stukken en mos- en algengroei over de volledige gevel</div>
+          <div class="fact-text">Loslatende pleister, mos- en algengroei over de volledige gevel</div>
         </div>
-        <div class="project-fact">
+        <div class="pcard-fact">
           <div class="fact-label">Vraag van de klant</div>
-          <div class="fact-value">Strakke, onderhoudsvriendelijke gevel die weerstand biedt aan vocht en jaren meegaat</div>
+          <div class="fact-text">Strakke, onderhoudsvriendelijke gevel die jarenlang meegaat</div>
         </div>
-        <div class="project-fact">
-          <div class="fact-label">Onze oplossing</div>
-          <div class="fact-value">Verwijdering oude pleister, grondige reiniging, aanbrengen van drielagig crepisysteem met afwerklaag</div>
+        <div class="pcard-fact">
+          <div class="fact-label">Onze aanpak</div>
+          <div class="fact-text">Verwijdering oude pleister, drielagig crepisysteem met afwerklaag op maat</div>
         </div>
-        <div class="project-fact">
+        <div class="pcard-fact">
           <div class="fact-label">Resultaat</div>
-          <div class="fact-value">Egale, waterwerende gevel met garantie &mdash; klant koos kleur en structuur op maat</div>
+          <div class="fact-text">Egale, waterwerende gevel &mdash; kleur en structuur gekozen door de klant</div>
         </div>
       </div>
-      <div class="project-photos-row">
-        <div class="project-photo-wrap" data-lb>
+      <div class="pcard-photos">
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/crepi_voor_kant.png"
-               alt="Gevel voor crepi renovatie" width="720" height="540" loading="lazy">
-          <span class="photo-label">Voor</span>
+               alt="Gevel voor crepi" width="720" height="540" loading="lazy">
+          <span class="pcard-photo-label lbl-voor">Voor</span>
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/crepi_na.png"
-               alt="Gevel na crepi renovatie" width="720" height="540" loading="lazy">
-          <span class="photo-label na">Na</span>
+               alt="Gevel na crepi" width="720" height="540" loading="lazy">
+          <span class="pcard-photo-label lbl-na">Na</span>
         </div>
       </div>
-      <div class="project-extra-photos">
-        <div class="project-photo-wrap" data-lb>
+      <div class="pcard-extra">
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/crepi_op_het_werk.png"
-               alt="Crepi aanbreng in uitvoering" width="480" height="360" loading="lazy">
-          <span class="photo-label">In uitvoering</span>
+               alt="Crepi in uitvoering" width="480" height="320" loading="lazy">
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/crepi_na_kant.png"
-               alt="Zijkant gevel na crepi" width="480" height="360" loading="lazy">
-          <span class="photo-label na">Na &mdash; zijkant</span>
+               alt="Zijkant na crepi" width="480" height="320" loading="lazy">
         </div>
-        <div class="project-photo-wrap" data-lb>
-          <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/WhatsApp%20Image%202026-01-30%20at%2022.35.19.jpeg"
-               alt="Tweede crepi project voor" width="480" height="360" loading="lazy">
-          <span class="photo-label">Voor &mdash; project 2</span>
+        <div class="pcard-photo" data-lb>
+          <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/crepi_voor_kant.png"
+               alt="Voorkant voor crepi" width="480" height="320" loading="lazy">
         </div>
       </div>
     </article>
 
-    <!-- PROJECT 3 — STEENSTRIPS -->
-    <article class="project-case reveal" style="transition-delay:.15s">
-      <div class="project-case-header">
-        <h3>Vrijstaande woning &mdash; Steenstrips gevelbekleding</h3>
-        <span class="project-type">Steenstrips</span>
+    <!-- 03 STEENSTRIPS -->
+    <article class="pcard reveal" style="transition-delay:.12s">
+      <div class="pcard-meta">
+        <span class="pcard-num">03</span>
+        <span class="pcard-type">Steenstrips</span>
       </div>
-      <div class="project-facts">
-        <div class="project-fact">
+      <h3 class="pcard-title">Vrijstaande woning &mdash; gevelbekleding met steenstrips</h3>
+      <div class="pcard-divider"></div>
+      <div class="pcard-facts">
+        <div class="pcard-fact">
           <div class="fact-label">Probleem</div>
-          <div class="fact-value">Eentonige, verouderde gevel zonder karakter &mdash; klant wenste uitstraling van natuursteen binnen een realistisch budget</div>
+          <div class="fact-text">Eentonige gevel zonder karakter, klant wenste uitstraling van natuursteen</div>
         </div>
-        <div class="project-fact">
+        <div class="pcard-fact">
           <div class="fact-label">Vraag van de klant</div>
-          <div class="fact-value">Authentieke baksteenuitstraling op de volledige voorgevel, inclusief hoekdetaillering</div>
+          <div class="fact-text">Baksteenuitstraling op de volledige voorgevel, inclusief hoekdetaillering</div>
         </div>
-        <div class="project-fact">
-          <div class="fact-label">Onze oplossing</div>
-          <div class="fact-value">Voorbehandeling van de drager, plaatsing van lichtgewicht steenstrips met vorstbestendige voegspecie en hoekstukken</div>
+        <div class="pcard-fact">
+          <div class="fact-label">Onze aanpak</div>
+          <div class="fact-text">Voorbehandeling drager, steenstrips met vorstbestendige voegspecie en hoekstukken</div>
         </div>
-        <div class="project-fact">
+        <div class="pcard-fact">
           <div class="fact-label">Resultaat</div>
-          <div class="fact-value">Authentieke look van echte baksteen &mdash; vochtbestendig, vorstvast en onderhoudsvrij</div>
+          <div class="fact-text">Authentieke baksteenlook &mdash; vochtbestendig, vorstvast, onderhoudsvrij</div>
         </div>
       </div>
-      <div class="project-photos-row">
-        <div class="project-photo-wrap" data-lb>
+      <div class="pcard-photos">
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/steenstrips_voor.JPG"
                alt="Gevel voor steenstrips" width="720" height="540" loading="lazy">
-          <span class="photo-label">Voor</span>
+          <span class="pcard-photo-label lbl-voor">Voor</span>
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/steenstrips_na.JPG"
                alt="Gevel na steenstrips" width="720" height="540" loading="lazy">
-          <span class="photo-label na">Na</span>
+          <span class="pcard-photo-label lbl-na">Na</span>
         </div>
       </div>
-      <div class="project-extra-photos">
-        <div class="project-photo-wrap" data-lb>
+      <div class="pcard-extra">
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/steenstrips_op_het_werk.JPG"
-               alt="Steenstrips plaatsing in uitvoering" width="480" height="360" loading="lazy">
-          <span class="photo-label">In uitvoering</span>
+               alt="Steenstrips plaatsing" width="480" height="320" loading="lazy">
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/steenstrips_na_hoek.JPG"
-               alt="Hoekdetail steenstrips na" width="480" height="360" loading="lazy">
-          <span class="photo-label na">Na &mdash; hoek</span>
+               alt="Hoekdetail na" width="480" height="320" loading="lazy">
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/steenstrips_na_kant.JPG"
-               alt="Zijkant steenstrips na" width="480" height="360" loading="lazy">
-          <span class="photo-label na">Na &mdash; zijkant</span>
+               alt="Zijkant na" width="480" height="320" loading="lazy">
         </div>
       </div>
     </article>
 
-    <!-- PROJECT 4 — KALEIEN -->
-    <article class="project-case reveal" style="transition-delay:.2s">
-      <div class="project-case-header">
-        <h3>Erfgoedpand &mdash; Kaleien historische gevel</h3>
-        <span class="project-type">Kaleien</span>
+    <!-- 04 KALEIEN -->
+    <article class="pcard reveal" style="transition-delay:.16s">
+      <div class="pcard-meta">
+        <span class="pcard-num">04</span>
+        <span class="pcard-type">Kaleien</span>
       </div>
-      <div class="project-facts">
-        <div class="project-fact">
+      <h3 class="pcard-title">Erfgoedpand &mdash; herstel historische kalkafwerking</h3>
+      <div class="pcard-divider"></div>
+      <div class="pcard-facts">
+        <div class="pcard-fact">
           <div class="fact-label">Probleem</div>
-          <div class="fact-value">Historische kalklaag volledig versleten, gevel poreus en vatbaar voor vochtschade, kleur vervaagd</div>
+          <div class="fact-text">Kalklaag volledig versleten, gevel poreus en vatbaar voor vochtschade</div>
         </div>
-        <div class="project-fact">
+        <div class="pcard-fact">
           <div class="fact-label">Vraag van de klant</div>
-          <div class="fact-value">Herstel van de authentieke kalkafwerking, respect voor het erfgoedkarakter van het pand</div>
+          <div class="fact-text">Herstel van de kalkafwerking met respect voor het erfgoedkarakter</div>
         </div>
-        <div class="project-fact">
-          <div class="fact-label">Onze oplossing</div>
-          <div class="fact-value">Mechanische reiniging, herstel van scheuren met kalkmortier, aanbrengen van twee lagen traditionele kalkverf</div>
+        <div class="pcard-fact">
+          <div class="fact-label">Onze aanpak</div>
+          <div class="fact-text">Mechanische reiniging, herstel scheuren met kalkmortier, twee lagen traditionele kalkverf</div>
         </div>
-        <div class="project-fact">
+        <div class="pcard-fact">
           <div class="fact-label">Resultaat</div>
-          <div class="fact-value">Authentieke uitstraling hersteld &mdash; ademende kalklaag beschermt de gevel en past perfect bij de omgeving</div>
+          <div class="fact-text">Authentieke uitstraling hersteld &mdash; ademende kalklaag beschermt de gevel</div>
         </div>
       </div>
-      <div class="project-photos-row">
-        <div class="project-photo-wrap" data-lb>
+      <div class="pcard-photos">
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/kaleien_voor.jpeg"
                alt="Gevel voor kaleien" width="720" height="540" loading="lazy">
-          <span class="photo-label">Voor</span>
+          <span class="pcard-photo-label lbl-voor">Voor</span>
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/kaleien_na.png"
                alt="Gevel na kaleien" width="720" height="540" loading="lazy">
-          <span class="photo-label na">Na</span>
+          <span class="pcard-photo-label lbl-na">Na</span>
         </div>
       </div>
-      <div class="project-extra-photos">
-        <div class="project-photo-wrap" data-lb>
+      <div class="pcard-extra">
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/kaleien_op_het_werk.png"
-               alt="Kaleien in uitvoering" width="480" height="360" loading="lazy">
-          <span class="photo-label">In uitvoering</span>
+               alt="Kaleien in uitvoering" width="480" height="320" loading="lazy">
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/kaleien_voor2.jpeg"
-               alt="Tweede aanzicht voor kaleien" width="480" height="360" loading="lazy">
-          <span class="photo-label">Voor &mdash; detail</span>
+               alt="Detail voor" width="480" height="320" loading="lazy">
         </div>
-        <div class="project-photo-wrap" data-lb>
+        <div class="pcard-photo" data-lb>
           <img src="https://raw.githubusercontent.com/vikabaranecz-ui/Tim/main/kaleien_na1.png"
-               alt="Tweede aanzicht na kaleien" width="480" height="360" loading="lazy">
-          <span class="photo-label na">Na &mdash; detail</span>
+               alt="Detail na" width="480" height="320" loading="lazy">
         </div>
       </div>
     </article>
 
   </div>
-</section>
+</div>
 
-<!-- CTA BANNER -->
+<!-- CTA -->
 <section class="cta-banner">
   <div class="si reveal">
     <h2>Uw gevel of dak als volgend project?</h2>
-    <p>Wij realiseren graag ook uw gevel- of dakrenovatie. Neem contact op voor een gratis plaatsbezoek en offerte op maat.</p>
+    <p>Neem contact op voor een gratis plaatsbezoek en offerte op maat.</p>
     <a href="contact.html" class="btn-primary">Offerte aanvragen</a>
   </div>
 </section>
