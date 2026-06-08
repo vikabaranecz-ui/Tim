@@ -393,6 +393,33 @@ section{padding:80px 0}
 .city-lbl{fill:rgba(255,255,255,0.8);font-family:'Barlow Condensed',sans-serif;font-size:10px;pointer-events:none}
 .map-inner-wrap{background:transparent;border-radius:0;padding:0;max-width:700px;margin:0 auto;box-shadow:none}
 
+/* ---------- ETICS Isolatiesysteem diagram ---------- */
+.etics-section{background:var(--off);padding:80px 0}
+.etics-diagram{max-width:900px;margin:0 auto}
+.etics-wall{display:flex;align-items:stretch;border-radius:12px;overflow:hidden;box-shadow:0 8px 40px rgba(5,40,76,.15);height:220px}
+.etics-layer{flex:0 0 var(--lw);background:var(--lc);position:relative;display:flex;align-items:center;justify-content:center;transition:flex .35s ease,box-shadow .25s;cursor:default}
+.etics-layer:hover{flex:0 0 calc(var(--lw) + 40px);box-shadow:inset 0 0 0 3px rgba(255,255,255,.5)}
+.layer-block{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.layer-num{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:rgba(255,255,255,.9);text-shadow:0 1px 4px rgba(0,0,0,.3);writing-mode:vertical-rl;letter-spacing:.1em}
+.layer-info{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:var(--navy-dk);color:#fff;border-radius:8px;padding:.6rem 1rem;width:200px;font-size:.8rem;line-height:1.4;white-space:normal;z-index:10;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.3)}
+.layer-info::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--navy-dk)}
+.layer-info strong{display:block;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;letter-spacing:.04em;margin-bottom:.2rem;color:var(--gold)}
+.etics-layer:hover .layer-info{display:block}
+.etics-legend{display:flex;flex-wrap:wrap;gap:.75rem 1.5rem;margin-top:1.5rem;justify-content:center}
+.legend-item{display:flex;align-items:center;gap:.5rem;font-family:'Barlow Condensed',sans-serif;font-size:.9rem;color:#444;font-weight:600;letter-spacing:.03em}
+.legend-item span{width:16px;height:16px;border-radius:4px;background:var(--lc);flex-shrink:0}
+@media(max-width:768px){
+  .etics-wall{height:160px}
+  .layer-num{font-size:1.3rem}
+  .etics-layer:hover{flex:0 0 calc(var(--lw) + 24px)}
+}
+@media(max-width:480px){
+  .etics-wall{height:120px;border-radius:8px}
+  .layer-num{font-size:1rem}
+  .etics-legend{gap:.5rem 1rem}
+  .legend-item{font-size:.8rem}
+}
+
 /* ---------- Services category headers ---------- */
 .service-category-header{padding:60px 0 20px;text-align:center}
 .service-category-header.dark-bg{background:var(--navy-dk)}
