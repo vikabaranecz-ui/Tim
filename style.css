@@ -196,7 +196,7 @@ section{padding:80px 0}
 .wa-section p{color:#555;max-width:500px;margin:0 auto 2rem}
 
 /* ---------- Floating WhatsApp button ---------- */
-.wa-float{position:fixed;bottom:28px;left:24px;z-index:900;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);animation:waPulse 2.5s infinite}
+.wa-float{position:fixed;bottom:28px;right:24px;z-index:900;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.45);animation:waPulse 2.5s infinite}
 .wa-float svg{width:30px;height:30px;fill:#fff}
 .wa-float:hover{background:#1ebe5a;animation:none;transform:scale(1.1)}
 @keyframes waPulse{0%,100%{box-shadow:0 4px 20px rgba(37,211,102,.45)}50%{box-shadow:0 4px 32px rgba(37,211,102,.75),0 0 0 8px rgba(37,211,102,.12)}}
@@ -378,7 +378,7 @@ section{padding:80px 0}
   .lb-prev,.lb-next{padding:8px 12px;font-size:1.5rem}
   /* Floating knoppen — op heel klein scherm */
   .sticky-cta{display:none}
-  .wa-float{display:none}
+  .wa-float{bottom:70px;right:16px;width:50px;height:50px}
   /* Vaste onderste balk op mobiel */
   .mobile-cta-bar{display:flex}
   body{padding-bottom:56px}
