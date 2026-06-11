@@ -83,7 +83,7 @@ section{padding:80px 0}
 /* ---------- Hero base ---------- */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center 60%;background-repeat:no-repeat}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(2,24,48,.75) 0%,rgba(5,40,76,.45) 100%)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(2,24,48,.72) 0%,rgba(5,40,76,.4) 100%)}
 .hero-content{position:relative;z-index:2;color:var(--white)}
 .hero-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
 .hero h1{font-size:clamp(2.8rem,6vw,5rem);color:var(--white);margin-bottom:1rem;max-width:800px}
